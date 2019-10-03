@@ -11,7 +11,7 @@ var edge_spacing = 8;
 var width = window.innerWidth * 0.8;
 var height = 300;
 
-var glucose_levels = ['very_high', 'high', 'normal', 'low', 'very_low', 'unknown']
+var levels = ['very_high', 'high', 'normal', 'low', 'very_low', 'unknown']
 
 var find_path = function(data){
     var m_dict = {}
@@ -56,6 +56,38 @@ var find_path = function(data){
     return res
 }
 
+var gen_sequences_from_data = function(data){
+    sequences = []
+
+    count = 0
+    for (var tmpseq of days_iterator(data)){
+        tmpseq = tmpseq.filter(d => d.Meal.length >= 1 && d.Glucose != '')
+        if (tmpseq.length == 0) continue
+        seq = []
+
+        for (event of tmpseq){
+            seq.push({
+                Date : event.Date,
+                Meal: event.Meal,
+                Glucose : event.Glucose,
+                type : event.Meal,
+                level : get_glucose_level(parseFloat(event.Glucose)),
+                glucose_level: get_glucose_level(parseFloat(event.Glucose)),
+                day : tmpseq,
+                seq_index : count,
+            })
+        }
+
+        sequences.push(seq)
+
+        if (count>=numDays-1) break
+        else count++
+    }
+
+    console.log(sequences)
+    return sequences
+}
+
 var init_sankey = function(){
     d3.csv('../data/full.csv', (error, data) => {
         data = invert_order_of_data(data)
@@ -66,7 +98,8 @@ var init_sankey = function(){
 
         window.data = select_days(data, numDays);
         var path = find_path(window.data)
-        newgraph = new SequenceBraiding(window.data, path)
+        sequences = gen_sequences_from_data(window.data)
+        newgraph = new SequenceBraiding(sequences, path)
     })
 }
 

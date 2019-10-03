@@ -65,8 +65,8 @@ window.SequenceBraiding = class SequenceBraiding {
 				ord[r] = ord[r].sort((a,b) => {
 					var a_node = grid[r].find(n => n.day[0].Date == index_dict[a])
 					var b_node = grid[r].find(n => n.day[0].Date == index_dict[b])
-					if ((!a_node.isanchor || !b_node.isanchor) && (a_node.glucose_level != 'unknown' && b_node.glucose_level != 'unknown') && a_node.glucose_level != b_node.glucose_level) 
-						return glucose_levels.indexOf(a_node.glucose_level) > glucose_levels.indexOf(b_node.glucose_level)
+					if ((!a_node.isanchor || !b_node.isanchor) && (a_node.level != 'unknown' && b_node.level != 'unknown') && a_node.level != b_node.level) 
+						return levels.indexOf(a_node.level) > levels.indexOf(b_node.level)
 					else return ord[r-1].indexOf(a) > ord[r-1].indexOf(b)
 				})
 			}
@@ -75,8 +75,8 @@ window.SequenceBraiding = class SequenceBraiding {
 				ord[r].sort((a,b) => {
 					var a_node = grid[r].find(n => n.day[0].Date == index_dict[a])
 					var b_node = grid[r].find(n => n.day[0].Date == index_dict[b])
-					if ((!a_node.isanchor || !b_node.isanchor) && (a_node.glucose_level != 'unknown' && b_node.glucose_level != 'unknown') && a_node.glucose_level != b_node.glucose_level) 
-						return glucose_levels.indexOf(a_node.glucose_level) > glucose_levels.indexOf(b_node.glucose_level)
+					if ((!a_node.isanchor || !b_node.isanchor) && (a_node.level != 'unknown' && b_node.level != 'unknown') && a_node.level != b_node.level) 
+						return levels.indexOf(a_node.level) > levels.indexOf(b_node.level)
 					else return ord[r+1].indexOf(a) > ord[r+1].indexOf(b)
 				})
 			}
@@ -120,9 +120,9 @@ window.SequenceBraiding = class SequenceBraiding {
 			var cur_struct = []
 			for (var j=0; j<ord[i].length; j++){
 				var cur_node = grid[i].find(n => n.day[0].Date == index_dict[ord[i][j]])
-				if (cur_node.isanchor || cur_node.glucose_level == 'unknown') cur_struct.push(cur_node)
-				else if (cur_struct.find(n => n.g == cur_node.glucose_level) == undefined) cur_struct.push({g:cur_node.glucose_level, nodes:[cur_node]})
-				else cur_struct.find(n => n.g == cur_node.glucose_level).nodes.push(cur_node)
+				if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
+				else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
+				else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
 			}
 			for (var j in cur_struct){
 				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cur_struct[j].day[0].Date))
@@ -141,7 +141,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 
 			cur_struct = cur_struct.sort((a, b) => {
-				if (a.g != undefined && b.g != undefined && a.g != b.g) return glucose_levels.indexOf(a.g) > glucose_levels.indexOf(b.g)
+				if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
 				else return a.wmean > b.wmean
 			})
 
@@ -169,9 +169,9 @@ window.SequenceBraiding = class SequenceBraiding {
 			var cur_struct = []
 			for (var j=0; j<ord[i].length; j++){
 				var cur_node = grid[i].find(n => n.day[0].Date == index_dict[ord[i][j]])
-				if (cur_node.isanchor || cur_node.glucose_level == 'unknown') cur_struct.push(cur_node)
-				else if (cur_struct.find(n => n.g == cur_node.glucose_level) == undefined) cur_struct.push({g:cur_node.glucose_level, nodes:[cur_node]})
-				else cur_struct.find(n => n.g == cur_node.glucose_level).nodes.push(cur_node)
+				if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
+				else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
+				else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
 			}
 			for (var j in cur_struct){
 				if (ord[i+1] == undefined) continue
@@ -191,7 +191,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 
 			cur_struct = cur_struct.sort((a, b) => {
-				if (a.g != undefined && b.g != undefined && a.g != b.g) return glucose_levels.indexOf(a.g) > glucose_levels.indexOf(b.g)
+				if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
 				else return a.wmean > b.wmean
 			})
 
@@ -228,7 +228,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		for (var c in grid){
 			grid[c] = grid[c].sort((a, b) => {
-				if (a.glucose_level != b.glucose_level) return glucose_levels.indexOf(a.glucose_level) > glucose_levels.indexOf(b.glucose_level)
+				if (a.level != b.level) return levels.indexOf(a.level) > levels.indexOf(b.level)
 				else {
 					var na = a.incoming_links[0].source
 					var nb = b.incoming_links[0].source
@@ -255,7 +255,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		for (var c in grid){
 			grid[c] = grid[c].sort((a, b) => {
-				if (a.glucose_level != b.glucose_level) return glucose_levels.indexOf(a.glucose_level) > glucose_levels.indexOf(b.glucose_level)
+				if (a.level != b.level) return levels.indexOf(a.level) > levels.indexOf(b.level)
 				else {
 					var na = a.incoming_links[0].source
 					var nb = b.incoming_links[0].source
@@ -287,7 +287,41 @@ window.SequenceBraiding = class SequenceBraiding {
 		return grid
 	}
 
+	add_virtual_nodes(grid){
+		var level_heights = {}
+		var start_heights = {}
+
+		// define maximum heights for each level
+		for (var level of levels){
+			var max_height = 0
+			for (var r=0; r<=this.max_rank; r++){
+				if (grid[r] == undefined) continue
+				if (grid[r].filter(n => (n.level == level) && !n.fake_in).length > max_height) max_height = grid[r].filter(n => n.level == level || n.level == 'unknown').length
+			}
+			level_heights[level] = max_height + 1
+		} 
+
+		// define starting heights for each level
+		var cur_height = 0
+		for (var level of levels){
+			start_heights[level] = cur_height
+			cur_height += level_heights[level]
+		}
+
+		// add virtual blank nodes to make the nodes be at their correct position
+		for (var r=0; r<=this.max_rank; r++){
+			if (grid[r] == undefined) continue
+			for (var level of levels){
+				var diff = level_heights[level] - grid[r].filter(n => n.level == level).length
+				for (var i=0; i<diff; i++){
+					grid[r].splice(grid[r].filter(n => n.level == level).length + start_heights[level], 0, {})
+				}
+			}
+		}
+	}
+
 	set_nodes_y(grid){
+		// assign node y
 		for (var node of this.nodes){
 			if (grid[node.depth] == undefined) continue
 			else node.y = grid[node.depth].filter(n => !n.fake_in && !n.fake_out).indexOf(node)
@@ -296,31 +330,30 @@ window.SequenceBraiding = class SequenceBraiding {
 
 
 	set_nodes_y2(grid){
-
 		var level_heights = {}
 		var start_heights = {}
 
-		for (var level of glucose_levels){
+		for (var level of levels){
 			var max_height = 0
 			for (var r=0; r<=this.max_rank; r++){
 				if (grid[r] == undefined) continue
-				if (grid[r].filter(n => (n.glucose_level == level || n.glucose_level == 'unknown') && !n.fake_in).length > max_height) max_height = grid[r].filter(n => n.glucose_level == level || n.glucose_level == 'unknown').length
+				if (grid[r].filter(n => (n.level == level || n.level == 'unknown') && !n.fake_in).length > max_height) max_height = grid[r].filter(n => n.level == level || n.level == 'unknown').length
 			}
 			level_heights[level] = max_height + 1
 		} 
 
 		var cur_height = 0
-		for (var level of glucose_levels){
+		for (var level of levels){
 			start_heights[level] = cur_height
 			cur_height += level_heights[level]
 		}
 
 		for (var r=0; r<=this.max_rank; r++){
 			if (grid[r] == undefined) continue
-			for (var level of glucose_levels){
-				var diff = level_heights[level] - grid[r].filter(n => n.glucose_level == level).length
+			for (var level of levels){
+				var diff = level_heights[level] - grid[r].filter(n => n.level == level).length
 				for (var i=0; i<diff; i++){
-					grid[r].splice(grid[r].filter(n => n.glucose_level == level).length + start_heights[level], 0, {})
+					grid[r].splice(grid[r].filter(n => n.level == level).length + start_heights[level], 0, {})
 				}
 			}
 		}
@@ -328,9 +361,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var r=0; r<=this.max_rank; r++){
 			if (grid[r] == undefined) continue
 			var cur_level = 'very_high'	
-			for (var level of glucose_levels){
-				var firstNode = grid[r].find(n => n.glucose_level == level)
-				if (firstNode == undefined || level == 'unknown' || firstNode.prev_node.glucose_level != firstNode.glucose_level) continue
+			for (var level of levels){
+				var firstNode = grid[r].find(n => n.level == level)
+				if (firstNode == undefined || level == 'unknown' || firstNode.prev_node.level != firstNode.level) continue
 				var diff = grid[r-1].indexOf(firstNode.prev_node) - grid[r].indexOf(firstNode)
 				for (var i=0; i<diff; i++){
 					grid[r].splice(grid[r].indexOf(firstNode) - 1, 0, {})
@@ -345,18 +378,16 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 
-	add_node(prevnode, day, index, next_depth, isanchor, fake_out=false, fake_in=false){
+	add_node(prevnode, event, next_depth, isanchor, fake_out=false, fake_in=false){
 		var new_node = {
-			meal: day[index].Meal, 
-			glucose: parseFloat(day[index].Glucose), 
-			glucose_level: get_glucose_level(parseFloat(day[index].Glucose)),
-			color: isanchor ? 'green' :  get_color(get_glucose_level(parseFloat(day[index].Glucose))),
-			opacity: 1,
+			meal: event.type, 
+			level: event.level,
+			color: isanchor ? 'green' : get_color(event.level),
 			incoming_links: [],
 			outgoing_links: [], 
 			next_node: null,
 			prev_node: prevnode,
-			day: day,
+			day: event.day,
 			isanchor: isanchor,
 			depth: next_depth,
 			fake_out: fake_out,
@@ -366,7 +397,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var new_link = {
 			source: prevnode,
 			target: new_node,
-			day: day[0].Date
+			day: event.Date
 		}
 
 		prevnode.outgoing_links.push(new_link)
@@ -386,20 +417,20 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.nodes.push(this.source)
 
 		var count = 0
-		for (var day of days_iterator(data)){
-			day = day.filter(d => d.Meal.length >= 1 && d.Glucose != '')
-			if (day.length == 0) continue
+		for (var sequence of this.data){
 			var prevnode = this.source
-			for (var index in day){
-				var pdepth = prevnode.depth + this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => day[index].Meal == n))
+			for (var event of sequence){
+				var index = sequence.indexOf(event)
+				var pdepth = prevnode.depth + this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => sequence[index].Meal == n))
+				// add anchors
 				if (pdepth - prevnode.depth >= 0) {
 					var diff = pdepth - prevnode.depth;
 					for (var ev = 0; ev<diff; ev+=1){
-						if (index == 0) prevnode = this.add_node(prevnode, day, index, pdepth-diff+ev+1, true, false, true)
-						else prevnode = this.add_node(prevnode, day, index, pdepth-diff+ev+1, true, false, false)
+						if (index == 0) prevnode = this.add_node(prevnode, event, pdepth-diff+ev+1, true, false, true)
+						else prevnode = this.add_node(prevnode, event, pdepth-diff+ev+1, true, false, false)
 					}
 				}
-				prevnode = this.add_node(prevnode, day, index, pdepth+1, false)
+				prevnode = this.add_node(prevnode, event, pdepth+1, false)
 			}
 
 			// last anchors before sink
@@ -407,12 +438,9 @@ window.SequenceBraiding = class SequenceBraiding {
 				var pdepth = (this.path.length-1)
 				var diff = pdepth - prevnode.depth;
 				for (var ev = 0; ev<diff; ev+=1){
-					prevnode = this.add_node(prevnode, day, index, prevnode.depth+1, true, true)
+					prevnode = this.add_node(prevnode, event, prevnode.depth+1, true, true)
 				}
 			}
-			
-			if (count>=numDays-1) break
-			else count++
 		}
 	}
 
@@ -455,6 +483,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	draw(){
 		this.grid = this.sort_nodes_vertically()
 		//this.grid_to_singles()
+		this.add_virtual_nodes(this.grid)
 		this.set_nodes_y(this.grid)
 		
 		
@@ -467,7 +496,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var lineGen = d3.line()
         	.x(function(d) { return d.x })
         	.y(function(d) { return d.y })
-        	.curve(d3.curveCatmullRom.alpha(0.7))
+        	.curve(d3.curveCatmullRom.alpha(1))
 
 		// for (var node of this.nodes){
 		// 	if (node.isanchor) continue
@@ -483,7 +512,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		for (var r=-1; r<this.max_rank; r++){
 			if (this.grid[r] == undefined) continue
-			var cur_glucose_level = 'very_high'
+			var cur_level = 'very_high'
 			var cur_rect_size = 0
 			var cur_rect_start_height = 0
 			for (var node of this.grid[r]){
@@ -496,7 +525,7 @@ window.SequenceBraiding = class SequenceBraiding {
 					.attr('y', this.top_padding + node.y*this.vertical_spacing - this.vertical_spacing/2)
 					.attr('width', this.node_width)
 					.attr('height', this.vertical_spacing) 
-					.attr('rx', '10px')
+					.attr('rx', '5px')
 					.attr('fill', node.isanchor ? 'gray' : node.color)
 					.attr('opacity', 0.5)
 					.on('click', d => console.log(d))
@@ -521,30 +550,32 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	        var linkcount = 0
 			for (var link of link_collection) {
-				if (link.source != this.source){
+				if (link.source == this.source || link.source.fake_in){
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
+				} else if (!link.target.fake_out) {
 					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
 					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
 				} else {
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
 				}
 
 				
 				if (link.source.fake_in){
 					linearGradient.append("stop")
-						.attr('offset', (linkcount)*(100/(this.path.length-2)) + '%')
+						.attr('offset', (linkcount + 0.4)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else if (link.target.fake_out){
 					linearGradient.append("stop")
-						.attr('offset', (linkcount)*(100/(this.path.length-2)) + '%')
+						.attr('offset', (linkcount - 0.2)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else {
 					linearGradient.append("stop")
-						.attr('offset', (linkcount - 0.5)*(100/(this.path.length-2)) + '%')
-						.attr('stop-color', get_color(link.source.glucose_level))
+						.attr('offset', (linkcount - 0.2)*(100/(this.path.length-2)) + '%')
+						.attr('stop-color', get_color(link.source.level))
 
 					linearGradient.append("stop")
-						.attr('offset', (linkcount + 0.5)*(100/(this.path.length-2)) + '%')
-						.attr('stop-color', get_color(link.target.glucose_level))
+						.attr('offset', (linkcount + 0.2)*(100/(this.path.length-2)) + '%')
+						.attr('stop-color', get_color(link.target.level))
 				}
 
 				linkcount++
