@@ -6,9 +6,11 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.links = []
 		this.max_rank = this.path.length * 3
 		
-		this.horizontal_spacing = .9*window.innerWidth/(1.2*this.path.length)
+		var svgwidth = document.getElementById('braids-container').clientWidth
+
+		this.horizontal_spacing = .9*(svgwidth)/(this.path.length)
 		this.vertical_spacing = 8
-		this.left_padding = 10
+		this.left_padding = 20
 		this.top_padding = 80
 		this.circle_radius = 3
 		this.node_width = 0.3*this.horizontal_spacing
@@ -80,14 +82,6 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 		}
 		return ord
-	}
-
-
-	wmedian_nodes(ord, i, max_rank, index_dict, date_dict, grid){
-		node_ord = []
-		for (var r=1; r<ord.length; r++){
-
-		}
 	}
 
 
@@ -222,6 +216,31 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	sort_nodes_vertically(){
+		var grid = []
+		var max_iterations = 6
+		var max_rank = this.max_rank
+
+		for (var curdepth = 0; curdepth<max_rank; curdepth++){
+			if (!this.nodes.some(n => n.depth == curdepth)) continue
+			grid[curdepth] = []
+			for (var node of this.nodes.filter(n => n.depth == curdepth)) grid[curdepth].push(node)
+		}
+
+		for (var c in grid){
+			grid[c] = grid[c].sort((a, b) => {
+				if (a.glucose_level != b.glucose_level) return glucose_levels.indexOf(a.glucose_level) > glucose_levels.indexOf(b.glucose_level)
+				else {
+					var na = a.incoming_links[0].source
+					var nb = b.incoming_links[0].source
+					if (grid[c-1] != undefined) return grid[c-1].indexOf(na) > grid[c-1].indexOf(nb)
+				}
+			})
+		}
+
+		return grid
+	}
+
+	sort_nodes_vertically2(){
 		
 		var grid = {}
 		var max_iterations = 6
@@ -268,15 +287,22 @@ window.SequenceBraiding = class SequenceBraiding {
 		return grid
 	}
 
-
 	set_nodes_y(grid){
+		for (var node of this.nodes){
+			if (grid[node.depth] == undefined) continue
+			else node.y = grid[node.depth].filter(n => !n.fake_in && !n.fake_out).indexOf(node)
+		}
+	}
+
+
+	set_nodes_y2(grid){
 
 		var level_heights = {}
 		var start_heights = {}
 
 		for (var level of glucose_levels){
 			var max_height = 0
-			for (var r=0; r<this.max_rank; r++){
+			for (var r=0; r<=this.max_rank; r++){
 				if (grid[r] == undefined) continue
 				if (grid[r].filter(n => (n.glucose_level == level || n.glucose_level == 'unknown') && !n.fake_in).length > max_height) max_height = grid[r].filter(n => n.glucose_level == level || n.glucose_level == 'unknown').length
 			}
@@ -289,7 +315,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			cur_height += level_heights[level]
 		}
 
-		for (var r=0; r<this.max_rank; r++){
+		for (var r=0; r<=this.max_rank; r++){
 			if (grid[r] == undefined) continue
 			for (var level of glucose_levels){
 				var diff = level_heights[level] - grid[r].filter(n => n.glucose_level == level).length
@@ -299,7 +325,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 		}
 
-		for (var r=2; r<this.max_rank; r++){
+		for (var r=0; r<=this.max_rank; r++){
 			if (grid[r] == undefined) continue
 			var cur_level = 'very_high'	
 			for (var level of glucose_levels){
@@ -337,50 +363,21 @@ window.SequenceBraiding = class SequenceBraiding {
 			fake_in: fake_in
 		}
 
-		var new_node2 = {
-			meal: day[index].Meal, 
-			glucose: parseFloat(day[index].Glucose), 
-			glucose_level: get_glucose_level(parseFloat(day[index].Glucose)),
-			color: isanchor ? 'green' :  get_color(get_glucose_level(parseFloat(day[index].Glucose))),
-			opacity: 0.5,
-			incoming_links: [],
-			outgoing_links: [], 
-			prev_node: new_node,
-			next_node: null,
-			day: day,
-			isanchor: isanchor,
-			depth: next_depth + 1,
-			fake_out: fake_out,
-			fake_in: fake_in
-		}
-
 		var new_link = {
 			source: prevnode,
 			target: new_node,
 			day: day[0].Date
 		}
 
-		var new_link2 = {
-			source: new_node,
-			target: new_node2,
-			day: day[0].Date
-		}
-
 		prevnode.outgoing_links.push(new_link)
 		prevnode.next_node = new_node
-
 		new_node.incoming_links.push(new_link)
-		new_node.outgoing_links.push(new_link2)
-		new_node.next_node = new_node2
-		new_node2.incoming_links.push(new_link2)
 		
 
 		this.nodes.push(new_node)
-		this.nodes.push(new_node2)
 		this.links.push(new_link)
-		this.links.push(new_link2)
 
-		return new_node2
+		return new_node
 	}
 
 	build(){
@@ -394,10 +391,10 @@ window.SequenceBraiding = class SequenceBraiding {
 			if (day.length == 0) continue
 			var prevnode = this.source
 			for (var index in day){
-				var pdepth = prevnode.depth + this.path.slice((prevnode.depth/2) + 1, this.path.length).indexOf(this.path.find(n => day[index].Meal == n))*2
-				if (pdepth - prevnode.depth >= 2) {
+				var pdepth = prevnode.depth + this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => day[index].Meal == n))
+				if (pdepth - prevnode.depth >= 0) {
 					var diff = pdepth - prevnode.depth;
-					for (var ev = 0; ev<diff; ev+=2){
+					for (var ev = 0; ev<diff; ev+=1){
 						if (index == 0) prevnode = this.add_node(prevnode, day, index, pdepth-diff+ev+1, true, false, true)
 						else prevnode = this.add_node(prevnode, day, index, pdepth-diff+ev+1, true, false, false)
 					}
@@ -405,10 +402,11 @@ window.SequenceBraiding = class SequenceBraiding {
 				prevnode = this.add_node(prevnode, day, index, pdepth+1, false)
 			}
 
-			if (prevnode.depth != (this.path.length-1)*2) {
-				var pdepth = (this.path.length-1) * 2
+			// last anchors before sink
+			if (prevnode.depth != (this.path.length-1)) {
+				var pdepth = (this.path.length-1)
 				var diff = pdepth - prevnode.depth;
-				for (var ev = 0; ev<diff; ev+=2){
+				for (var ev = 0; ev<diff; ev+=1){
 					prevnode = this.add_node(prevnode, day, index, prevnode.depth+1, true, true)
 				}
 			}
@@ -442,22 +440,34 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	get_node_x(node){
-		return this.left_padding + (node.depth % 2 == 1 ? this.horizontal_spacing*0.4 + node.depth * this.horizontal_spacing : node.depth * (this.horizontal_spacing) - this.horizontal_spacing*0.4)
+		return this.left_padding + node.depth * this.horizontal_spacing
+	}
+
+	grid_to_singles(){
+		for (var i=0; i<this.path.length+5; i+=2){
+			delete this.grid[i]
+		}
+		
+		this.grid = Object.values(this.grid)
+		this.max_rank = this.grid.length
 	}
 
 	draw(){
-
 		this.grid = this.sort_nodes_vertically()
+		//this.grid_to_singles()
 		this.set_nodes_y(this.grid)
+		
+		
+		//var svg = d3.select('body').append('svg')
+		//    .attr('width', width)
+		//    .attr('height', height)
 
-		var svg = d3.select('body').append('svg')
-		    .attr('width', window.innerWidth)
-		    .attr('height', height*3)
+		var svg = d3.select('#braids-container')
 
 		var lineGen = d3.line()
         	.x(function(d) { return d.x })
         	.y(function(d) { return d.y })
-        	.curve(d3.curveCatmullRom.alpha(1))
+        	.curve(d3.curveCatmullRom.alpha(0.7))
 
 		// for (var node of this.nodes){
 		// 	if (node.isanchor) continue
@@ -471,23 +481,25 @@ window.SequenceBraiding = class SequenceBraiding {
 		// 		.on('click', (d, i) => console.log(d))
 		// }
 
-		for (var r=-1; r<this.max_rank; r+=2){
+		for (var r=-1; r<this.max_rank; r++){
 			if (this.grid[r] == undefined) continue
 			var cur_glucose_level = 'very_high'
 			var cur_rect_size = 0
 			var cur_rect_start_height = 0
 			for (var node of this.grid[r]){
-				if (node == {} || node.isanchor) continue
+				if (node == {}) continue
 
 				if (isNaN(this.get_node_x(node, this.horizontal_spacing))) continue
 				svg.append('rect')
+					.datum(node)
 					.attr('x', this.get_node_x(node, this.horizontal_spacing))
 					.attr('y', this.top_padding + node.y*this.vertical_spacing - this.vertical_spacing/2)
 					.attr('width', this.node_width)
 					.attr('height', this.vertical_spacing) 
 					.attr('rx', '10px')
-					.attr('fill', node.color)
+					.attr('fill', node.isanchor ? 'gray' : node.color)
 					.attr('opacity', 0.5)
+					.on('click', d => console.log(d))
 			}
 
 		}
@@ -509,30 +521,36 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	        var linkcount = 0
 			for (var link of link_collection) {
-				if (link.source != this.source)
+				if (link.source != this.source){
 					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
-				else {
+					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
+				} else {
 					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
 				}
+
 				
 				if (link.source.fake_in){
-
 					linearGradient.append("stop")
-						.attr('offset', (linkcount + 1.7)*(100/(2*this.path.length - 2)) + '%')
+						.attr('offset', (linkcount)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else if (link.target.fake_out){
-
 					linearGradient.append("stop")
-						.attr('offset', (linkcount+0.4)*(100/(2*this.path.length - 2)) + '%')
+						.attr('offset', (linkcount)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else {
 					linearGradient.append("stop")
-						.attr('offset', (linkcount + 0.8)*(100/(2*this.path.length - 2)) + '%')
+						.attr('offset', (linkcount - 0.5)*(100/(this.path.length-2)) + '%')
+						.attr('stop-color', get_color(link.source.glucose_level))
+
+					linearGradient.append("stop")
+						.attr('offset', (linkcount + 0.5)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', get_color(link.target.glucose_level))
 				}
 
 				linkcount++
 			}
+
+			drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
 			
 			var p = svg.append('path')
 				.attr('id', 'day_' + daycount)
@@ -553,7 +571,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var e in this.path){
 			var t = svg.append('text')
 				.attr('y', 40)
-				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing*1.9)
+				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing)
 				.attr('text-anchor', 'middle')
 				.attr('font-family', 'Arial')
 				.attr('font-size', '0.8em')
