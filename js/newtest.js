@@ -412,16 +412,17 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	build(){
-		this.source = {depth: 0, incoming_links:[], outgoing_links:[], glucose:-1, color:'gray', fake_in:true}
-		this.sink = {depth: path.length + 1, incoming_links:[], outgoing_links:[], glucose:-1, color:'gray'}
-		this.nodes.push(this.source)
+		this.source = {depth: 0, incoming_links:[], outgoing_links:[], color:'gray', fake_in:true}
+		this.sink = {depth: path.length + 1, incoming_links:[], outgoing_links:[], color:'gray'}
+		//this.nodes.push(this.source)
 
 		var count = 0
 		for (var sequence of this.data){
 			var prevnode = this.source
 			for (var event of sequence){
 				var index = sequence.indexOf(event)
-				var pdepth = prevnode.depth + this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => sequence[index].Meal == n))
+				var pdepth = prevnode.depth + this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => event.type == n))
+				
 				// add anchors
 				if (pdepth - prevnode.depth >= 0) {
 					var diff = pdepth - prevnode.depth;
@@ -469,15 +470,6 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	get_node_x(node){
 		return this.left_padding + node.depth * this.horizontal_spacing
-	}
-
-	grid_to_singles(){
-		for (var i=0; i<this.path.length+5; i+=2){
-			delete this.grid[i]
-		}
-		
-		this.grid = Object.values(this.grid)
-		this.max_rank = this.grid.length
 	}
 
 	draw(){

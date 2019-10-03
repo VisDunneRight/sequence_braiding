@@ -13,40 +13,32 @@ var height = 300;
 
 var levels = ['very_high', 'high', 'normal', 'low', 'very_low', 'unknown']
 
-var find_path = function(data){
+var find_path = function(data_sequences){
     var m_dict = {}
     var index_dict = {}
 
-
-    /* TEMPORARY FIX */
-    for (i in data){
-        if (data[i].Meal == 'Exercise snack') data[i].Meal = 'Snack'
-        if (data[i].Meal == 'Other (Describe what he is eating below)') data[i].Meal = 'Other'
-    }
-    /* TEMPORARY FIX */
-
-
     count = 0
-    for (i in data){
-        if (data[i].Meal.length <= 1) continue
-        if (m_dict[data[i].Meal] == undefined) {m_dict[data[i].Meal] = String.fromCharCode(parseInt(count) + 65); count++}
+    for (i in data_sequences){
+        for (j of data_sequences[i]){
+            if (m_dict[j.type] == undefined) {m_dict[j.type] = String.fromCharCode(parseInt(count) + 65); count++}
+        }
     }
 
     for (j in m_dict) index_dict[m_dict[j]] = j
 
     var count = 0
-    sequences = []
-    for (var day of days_iterator(data)){
-        day = day.filter(d => d.Meal.length > 1)
+    char_sequences = []
+    for (var day of data_sequences){
+        day = day.filter(d => d.type.length > 1)
 
         res_str = ""
-        for (m of day) res_str += m_dict[m.Meal]
-        sequences.push(res_str)
+        for (m of day) res_str += m_dict[m.type]
+        char_sequences.push(res_str)
         count++
         if (count > numDays) break
     }
 
-    seq = pairwiseAlignDna(sequences)
+    seq = pairwiseAlignDna(char_sequences)
     
     res = []
     for (i in seq){res.push(index_dict[seq[i]])}
@@ -66,10 +58,10 @@ var gen_sequences_from_data = function(data){
         seq = []
 
         for (event of tmpseq){
+            if (event.Meal == 'Exercise snack') event.Meal = 'Snack'
+            if (event.Meal == 'Other (Describe what he is eating below)') event.Meal = 'Other'
             seq.push({
                 Date : event.Date,
-                Meal: event.Meal,
-                Glucose : event.Glucose,
                 type : event.Meal,
                 level : get_glucose_level(parseFloat(event.Glucose)),
                 glucose_level: get_glucose_level(parseFloat(event.Glucose)),
@@ -84,7 +76,6 @@ var gen_sequences_from_data = function(data){
         else count++
     }
 
-    console.log(sequences)
     return sequences
 }
 
@@ -97,9 +88,10 @@ var init_sankey = function(){
             .attr('height', 300)
 
         window.data = select_days(data, numDays);
-        var path = find_path(window.data)
-        sequences = gen_sequences_from_data(window.data)
-        newgraph = new SequenceBraiding(sequences, path)
+        data_sequences = gen_sequences_from_data(window.data)
+        var path = find_path(data_sequences)
+
+        newgraph = new SequenceBraiding(data_sequences, path)
     })
 }
 
