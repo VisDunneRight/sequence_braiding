@@ -85,7 +85,7 @@ var init_sankey = function(){
 
         d3.select('#braids-container')
             .attr('width', '100%')
-            .attr('height', 300)
+            .attr('height', 500)
 
         window.data = select_days(data, numDays);
         data_sequences = gen_sequences_from_data(window.data)

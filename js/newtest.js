@@ -8,12 +8,12 @@ window.SequenceBraiding = class SequenceBraiding {
 		
 		var svgwidth = document.getElementById('braids-container').clientWidth
 
-		this.horizontal_spacing = .9*(svgwidth)/(this.path.length)
-		this.vertical_spacing = 8
-		this.left_padding = 20
+		this.horizontal_spacing = (svgwidth)/(this.path.length-1)
+		this.vertical_spacing = 7
+		this.left_padding = 0
 		this.top_padding = 80
 		this.circle_radius = 3
-		this.node_width = 0.3*this.horizontal_spacing
+		this.node_width = 0.2*this.horizontal_spacing
 
 		this.build()
 		this.draw()
@@ -296,7 +296,10 @@ window.SequenceBraiding = class SequenceBraiding {
 			var max_height = 0
 			for (var r=0; r<=this.max_rank; r++){
 				if (grid[r] == undefined) continue
-				if (grid[r].filter(n => (n.level == level) && !n.fake_in).length > max_height) max_height = grid[r].filter(n => n.level == level || n.level == 'unknown').length
+				grid[r] = grid[r].filter(n => !n.fake_in && !n.fake_out)
+				if (grid[r].filter(n => (n.level == level) && !n.fake_in && !n.fake_out).length > max_height) {
+					max_height = grid[r].filter(n => n.level == level || n.level == 'unknown').length
+				}
 			}
 			level_heights[level] = max_height + 1
 		} 
@@ -310,11 +313,21 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// add virtual blank nodes to make the nodes be at their correct position
 		for (var r=0; r<=this.max_rank; r++){
+			
 			if (grid[r] == undefined) continue
 			for (var level of levels){
-				var diff = level_heights[level] - grid[r].filter(n => n.level == level).length
-				for (var i=0; i<diff; i++){
-					grid[r].splice(grid[r].filter(n => n.level == level).length + start_heights[level], 0, {})
+				var lgroup = grid[r].filter(n => n.level == level)
+				var diff = level_heights[level] - lgroup.length
+		
+				if (lgroup.length == 0) diff = level_heights[level]
+				
+				for (var i=0; i<diff; i++) {
+					if (lgroup.length != 0) {
+						grid[r].splice(grid[r].indexOf(lgroup[lgroup.length-1]) + 1, 0, {})
+					}
+					else {
+						grid[r].splice(start_heights[level], 0, {})
+					}
 				}
 			}
 		}
@@ -324,7 +337,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		// assign node y
 		for (var node of this.nodes){
 			if (grid[node.depth] == undefined) continue
-			else node.y = grid[node.depth].filter(n => !n.fake_in && !n.fake_out).indexOf(node)
+			else node.y = grid[node.depth].indexOf(node)
 		}
 	}
 
@@ -544,29 +557,30 @@ window.SequenceBraiding = class SequenceBraiding {
 			for (var link of link_collection) {
 				if (link.source == this.source || link.source.fake_in){
 					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
-				} else if (!link.target.fake_out) {
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
-					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
 				} else {
-					drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
-				}
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
+				} //else {
+					//drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
+				//}
 
 				
 				if (link.source.fake_in){
 					linearGradient.append("stop")
-						.attr('offset', (linkcount + 0.4)*(100/(this.path.length-2)) + '%')
+						.attr('offset', (linkcount)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else if (link.target.fake_out){
 					linearGradient.append("stop")
-						.attr('offset', (linkcount - 0.2)*(100/(this.path.length-2)) + '%')
+						.attr('offset', (linkcount - 0.5)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else {
 					linearGradient.append("stop")
-						.attr('offset', (linkcount - 0.2)*(100/(this.path.length-2)) + '%')
+						.attr('offset', (linkcount - 0.3)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', get_color(link.source.level))
 
 					linearGradient.append("stop")
-						.attr('offset', (linkcount + 0.2)*(100/(this.path.length-2)) + '%')
+						.attr('offset', (linkcount + 0.3)*(100/(this.path.length-2)) + '%')
 						.attr('stop-color', get_color(link.target.level))
 				}
 
