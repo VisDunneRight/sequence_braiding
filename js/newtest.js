@@ -21,15 +21,15 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	get_grid_order(grid){
 		var ord = []
-		var date_dict = {}
+		var inverse_index_dict = {}
 		var index_dict = []
 		var day_index = 0
 		for (var i in grid){
 			for (var j in grid[i]){
 				if (grid[i][j].day == undefined) continue
-				if (date_dict[grid[i][j].day[0].Date] == undefined) {
-					date_dict[grid[i][j].day[0].Date] = day_index
-					index_dict[day_index] = grid[i][j].day[0].Date
+				if (inverse_index_dict[grid[i][j].seq_index] == undefined) {
+					inverse_index_dict[grid[i][j].seq_index] = day_index
+					index_dict[day_index] = grid[i][j].seq_index
 					day_index++
 				}
 			}
@@ -38,12 +38,12 @@ window.SequenceBraiding = class SequenceBraiding {
 			var cur_ord = []
 			for (var j in grid[i]){
 				if (grid[i][j].day == undefined) continue
-				cur_ord.push(date_dict[grid[i][j].day[0].Date])
+				cur_ord.push(inverse_index_dict[grid[i][j].seq_index])
 			}
 			ord.push(cur_ord)
 		}
 
-		return [ord, index_dict, date_dict]
+		return [ord, index_dict, inverse_index_dict]
 	}
 
 	count_crossings_from_ord(ord){
@@ -87,7 +87,8 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	apply_ord(ord, grid, index_dict, date_dict){
 		for (var i in grid){
-			grid[i] = grid[i].sort((a, b) => ord[i].indexOf(date_dict[a.day[0].Date]) > ord[i].indexOf(date_dict[b.day[0].Date]))
+			if (ord[i] == undefined) continue
+			grid[i] = grid[i].sort((a, b) => ord[i].indexOf(date_dict[a.seq_index]) > ord[i].indexOf(date_dict[b.seq_index]))
 		}
 	}
 
@@ -110,7 +111,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	   return arr;
 	}
 
-	wmedian_nodes_left(ord, date_dict, index_dict, grid){
+	wmedian_nodes_left2(ord, date_dict, index_dict, grid){
 		var structured_ord = []
 		for (var i=0; i<ord.length; i++){
 			if (i%2 == 0) {
@@ -118,20 +119,72 @@ window.SequenceBraiding = class SequenceBraiding {
 				continue
 			}
 			var cur_struct = []
+			// for (var j=0; j<ord[i].length; j++){
+			// 	var cur_node = grid[i].find(n => n.day[0].Date == index_dict[ord[i][j]])
+			// 	if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
+			// 	else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
+			// 	else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
+			// }
+			// for (var j in cur_struct){
+			// 	if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cur_struct[j].day[0].Date))
+			// 	else {
+			// 		cur_struct[j].wmean = 0
+			// 		for (var n of cur_struct[j].nodes){
+			// 			if (n.day == undefined) continue
+			// 			if (n.prev_node.fake_in) n.wmean = ord[i+2].indexOf(ord[i+2].find(nn => index_dict[nn] == n.day[0].Date))
+			// 			else n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.day[0].Date))
+			// 			cur_struct[j].wmean += n.wmean
+			// 		}
+
+			// 		cur_struct[j].nodes.sort((a, b) => a.wmean > b.wmean)
+			// 		cur_struct[j].wmean = cur_struct[j].nodes[Math.round((cur_struct[j].nodes.length-1)/2)].wmean
+			// 	}
+			// }
+
+			// cur_struct = cur_struct.sort((a, b) => {
+			// 	if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
+			// 	else return a.wmean > b.wmean
+			// })
+
+			structured_ord.push(cur_struct)
+		}
+
+		var res_ord = []
+		// for (var i in structured_ord){
+		// 	var cur_res_ord = []
+		// 	for (var j in structured_ord[i]){
+		// 		if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].day[0].Date])
+		// 		else for (var k in structured_ord[i][j].nodes){
+		// 			cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].day[0].Date])
+		// 		}
+		// 	}
+		// 	res_ord.push(cur_res_ord)
+		// }
+
+		return res_ord
+	}
+
+		wmedian_nodes_left(ord, date_dict, index_dict, grid){
+		var structured_ord = []
+		for (var i=0; i<ord.length; i++){
+			var cur_struct = []
 			for (var j=0; j<ord[i].length; j++){
-				var cur_node = grid[i].find(n => n.day[0].Date == index_dict[ord[i][j]])
+				if (grid[i] == undefined) continue
+				var cur_node = grid[i].find(n => n.seq_index == index_dict[ord[i][j]])
 				if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
 				else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
 				else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
 			}
+
 			for (var j in cur_struct){
-				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cur_struct[j].day[0].Date))
+				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cur_struct[j].seq_index))
 				else {
 					cur_struct[j].wmean = 0
 					for (var n of cur_struct[j].nodes){
-						if (n.day == undefined) continue
-						if (n.prev_node.fake_in) n.wmean = ord[i+2].indexOf(ord[i+2].find(nn => index_dict[nn] == n.day[0].Date))
-						else n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.day[0].Date))
+						//if (n.day == undefined) continue
+						//if (n.prev_node.fake_in) n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
+						//else n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
+						n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
 						cur_struct[j].wmean += n.wmean
 					}
 
@@ -152,9 +205,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var i in structured_ord){
 			var cur_res_ord = []
 			for (var j in structured_ord[i]){
-				if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].day[0].Date])
+				if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].seq_index])
 				else for (var k in structured_ord[i][j].nodes){
-					cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].day[0].Date])
+					cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].seq_index])
 				}
 			}
 			res_ord.push(cur_res_ord)
@@ -168,20 +221,20 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var i=ord.length-1; i>-1; i--){
 			var cur_struct = []
 			for (var j=0; j<ord[i].length; j++){
-				var cur_node = grid[i].find(n => n.day[0].Date == index_dict[ord[i][j]])
+				var cur_node = grid[i].find(n => n.seq_index == index_dict[ord[i][j]])
 				if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
 				else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
 				else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
 			}
 			for (var j in cur_struct){
 				if (ord[i+1] == undefined) continue
-				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i+1].indexOf(ord[i+1].find(n => index_dict[n] == cur_struct[j].day[0].Date))
+				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i+1].indexOf(ord[i+1].find(n => index_dict[n] == cur_struct[j].seq_index))
 				else {
 					cur_struct[j].wmean = 0
 					for (var n of cur_struct[j].nodes){
 						if (n.day == undefined) continue
-						//if (n.prev_node.fake_in) n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.day[0].Date))
-						n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.day[0].Date))
+						//if (n.prev_node.fake_in) n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
+						n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
 						cur_struct[j].wmean += n.wmean
 					}
 
@@ -195,8 +248,8 @@ window.SequenceBraiding = class SequenceBraiding {
 				else return a.wmean > b.wmean
 			})
 
-			if (i%2 == 1) structured_ord.push(structured_ord[structured_ord.length-1])
-			else structured_ord.push(cur_struct)
+			//if (i%2 == 1) structured_ord.push(structured_ord[structured_ord.length-1])
+			structured_ord.push(cur_struct)
 		}
 		structured_ord = structured_ord.reverse()
 
@@ -204,9 +257,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var i in structured_ord){
 			var cur_res_ord = []
 			for (var j in structured_ord[i]){
-				if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].day[0].Date])
+				if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].seq_index])
 				else for (var k in structured_ord[i][j].nodes){
-					cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].day[0].Date])
+					cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].seq_index])
 				}
 			}
 			res_ord.push(cur_res_ord)
@@ -228,14 +281,37 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		for (var c in grid){
 			grid[c] = grid[c].sort((a, b) => {
-				if (a.level != b.level) return levels.indexOf(a.level) > levels.indexOf(b.level)
+				if (a.level != b.level) return levels.indexOf(a.level) > levels.indexOf(b.level) ? 1 : -1
 				else {
 					var na = a.incoming_links[0].source
 					var nb = b.incoming_links[0].source
-					if (grid[c-1] != undefined) return grid[c-1].indexOf(na) > grid[c-1].indexOf(nb)
+					if (grid[c-1] != undefined) return grid[c-1].indexOf(na) > grid[c-1].indexOf(nb) ? 1 : -1
 				}
 			})
 		}
+
+		var initial_order = this.get_grid_order(grid)[0]
+		var index_dict = this.get_grid_order(grid)[1]
+		var date_dict = this.get_grid_order(grid)[2]
+		var initial_crossings = this.count_crossings_from_ord(initial_order)
+		console.log(initial_crossings)
+
+		var best_crossings = 100000
+		var best_order = initial_order
+
+		for (var i=0; i<max_iterations; i++){
+
+			if (i%2 == 0) var tmpord = this.wmedian_nodes_left(deepClone(best_order), date_dict, index_dict, grid)
+			//else var tmpord = this.wmedian_nodes_right(deepClone(best_order), date_dict, index_dict, grid)
+
+			if (this.count_crossings_from_ord(tmpord) < best_crossings){
+				best_order = tmpord
+				best_crossings = this.count_crossings_from_ord(best_order)
+			}
+			console.log(best_crossings)
+		}
+
+		this.apply_ord(best_order, grid, index_dict, date_dict)
 
 		return grid
 	}
@@ -331,6 +407,22 @@ window.SequenceBraiding = class SequenceBraiding {
 				}
 			}
 		}
+
+		for (var r=0; r<=this.max_rank; r++){
+			if (grid[r] == undefined) continue
+			var cur_level = levels[0]
+			for (var level of levels){
+				var group = grid[r].filter(n => n.level == level)
+				var firstNode = group[0]
+				var lastNode = group[group.length - 1]
+				if (firstNode == undefined || level == 'unknown' || firstNode.prev_node.level != firstNode.level) continue
+				var diff = grid[r-1].indexOf(firstNode.prev_node) - grid[r].indexOf(firstNode)
+				for (var i=0; i<diff; i++){
+					grid[r].splice(grid[r].indexOf(firstNode) - 1, 0, {})
+					if (grid[r][grid[r].indexOf(lastNode) + 1].level == undefined) grid[r].splice(grid[r].indexOf(lastNode) + 1, 1)
+				}
+			}
+		}
 	}
 
 	set_nodes_y(grid){
@@ -338,55 +430,6 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var node of this.nodes){
 			if (grid[node.depth] == undefined) continue
 			else node.y = grid[node.depth].indexOf(node)
-		}
-	}
-
-
-	set_nodes_y2(grid){
-		var level_heights = {}
-		var start_heights = {}
-
-		for (var level of levels){
-			var max_height = 0
-			for (var r=0; r<=this.max_rank; r++){
-				if (grid[r] == undefined) continue
-				if (grid[r].filter(n => (n.level == level || n.level == 'unknown') && !n.fake_in).length > max_height) max_height = grid[r].filter(n => n.level == level || n.level == 'unknown').length
-			}
-			level_heights[level] = max_height + 1
-		} 
-
-		var cur_height = 0
-		for (var level of levels){
-			start_heights[level] = cur_height
-			cur_height += level_heights[level]
-		}
-
-		for (var r=0; r<=this.max_rank; r++){
-			if (grid[r] == undefined) continue
-			for (var level of levels){
-				var diff = level_heights[level] - grid[r].filter(n => n.level == level).length
-				for (var i=0; i<diff; i++){
-					grid[r].splice(grid[r].filter(n => n.level == level).length + start_heights[level], 0, {})
-				}
-			}
-		}
-
-		for (var r=0; r<=this.max_rank; r++){
-			if (grid[r] == undefined) continue
-			var cur_level = 'very_high'	
-			for (var level of levels){
-				var firstNode = grid[r].find(n => n.level == level)
-				if (firstNode == undefined || level == 'unknown' || firstNode.prev_node.level != firstNode.level) continue
-				var diff = grid[r-1].indexOf(firstNode.prev_node) - grid[r].indexOf(firstNode)
-				for (var i=0; i<diff; i++){
-					grid[r].splice(grid[r].indexOf(firstNode) - 1, 0, {})
-				}
-			}
-		}
-
-		for (var node of this.nodes){
-			if (grid[node.depth] == undefined) continue
-			node.y = grid[node.depth].filter(n => !n.fake_in && !n.fake_out).indexOf(node)
 		}
 	}
 
@@ -404,12 +447,14 @@ window.SequenceBraiding = class SequenceBraiding {
 			isanchor: isanchor,
 			depth: next_depth,
 			fake_out: fake_out,
-			fake_in: fake_in
+			fake_in: fake_in,
+			seq_index: event.seq_index
 		}
 
 		var new_link = {
 			source: prevnode,
 			target: new_node,
+			seq_index: event.seq_index,
 			day: event.Date
 		}
 
@@ -531,7 +576,7 @@ window.SequenceBraiding = class SequenceBraiding {
 					.attr('width', this.node_width)
 					.attr('height', this.vertical_spacing) 
 					.attr('rx', '5px')
-					.attr('fill', node.isanchor ? 'gray' : node.color)
+					.attr('fill', node.isanchor ? '#ffffff00' : node.color)
 					.attr('opacity', 0.5)
 					.on('click', d => console.log(d))
 			}
@@ -539,55 +584,54 @@ window.SequenceBraiding = class SequenceBraiding {
 		}
 
 		var daycount = 0
-		for (var day of days_iterator(data)){
+		for (var day of this.data){
 			if (day[0] == undefined) continue
 			var link_collection = this.links.filter(l => l.day == day[0].Date)
 			if (link_collection.length == 0) continue
 			var drawpath = []
 
-			var linearGradient = svg.append("defs")
-	            .append("linearGradient")
+			var defs = svg.append("defs")
+	           
+	        var linearGradient = defs.append("linearGradient")
 	            .attr("id", "linear-gradient"+daycount)
+	            .attr("gradientUnits", "userSpaceOnUse")
 
 	        linearGradient.append("stop")
 	            .attr("offset", "0%")
 	            .attr("stop-color", '#ffffff00');
 
-	        var linkcount = 0
 			for (var link of link_collection) {
-				if (link.source == this.source || link.source.fake_in){
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
+				if (link.source.fake_in && link.target.fake_in) continue
+				else if (link.source.fake_out && link.target.fake_out) continue
+				else if ((link.source == this.source || link.source.fake_in) && !link.target.fake_in){
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + this.horizontal_spacing/2, y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
 				} else {
 					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
 					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
 					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
-				} //else {
-					//drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
-				//}
+				}
 
-				
-				if (link.source.fake_in){
+				if (false && link.source.fake_in){
 					linearGradient.append("stop")
-						.attr('offset', (linkcount)*(100/(this.path.length-2)) + '%')
+						.attr('offset', this.get_node_x(link.source, this.horizontal_spacing)*100/(width) + '%')
 						.attr('stop-color', '#ffffff00')
-				} else if (link.target.fake_out){
+				} else if (false && link.target.fake_out){
 					linearGradient.append("stop")
-						.attr('offset', (linkcount - 0.5)*(100/(this.path.length-2)) + '%')
+						.attr('offset', this.get_node_x(link.target, this.horizontal_spacing)*100/(width) + '%')
 						.attr('stop-color', '#ffffff00')
 				} else {
 					linearGradient.append("stop")
-						.attr('offset', (linkcount - 0.3)*(100/(this.path.length-2)) + '%')
+						.attr('offset', 100 * this.get_node_x(link.source, this.horizontal_spacing)/width + '%')
 						.attr('stop-color', get_color(link.source.level))
 
-					linearGradient.append("stop")
-						.attr('offset', (linkcount + 0.3)*(100/(this.path.length-2)) + '%')
-						.attr('stop-color', get_color(link.target.level))
+					//linearGradient.append("stop")
+					//	.attr('offset', this.get_node_x(link.target, this.horizontal_spacing)*100/(width) + '%')
+					//	.attr('stop-color', get_color(link.target.level))
 				}
 
-				linkcount++
 			}
 
-			drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
+			drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing/2, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
 			
 			var p = svg.append('path')
 				.attr('id', 'day_' + daycount)
@@ -608,7 +652,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var e in this.path){
 			var t = svg.append('text')
 				.attr('y', 40)
-				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing)
+				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing + this.node_width/2)
 				.attr('text-anchor', 'middle')
 				.attr('font-family', 'Arial')
 				.attr('font-size', '0.8em')
