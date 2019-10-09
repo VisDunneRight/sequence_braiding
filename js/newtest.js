@@ -58,33 +58,6 @@ window.SequenceBraiding = class SequenceBraiding {
 		return crossings
 	}
 
-
-	wmedian(ord, i, max_rank, index_dict, grid){
-		if (i%2 == 0){
-			for (var r=2; r<ord.length; r++){
-				ord[r] = ord[r].sort((a,b) => {
-					var a_node = grid[r].find(n => n.day[0].Date == index_dict[a])
-					var b_node = grid[r].find(n => n.day[0].Date == index_dict[b])
-					if ((!a_node.isanchor || !b_node.isanchor) && (a_node.level != 'unknown' && b_node.level != 'unknown') && a_node.level != b_node.level) 
-						return levels.indexOf(a_node.level) > levels.indexOf(b_node.level)
-					else return ord[r-1].indexOf(a) > ord[r-1].indexOf(b)
-				})
-			}
-		} else {
-			for (var r=ord.length-2; r>0; r--){
-				ord[r].sort((a,b) => {
-					var a_node = grid[r].find(n => n.day[0].Date == index_dict[a])
-					var b_node = grid[r].find(n => n.day[0].Date == index_dict[b])
-					if ((!a_node.isanchor || !b_node.isanchor) && (a_node.level != 'unknown' && b_node.level != 'unknown') && a_node.level != b_node.level) 
-						return levels.indexOf(a_node.level) > levels.indexOf(b_node.level)
-					else return ord[r+1].indexOf(a) > ord[r+1].indexOf(b)
-				})
-			}
-		}
-		return ord
-	}
-
-
 	apply_ord(ord, grid, index_dict, date_dict){
 		for (var i in grid){
 			if (ord[i] == undefined) continue
@@ -111,96 +84,48 @@ window.SequenceBraiding = class SequenceBraiding {
 	   return arr;
 	}
 
-	wmedian_nodes_left2(ord, date_dict, index_dict, grid){
+
+	wmedian_nodes_left(ord, date_dict, index_dict, grid){
 		var structured_ord = []
 		for (var i=0; i<ord.length; i++){
-			if (i%2 == 0) {
-				structured_ord.push(structured_ord[structured_ord.length-1])
-				continue
-			}
-			var cur_struct = []
-			// for (var j=0; j<ord[i].length; j++){
-			// 	var cur_node = grid[i].find(n => n.day[0].Date == index_dict[ord[i][j]])
-			// 	if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
-			// 	else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
-			// 	else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
-			// }
-			// for (var j in cur_struct){
-			// 	if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cur_struct[j].day[0].Date))
-			// 	else {
-			// 		cur_struct[j].wmean = 0
-			// 		for (var n of cur_struct[j].nodes){
-			// 			if (n.day == undefined) continue
-			// 			if (n.prev_node.fake_in) n.wmean = ord[i+2].indexOf(ord[i+2].find(nn => index_dict[nn] == n.day[0].Date))
-			// 			else n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.day[0].Date))
-			// 			cur_struct[j].wmean += n.wmean
-			// 		}
+			var cluster = this.gen_cluster(ord, i, index_dict, grid)
 
-			// 		cur_struct[j].nodes.sort((a, b) => a.wmean > b.wmean)
-			// 		cur_struct[j].wmean = cur_struct[j].nodes[Math.round((cur_struct[j].nodes.length-1)/2)].wmean
-			// 	}
-			// }
-
-			// cur_struct = cur_struct.sort((a, b) => {
-			// 	if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
-			// 	else return a.wmean > b.wmean
-			// })
-
-			structured_ord.push(cur_struct)
-		}
-
-		var res_ord = []
-		// for (var i in structured_ord){
-		// 	var cur_res_ord = []
-		// 	for (var j in structured_ord[i]){
-		// 		if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].day[0].Date])
-		// 		else for (var k in structured_ord[i][j].nodes){
-		// 			cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].day[0].Date])
-		// 		}
-		// 	}
-		// 	res_ord.push(cur_res_ord)
-		// }
-
-		return res_ord
-	}
-
-		wmedian_nodes_left(ord, date_dict, index_dict, grid){
-		var structured_ord = []
-		for (var i=0; i<ord.length; i++){
-			var cur_struct = []
-			for (var j=0; j<ord[i].length; j++){
-				if (grid[i] == undefined) continue
-				var cur_node = grid[i].find(n => n.seq_index == index_dict[ord[i][j]])
-				if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
-				else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
-				else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
-			}
-
-			for (var j in cur_struct){
-				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cur_struct[j].seq_index))
+			for (var j in cluster){
+				if (cluster[j].g == undefined) cluster[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cluster[j].seq_index))
 				else {
-					cur_struct[j].wmean = 0
-					for (var n of cur_struct[j].nodes){
-						//if (n.day == undefined) continue
-						//if (n.prev_node.fake_in) n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
-						//else n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
-						n.wmean = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
-						cur_struct[j].wmean += n.wmean
+					cluster[j].wmean = 0
+					for (var n of cluster[j].nodes){
+						n.wvalue = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
+						cluster[j].wmean += n.wvalue
 					}
 
-					cur_struct[j].nodes.sort((a, b) => a.wmean > b.wmean)
-					cur_struct[j].wmean = cur_struct[j].nodes[Math.round((cur_struct[j].nodes.length-1)/2)].wmean
+					cluster[j].nodes.sort((a, b) => this.in_cluster_sort(a, b, 'left', ord, date_dict, i))
+					cluster[j].wmean = cluster[j].wmean / cluster[j].nodes.length
 				}
 			}
 
-			cur_struct = cur_struct.sort((a, b) => {
-				if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
-				else return a.wmean > b.wmean
-			})
+			cluster = cluster.sort((a, b) => this.general_cluster_sort(a, b))
 
-			structured_ord.push(cur_struct)
+			structured_ord.push(cluster)
 		}
 
+		return this.structured_to_normal_ord(structured_ord, date_dict)
+	}
+
+	gen_cluster(ord, i, index_dict, grid){
+		var cluster = []
+			for (var j=0; j<ord[i].length; j++){
+				if (grid[i] == undefined) continue
+				var cur_node = grid[i].find(n => n.seq_index == index_dict[ord[i][j]])
+				if (cur_node.isanchor || cur_node.level == 'unknown') cluster.push(cur_node)
+				else if (cluster.find(n => n.g == cur_node.level) == undefined) cluster.push({g:cur_node.level, nodes:[cur_node]})
+				else cluster.find(n => n.g == cur_node.level).nodes.push(cur_node)
+			}
+
+		return cluster
+	}
+
+	structured_to_normal_ord(structured_ord, date_dict){
 		var res_ord = []
 		for (var i in structured_ord){
 			var cur_res_ord = []
@@ -219,58 +144,57 @@ window.SequenceBraiding = class SequenceBraiding {
 	wmedian_nodes_right(ord, date_dict, index_dict, grid){
 		var structured_ord = []
 		for (var i=ord.length-1; i>-1; i--){
-			var cur_struct = []
-			for (var j=0; j<ord[i].length; j++){
-				var cur_node = grid[i].find(n => n.seq_index == index_dict[ord[i][j]])
-				if (cur_node.isanchor || cur_node.level == 'unknown') cur_struct.push(cur_node)
-				else if (cur_struct.find(n => n.g == cur_node.level) == undefined) cur_struct.push({g:cur_node.level, nodes:[cur_node]})
-				else cur_struct.find(n => n.g == cur_node.level).nodes.push(cur_node)
-			}
-			for (var j in cur_struct){
+			var cluster = this.gen_cluster(ord, i, index_dict, grid)
+			for (var j in cluster){
 				if (ord[i+1] == undefined) continue
-				if (cur_struct[j].g == undefined) cur_struct[j].wmean = ord[i+1].indexOf(ord[i+1].find(n => index_dict[n] == cur_struct[j].seq_index))
+				if (cluster[j].g == undefined) cluster[j].wmean = ord[i+1].indexOf(ord[i+1].find(n => index_dict[n] == cluster[j].seq_index))
 				else {
-					cur_struct[j].wmean = 0
-					for (var n of cur_struct[j].nodes){
-						if (n.day == undefined) continue
-						//if (n.prev_node.fake_in) n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
-						n.wmean = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
-						cur_struct[j].wmean += n.wmean
+					cluster[j].wmean = 0
+					for (var n of cluster[j].nodes){
+						n.wvalue = ord[i+1].indexOf(ord[i+1].find(nn => index_dict[nn] == n.seq_index))
+						cluster[j].wmean += n.wvalue
 					}
 
-					cur_struct[j].nodes.sort((a, b) => a.wmean > b.wmean)
-					cur_struct[j].wmean = cur_struct[j].nodes[Math.round((cur_struct[j].nodes.length-1)/2)].wmean
+					cluster[j].nodes.sort((a, b) => this.in_cluster_sort(a, b, 'right', ord, date_dict, i))
+					cluster[j].wmean = cluster[j].wmean / cluster[j].nodes.length
 				}
 			}
 
-			cur_struct = cur_struct.sort((a, b) => {
-				if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
-				else return a.wmean > b.wmean
-			})
+			cluster = cluster.sort((a, b) => this.general_cluster_sort(a, b))
 
-			//if (i%2 == 1) structured_ord.push(structured_ord[structured_ord.length-1])
-			structured_ord.push(cur_struct)
+			structured_ord.push(cluster)
 		}
+		
 		structured_ord = structured_ord.reverse()
 
-		var res_ord = []
-		for (var i in structured_ord){
-			var cur_res_ord = []
-			for (var j in structured_ord[i]){
-				if (structured_ord[i][j].g == undefined) cur_res_ord.push(date_dict[structured_ord[i][j].seq_index])
-				else for (var k in structured_ord[i][j].nodes){
-					cur_res_ord.push(date_dict[structured_ord[i][j].nodes[k].seq_index])
-				}
-			}
-			res_ord.push(cur_res_ord)
-		}
+		return this.structured_to_normal_ord(structured_ord, date_dict)
+	}
 
-		return res_ord
+	in_cluster_sort(a, b, direction, ord, index_dict, i){	
+		if (a.next_node.fake_out || b.next_node.fake_out) 
+			//if (a.next_node.fake_out) console.log(a.next_node)
+			return ord[i-1].indexOf(index_dict[a.prev_node.seq_index]) > ord[i-1].indexOf(index_dict[b.prev_node.seq_index]) ? 1 : -1
+		else if ((a.prev_node.fake_in || b.prev_node.fake_in)) 
+			return ord[i+1].indexOf(index_dict[a.next_node.seq_index]) > ord[i+1].indexOf(index_dict[b.next_node.seq_index]) ? 1 : -1
+		//else if (a.prev_node.fake_in || b.prev_node.fake_in) return 0
+		else return a.wvalue > b.wvalue ? 1 : -1
+	}
+
+	general_cluster_sort(a, b){
+		// an anchor that has source and target at the same level has to stick to the same level
+		// regardless of wmean
+		if (b.isanchor && a.g != undefined && levels.indexOf(b.incoming_links[0].source.level) == levels.indexOf(b.outgoing_links[0].target.level)) 
+			return levels.indexOf(b.outgoing_links[0].target.level) > levels.indexOf(a.g) ? -1 : 1
+		if (a.isanchor && b.g != undefined && levels.indexOf(a.incoming_links[0].source.level) == levels.indexOf(a.outgoing_links[0].target.level)) 
+			return levels.indexOf(a.outgoing_links[0].target.level) > levels.indexOf(b.g) ? 1 : - 1
+		
+		if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
+		else return a.wmean > b.wmean ? 1 : -1
 	}
 
 	sort_nodes_vertically(){
 		var grid = []
-		var max_iterations = 6
+		var max_iterations = 8
 		var max_rank = this.max_rank
 
 		for (var curdepth = 0; curdepth<max_rank; curdepth++){
@@ -302,13 +226,12 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var i=0; i<max_iterations; i++){
 
 			if (i%2 == 0) var tmpord = this.wmedian_nodes_left(deepClone(best_order), date_dict, index_dict, grid)
-			//else var tmpord = this.wmedian_nodes_right(deepClone(best_order), date_dict, index_dict, grid)
+			else var tmpord = this.wmedian_nodes_right(deepClone(best_order), date_dict, index_dict, grid)
 
 			if (this.count_crossings_from_ord(tmpord) < best_crossings){
 				best_order = tmpord
 				best_crossings = this.count_crossings_from_ord(best_order)
 			}
-			console.log(best_crossings)
 		}
 
 		this.apply_ord(best_order, grid, index_dict, date_dict)
@@ -408,7 +331,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 		}
 
-		for (var r=0; r<=this.max_rank; r++){
+		/*for (var r=0; r<=this.max_rank; r++){
 			if (grid[r] == undefined) continue
 			var cur_level = levels[0]
 			for (var level of levels){
@@ -422,7 +345,7 @@ window.SequenceBraiding = class SequenceBraiding {
 					if (grid[r][grid[r].indexOf(lastNode) + 1].level == undefined) grid[r].splice(grid[r].indexOf(lastNode) + 1, 1)
 				}
 			}
-		}
+		}*/
 	}
 
 	set_nodes_y(grid){
