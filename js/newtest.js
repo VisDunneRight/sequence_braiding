@@ -1,18 +1,24 @@
 window.SequenceBraiding = class SequenceBraiding {
-	constructor(data, path) {
+	constructor(data, path, svgname) {
 		this.data = data
 		this.path = path
 		this.nodes = []
 		this.links = []
 		this.max_rank = this.path.length * 3
+		this.svgname = svgname
 		
-		var svgwidth = document.getElementById('braids-container').clientWidth
+		var svgwidth = document.getElementById(this.svgname).clientWidth
+		var svgheight = document.getElementById(this.svgname).clientHeight
 
 		this.build()
-		this.cleanup(1)
+		this.cleanup(3)
+
+		this.grid = this.sort_nodes_vertically()
+		this.add_virtual_nodes(this.grid)
+		this.set_nodes_y(this.grid)
 
 		this.horizontal_spacing = (svgwidth)/(this.path.length-2)
-		this.vertical_spacing = 8
+		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 15);//)
 		this.left_padding = - this.horizontal_spacing/2
 		this.top_padding = 80
 		this.circle_radius = 3
@@ -21,9 +27,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.link_stroke_width = this.vertical_spacing*0.4
 		this.link_opacity = 1
 
-		this.grid = this.sort_nodes_vertically()
-		this.add_virtual_nodes(this.grid)
-		this.set_nodes_y(this.grid)
+		
 
 		this.draw()
 	}
@@ -546,7 +550,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	draw(){
-		var svg = d3.select('#braids-container')
+		var svg = d3.select('#' + this.svgname)
 
 		this.draw_nodes(svg)
 		this.draw_links(svg)
