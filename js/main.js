@@ -102,4 +102,6 @@ opt = {
     END_GAP_PENALTY: 2
 }
 
+colorscheme = ["#fff", "#E32551", "#F07C19", "#029DAF", "#E5D599", "#FFC219", "#fff"]
+
 init_sankey()

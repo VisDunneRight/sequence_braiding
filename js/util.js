@@ -111,13 +111,13 @@ var select_days = function(data, numdays){
 
 var get_color = function(glucose_level){
     switch (glucose_level){
-        case "unknown"      : return "#cccccc";
-        case "very_high"    : return "#E32551";
-        case "high"         : return "#F07C19";
-        case "normal"       : return "#029DAF";
-        case "low"          : return "#E5D599";
-        case "very_low"     : return "#FFC219";
-        default             : return "#888888";
+        case "unknown"      : return colorscheme[0];
+        case "very_high"    : return colorscheme[1];
+        case "high"         : return colorscheme[2];
+        case "normal"       : return colorscheme[3];
+        case "low"          : return colorscheme[4];
+        case "very_low"     : return colorscheme[5];
+        default             : return colorscheme[6];
         //default             : return "#fff"
         
 

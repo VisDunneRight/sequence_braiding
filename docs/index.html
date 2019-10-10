@@ -56,6 +56,12 @@
 			  </div>
 
 			  <div class='row'>
+			  	<h5>Colorschemes</h5>
+				<button id='buttoncolorscheme0' style='font-size: large' oninput="colorschemechanged(0)"></button>
+				<button id='buttoncolorscheme1' style='font-size: large'></button>
+			  </div>
+
+			  <div class='row'>
 			  	<h5>Sequence alignment parameters</h5>
 			  	<div class='two columns'>
 			  		<label id="matchscoresliderlabel" for="bbb">Match score: 10</label>
@@ -104,10 +110,27 @@
 	document.getElementById("gappenaltyslider").value = 1
 	document.getElementById("endgappenaltyslider").value = 2
 
+	colorschemes = [
+		["#fff", "#E32551", "#F07C19", "#029DAF", "#E5D599", "#FFC219", "#fff"],
+		["#fff", "#ff0000", "#0000ff", "#029DAF", "#E5D599", "#FFC219", "#fff"]
+	]
+
+	for (var j in colorschemes){
+		document.getElementById('buttoncolorscheme'+j).innerHTML = ''
+		for (var i in colorschemes[j]) 
+			document.getElementById('buttoncolorscheme'+j).innerHTML += '<span style="color:'+colorschemes[j][i]+'">●</span>'
+	}
+
 	function numdayschanged(val){
 		document.getElementById('braids-container').innerHTML = ''
 		document.getElementById("numdaysliderlabel").innerHTML = 'Number of days: ' + val
 		init_sankey(val)
+	}
+
+	function colorschemechanged(val){
+		document.getElementById('braids-container').innerHTML = ''
+		colorscheme = colorschemes[1]
+		init_sankey()
 	}
 
 	function matchscorechanged(val){
