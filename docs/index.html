@@ -43,16 +43,40 @@
 
         <svg id='braids-container'></svg>
 
-        <form>
+        <form style='font-size: small; text-align: center'>
         	<div class="row">
 			    <div class="six columns">
-			      <label id="numdaysliderlabel" for="numdayslider">Number of days: 20</label>
-			      <div width='100%'><input type="range" min="3" max="100" value="20" class="slider" id="numdayslider" style='width: 90%' onmouseup="numdayschanged(this.value)"></div>
+			      <label id="numdaysliderlabel" for="numdayslider">Number of days: 25</label>
+			      <div width='100%'><input type="range" min="3" max="100" value="25" class="slider" id="numdayslider" style='width: 90%' onmouseup="numdayschanged(this.value)"></div>
 			    </div>
 			    <div class="six columns">
 			      <label for="exampleRecipientInput">Tmp</label>
 			      <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
 			    </div>
+			  </div>
+
+			  <div class='row'>
+			  	<h5>Sequence alignment parameters</h5>
+			  	<div class='two columns'>
+			  		<label id="matchscoresliderlabel" for="bbb">Match score: 10</label>
+			      	<div width='100%'><input type="range" min="-20" max="20" value="10" class="slider" id="matchscoreslider" style='width: 90%' onmouseup="matchscorechanged(this.value)"></div>
+			  	</div>
+			  	<div class='two columns'>
+			  		<label id="mismatchscoresliderlabel" for="bbb">Mismatch score: -20</label>
+			      	<div width='100%'><input type="range" min="-20" max="20" value="-20" class="slider" id="mismatchscoreslider" style='width: 90%' onmouseup="mismatchscorechanged(this.value)"></div>
+			  	</div>
+			  	<div class='two columns'>
+			  		<label id="begingappenaltysliderlabel" for="bbb">Begin gap penalty: 2</label>
+			      	<div width='100%'><input type="range" min="-20" max="20" value="2" class="slider" id="begingappenaltyslider" style='width: 90%' onmouseup="begingappenaltychanged(this.value)"></div>
+			  	</div>
+			  	<div class='two columns'>
+			  		<label id="gappenaltysliderlabel" for="bbb">Gap penalty: 1</label>
+			      	<div width='100%'><input type="range" min="-20" max="20" value="1" class="slider" id="gappenaltyslider" style='width: 90%' onmouseup="gappenaltychanged(this.value)"></div>
+			  	</div>
+			  	<div class='two columns'>
+			  		<label id="endgappenaltysliderlabel" for="bbb">End gap penalty: 2</label>
+			      	<div width='100%'><input type="range" min="-20" max="20" value="25" class="slider" id="endgappenaltyslider" style='width: 90%' onmouseup="endgappenaltychanged(this.value)"></div>
+			  	</div>
 			  </div>
         </form>
 
@@ -73,10 +97,52 @@
 <script src='../js/main.js'></script>
 
 <script>
+	document.getElementById("numdayslider").value = 25
+	document.getElementById("matchscoreslider").value = 10
+	document.getElementById("mismatchscoreslider").value = -20
+	document.getElementById("begingappenaltyslider").value = 2
+	document.getElementById("gappenaltyslider").value = 1
+	document.getElementById("endgappenaltyslider").value = 2
+
 	function numdayschanged(val){
 		document.getElementById('braids-container').innerHTML = ''
 		document.getElementById("numdaysliderlabel").innerHTML = 'Number of days: ' + val
 		init_sankey(val)
+	}
+
+	function matchscorechanged(val){
+		opt.MATCH_SCORE = val
+		document.getElementById("matchscoresliderlabel").innerHTML = 'Match score: ' + val
+		document.getElementById('braids-container').innerHTML = ''
+		init_sankey()
+	}
+
+	function mismatchscorechanged(val){
+		opt.MISMATCH_SCORE = val
+		document.getElementById("mismatchscoresliderlabel").innerHTML = 'Mismatch score: ' + val
+		document.getElementById('braids-container').innerHTML = ''
+		init_sankey()
+	}
+
+	function begingappenaltychanged(val){
+		opt.BEGIN_GAP_PENALTY = val
+		document.getElementById("begingappenaltysliderlabel").innerHTML = 'Begin gap penalty: ' + val
+		document.getElementById('braids-container').innerHTML = ''
+		init_sankey()
+	}
+
+	function gappenaltychanged(val){
+		opt.GAP_PENALTY = val
+		document.getElementById("gappenaltysliderlabel").innerHTML = 'Gap penalty: ' + val
+		document.getElementById('braids-container').innerHTML = ''
+		init_sankey()
+	}
+
+	function endgappenaltychanged(val){
+		opt.END_GAP_PENALTY = val
+		document.getElementById("endgappenaltysliderlabel").innerHTML = 'End gap penalty: ' + val
+		document.getElementById('braids-container').innerHTML = ''
+		init_sankey()
 	}
 </script>
 

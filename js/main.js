@@ -1,7 +1,7 @@
 
 var data = null;
 var numDays = getParams(window.location.href).numDays
-if (numDays == undefined) {console.warn('undefined number of days'); numDays = 20}
+if (numDays == undefined) {numDays = 25}
 var startDayNum = parseInt(getParams(window.location.href).startDayNum)
 if (startDayNum == undefined) {startDayNum = 0}
 
@@ -58,8 +58,9 @@ var gen_sequences_from_data = function(data, numDays){
         seq = []
 
         for (event of tmpseq){
-            if (event.Meal == 'Exercise snack') event.Meal = 'Snack'
-            if (event.Meal == 'Other (Describe what he is eating below)') event.Meal = 'Other'
+            if (event.Meal == 'Exercise snack' || event.Meal == 'Afternoon snack') event.Meal = 'Snack'
+            if (event.Meal == 'Other (Describe what he is eating below)' || event.Meal == 'Nothing') event.Meal = 'Other'
+            if (event.Meal == 'Sugar to treat') event.Meal = 'Sugar'
             seq.push({
                 type : event.Meal,
                 level : get_glucose_level(parseFloat(event.Glucose)),
@@ -95,7 +96,7 @@ var init_sankey = function(daynum = numDays){
 opt = {
     guidelines: false,
     MATCH_SCORE: 10,
-    MISMATCH_SCORE: -50,
+    MISMATCH_SCORE: -20,
     BEGIN_GAP_PENALTY: 2,
     GAP_PENALTY: 1,
     END_GAP_PENALTY: 2
