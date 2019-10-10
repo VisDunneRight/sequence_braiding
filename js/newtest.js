@@ -9,20 +9,26 @@ window.SequenceBraiding = class SequenceBraiding {
 		var svgwidth = document.getElementById('braids-container').clientWidth
 
 		this.build()
-		this.cleanup(20)
+		this.cleanup(1)
 
-		this.horizontal_spacing = (svgwidth)/(this.path.length-1)
-		this.vertical_spacing = 2
-		this.left_padding = 0
+		this.horizontal_spacing = (svgwidth)/(this.path.length-2)
+		this.vertical_spacing = 8
+		this.left_padding = - this.horizontal_spacing/2
 		this.top_padding = 80
 		this.circle_radius = 3
 		this.node_width = 0.2*this.horizontal_spacing
+		this.init_padding = (1/4)*this.horizontal_spacing
+		this.link_stroke_width = this.vertical_spacing*0.4
+		this.link_opacity = 1
+
+		this.grid = this.sort_nodes_vertically()
+		this.add_virtual_nodes(this.grid)
+		this.set_nodes_y(this.grid)
 
 		this.draw()
 	}
 
 	cleanup(threshold){
-		
 		do {
 			var found = false
 			for (var i in this.path){
@@ -38,7 +44,6 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 			if (found) this.build()
 		} while (found)
-		console.log(this.path)
 	}
 
 	get_grid_order(grid){
@@ -192,12 +197,9 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	within_cluster_sort(a, b, direction, ord, index_dict, i){	
 		if (a.next_node.fake_out || b.next_node.fake_out) {
-			//if (a.seq_index == 3 && b.seq_index == 1) console.log(ord[i-1].indexOf(index_dict[a.prev_node.seq_index]), ord[i-1].indexOf(index_dict[b.prev_node.seq_index]))
-			//if (a.meal == 'Dinner' && a.level == 'very_high') console.log(index_dict[a.prev_node.seq_index])
 			return ord[i-1].indexOf(index_dict[a.prev_node.seq_index]) > ord[i-1].indexOf(index_dict[b.prev_node.seq_index]) ? 1 : -1
 		} else if (a.prev_node.fake_in || b.prev_node.fake_in) 
 			return ord[i+1].indexOf(index_dict[a.next_node.seq_index]) > ord[i+1].indexOf(index_dict[b.next_node.seq_index]) ? 1 : -1
-		//else if (a.prev_node.fake_in || b.prev_node.fake_in) return 0
 		else return a.wvalue > b.wvalue ? 1 : -1
 	}
 
@@ -253,7 +255,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				best_crossings = this.count_crossings_from_ord(best_order)
 			}
 
-			console.log(best_crossings)
+			console.log('crossings: ', best_crossings)
 		}
 
 		this.apply_ord(best_order, grid, index_dict, date_dict)
@@ -306,21 +308,21 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 		}
 
-		/*for (var r=0; r<=this.max_rank; r++){
-			if (grid[r] == undefined) continue
-			var cur_level = levels[0]
-			for (var level of levels){
-				var group = grid[r].filter(n => n.level == level)
-				var firstNode = group[0]
-				var lastNode = group[group.length - 1]
-				if (firstNode == undefined || level == 'unknown' || firstNode.prev_node.level != firstNode.level) continue
-				var diff = grid[r-1].indexOf(firstNode.prev_node) - grid[r].indexOf(firstNode)
-				for (var i=0; i<diff; i++){
-					grid[r].splice(grid[r].indexOf(firstNode) - 1, 0, {})
-					if (grid[r][grid[r].indexOf(lastNode) + 1].level == undefined) grid[r].splice(grid[r].indexOf(lastNode) + 1, 1)
-				}
-			}
-		}*/
+		// for (var r=0; r<=this.max_rank; r++){
+		// 	if (grid[r] == undefined) continue
+		// 	var cur_level = levels[0]
+		// 	for (var level of levels){
+		// 		var group = grid[r].filter(n => n.level == level)
+		// 		var firstNode = group[0]
+		// 		var lastNode = group[group.length - 1]
+		// 		if (firstNode == undefined || level == 'unknown' || firstNode.prev_node.level != firstNode.level) continue
+		// 		var diff = grid[r-1].indexOf(firstNode.prev_node) - grid[r].indexOf(firstNode)
+		// 		for (var i=0; i<diff; i++){
+		// 			grid[r].splice(grid[r].indexOf(firstNode) - 1, 0, {})
+		// 			if (grid[r][grid[r].indexOf(lastNode) + 1].level == undefined) grid[r].splice(grid[r].indexOf(lastNode) + 1, 1)
+		// 		}
+		// 	}
+		// }
 	}
 
 	set_nodes_y(grid){
@@ -334,14 +336,13 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	add_node(prevnode, event, next_depth, isanchor, fake_out=false, fake_in=false){
 		var new_node = {
-			meal: event.type, 
 			level: event.level,
+			type: event.type,
 			color: isanchor ? 'green' : get_color(event.level),
 			incoming_links: [],
 			outgoing_links: [], 
 			next_node: null,
 			prev_node: prevnode,
-			day: event.day,
 			isanchor: isanchor,
 			depth: next_depth,
 			fake_out: fake_out,
@@ -369,7 +370,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	build(){
 		this.source = {depth: 0, incoming_links:[], outgoing_links:[], color:'gray', fake_in:true}
-		this.sink = {depth: path.length + 1, incoming_links:[], outgoing_links:[], color:'gray'}
+		this.sink = {depth: path.length + 1, incoming_links:[], outgoing_links:[], color:'gray', fake_out:true}
 		//this.nodes.push(this.source)
 
 		var count = 0
@@ -404,7 +405,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	count_crossings(grid){
 		var crossings = 0
-		for (var d=0; d<this.path.length * 10; d++){
+		for (var d=0; d<this.path.length; d++){
 			var pcol = grid[d]
 			var ncol = grid[d+1]
 			if (ncol == undefined) break
@@ -429,40 +430,14 @@ window.SequenceBraiding = class SequenceBraiding {
 		return this.left_padding + node.depth * this.horizontal_spacing
 	}
 
-	draw(){
-		this.grid = this.sort_nodes_vertically()
-		//this.grid_to_singles()
-		this.add_virtual_nodes(this.grid)
-		this.set_nodes_y(this.grid)
-
-		var svg = d3.select('#braids-container')
-
-		var lineGen = d3.line()
-        	.x(function(d) { return d.x })
-        	.y(function(d) { return d.y })
-        	.curve(d3.curveCatmullRom.alpha(1))
-
-		// for (var node of this.nodes){
-		// 	if (node.isanchor) continue
-		// 	var c = svg.append('circle')
-		// 		.datum(node)
-		// 		.attr('cx', this.get_node_x(node))
-		// 		.attr('cy', (d, i) => this.top_padding + node.y * this.vertical_spacing)
-		// 		.attr('r', this.circle_radius)
-		// 		.attr('fill', (d, i) => node.color)
-		// 		.attr('opacity', node.opacity)
-		// 		.on('click', (d, i) => console.log(d))
-		// }
-
-		for (var r=-1; r<this.max_rank; r++){
+	draw_nodes(svg){
+		for (var r=0; r<this.max_rank; r++){
 			if (this.grid[r] == undefined) continue
-			var cur_level = 'very_high'
-			var cur_rect_size = 0
-			var cur_rect_start_height = 0
+
 			for (var node of this.grid[r]){
 				if (node == {}) continue
-
 				if (isNaN(this.get_node_x(node, this.horizontal_spacing))) continue
+				
 				svg.append('rect')
 					.datum(node)
 					.attr('x', this.get_node_x(node, this.horizontal_spacing))
@@ -476,68 +451,77 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 
 		}
+	}
+
+	gen_gradient(svg, link, len, real_link_collection){
+		// Define linear gradient for this specific link
+		// TODO: move definition inside link
+		var defs = svg.append("defs")
+           
+        var linearGradient = defs.append("linearGradient")
+            .attr("id", "linear-gradient"+link.seq_index)
+            //.attr("gradientUnits", "userSpaceOnUse")
+
+		linearGradient.append("stop")
+            .attr("offset", 0)
+            .attr("stop-color", '#ffffff00');
+
+		for (link of real_link_collection){
+			if (link.source != this.source){
+				linearGradient.append("stop")
+					.attr('offset', 0.05*(5/len) + real_link_collection.indexOf(link) * 1/(len))
+					.attr('stop-color', get_color(link.source.level))
+
+				linearGradient.append("stop")
+					.attr('offset', 0.05*(5/len) + (real_link_collection.indexOf(link) + 0.5) * 1/(len))
+					.attr('stop-color', get_color(link.target.level))
+			}
+		}
+
+		linearGradient.append("stop")
+		 	.attr('offset', 1)
+		 	.attr('stop-color', '#ffffff00')
+	}
+
+	draw_links(svg){
+		var lineGen = d3.line()
+        	.x(function(d) { return d.x })
+        	.y(function(d) { return d.y })
+        	.curve(d3.curveCatmullRom.alpha(1))
 
 		var daycount = 0
-		for (var day of this.data){
-			if (day[0] == undefined) continue
-			var link_collection = this.links.filter(l => l.day == day[0].Date)
+		for (var sequence of this.data){
+			var link_collection = this.links.filter(l => l.seq_index == sequence[0].seq_index)
 			if (link_collection.length == 0) continue
-			var drawpath = []
-
-			var defs = svg.append("defs")
-	           
-	        var linearGradient = defs.append("linearGradient")
-	            .attr("id", "linear-gradient"+daycount)
-	            //.attr("gradientUnits", "userSpaceOnUse")
-
-	        var real_link_collection = link_collection.filter(l => !l.source.fake_in && !l.target.fake_out && !(l.source ==this.source || l.target == this.target))
+			
+			var real_link_collection = link_collection.filter(l => !l.source.fake_in && !l.target.fake_out && !(l.source ==this.source || l.target == this.target))
 	        var len = real_link_collection.length
-	        //console.log(enddepth)
 
-	        linearGradient.append("stop")
-	            .attr("offset", 0)
-	            .attr("stop-color", '#ffffff00');
+			// define drawpath for the link paths
+			var drawpath = []
 
 			for (var link of link_collection) {
 				if (link.source.fake_in && link.target.fake_in) continue
 				else if (link.source.fake_out && link.target.fake_out) continue
 				else if ((link.source == this.source || link.source.fake_in) && !link.target.fake_in){
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + 3*this.horizontal_spacing/4, y: 80 + link.target.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + (this.horizontal_spacing - this.init_padding), y: this.top_padding + link.target.y*this.vertical_spacing + Math.random()*0.001})
 				} else {
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
-					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
-					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: 80 + link.source.y*this.vertical_spacing + Math.random()*0.001})
-				}
-
-			}
-
-			for (link of real_link_collection){
-				if (link.source != this.source){
-					linearGradient.append("stop")
-						.attr('offset', 0.05*(5/len) + real_link_collection.indexOf(link) * 1/(len))
-						.attr('stop-color', get_color(link.source.level))
-
-					linearGradient.append("stop")
-						.attr('offset', 0.05*(5/len) + (real_link_collection.indexOf(link) + 0.5) * 1/(len))
-						.attr('stop-color', get_color(link.target.level))
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
 				}
 			}
 
-			 linearGradient.append("stop")
-			 	.attr('offset', 1)
-			 	.attr('stop-color', '#ffffff00')
+			drawpath.push({x: drawpath[drawpath.length - 1].x + this.init_padding, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
 
-			 // linearGradient.append("stop")
-			 // .attr('offset', 0.9)
-			 // .attr('stop-color', '#ffffff00')
+			this.gen_gradient(svg, link, len, real_link_collection)
 
-			drawpath.push({x: drawpath[drawpath.length - 1].x + this.horizontal_spacing/4, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
-			
 			var p = svg.append('path')
 				.attr('id', 'day_' + daycount)
 				.attr('d', lineGen(drawpath))
-				.style('stroke', "url(#linear-gradient"+daycount+")")
-				.style('stroke-width', this.vertical_spacing*0.3)
+				.style('stroke', "url(#linear-gradient"+link.seq_index+")")
+				.style('stroke-width', this.link_stroke_width)
+				.style('opacity', this.link_opacity)
 				.attr('fill', '#ffffff00')
 				.on('mouseover', function (d){
 					d3.select(this).style('stroke', 'black')
@@ -560,8 +544,11 @@ window.SequenceBraiding = class SequenceBraiding {
 				.text(this.path[e])
 		}
 	}
-}
 
-var line = d3.line()
-    .x(function(d) { return d.x })
-    .y(function(d) { return d.y });
+	draw(){
+		var svg = d3.select('#braids-container')
+
+		this.draw_nodes(svg)
+		this.draw_links(svg)
+	}
+}

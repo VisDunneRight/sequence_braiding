@@ -61,11 +61,8 @@ var gen_sequences_from_data = function(data){
             if (event.Meal == 'Exercise snack') event.Meal = 'Snack'
             if (event.Meal == 'Other (Describe what he is eating below)') event.Meal = 'Other'
             seq.push({
-                Date : event.Date,
                 type : event.Meal,
                 level : get_glucose_level(parseFloat(event.Glucose)),
-                glucose_level: get_glucose_level(parseFloat(event.Glucose)),
-                day : tmpseq,
                 seq_index : count,
             })
         }
@@ -83,20 +80,19 @@ var init_sankey = function(){
     d3.csv('../data/full.csv', (error, data) => {
         data = invert_order_of_data(data)
 
-        d3.select('#braids-container')
-            .attr('width', '100%')
-            .attr('height', 500)
-
         window.data = select_days(data, numDays);
         data_sequences = gen_sequences_from_data(window.data)
         var path = find_path(data_sequences)
+
+        d3.select('#braids-container')
+            .attr('width', '100%')
+            .attr('height', 500)
 
         newgraph = new SequenceBraiding(data_sequences, path)
     })
 }
 
 opt = {
-    node_width: 30,
     guidelines: false,
     MATCH_SCORE: 10,
     MISMATCH_SCORE: -50,
