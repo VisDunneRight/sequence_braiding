@@ -57,8 +57,9 @@
 
 			  <div class='row'>
 			  	<h5>Colorschemes</h5>
-				<button id='buttoncolorscheme0' style='font-size: large' oninput="colorschemechanged(0)"></button>
-				<button id='buttoncolorscheme1' style='font-size: large'></button>
+				<button id='buttoncolorscheme0' style='font-size: large' onclick="colorschemechanged(0)"></button>
+				<button id='buttoncolorscheme1' style='font-size: large' onclick="colorschemechanged(1)"></button>
+				<button id='buttoncolorscheme2' style='font-size: large' onclick="colorschemechanged(2)"></button>
 			  </div>
 
 			  <div class='row'>
@@ -111,8 +112,9 @@
 	document.getElementById("endgappenaltyslider").value = 2
 
 	colorschemes = [
-		["#fff", "#E32551", "#F07C19", "#029DAF", "#E5D599", "#FFC219", "#fff"],
-		["#fff", "#ff0000", "#0000ff", "#029DAF", "#E5D599", "#FFC219", "#fff"]
+		["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
+		["#fff", "#C44D58", "#FF6B6B", "#C7F464", "#4ECDC4", "#556270", "#fff"],
+		["#fff", "#B05574", "#F87E7B", "#FAB87F", "#DCD1B4", "#5E9FA3", "#fff"]
 	]
 
 	for (var j in colorschemes){
@@ -129,7 +131,8 @@
 
 	function colorschemechanged(val){
 		document.getElementById('braids-container').innerHTML = ''
-		colorscheme = colorschemes[1]
+		colorscheme = colorschemes[val]
+		console.log(colorscheme)
 		init_sankey()
 	}
 
