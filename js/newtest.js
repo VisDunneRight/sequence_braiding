@@ -30,9 +30,10 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		this.circle_radius = 3
 		
-		if (this.animate)
+		if (this.animate){
 			this.redraw_links(this.max_iterations*250)
-		else this.draw()
+			this.redraw_nodes(this.max_iterations*250)
+		} else this.draw()
 	}
 
 	cleanup(threshold){
@@ -257,7 +258,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		if (this.animate){
 			this.set_nodes_y(grid)
 			this.init_paths()
+			this.init_nodes()
 			this.redraw_links(0)
+			this.redraw_nodes(0)
 		}
 
 		for (var i=0; i<this.max_iterations; i++){
@@ -273,6 +276,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				 	this.apply_ord(best_order, grid, index_dict, date_dict)
 				 	this.set_nodes_y(grid)
 				 	this.redraw_links((i+1)*1000)
+				 	this.redraw_nodes((i+1)*1000)
 				}
 			}
 			console.log('crossings: ', best_crossings)
@@ -350,7 +354,6 @@ window.SequenceBraiding = class SequenceBraiding {
 			var drawpath = []
 
 			for (var link of link_collection) {
-				console.log(this.get_node_x(link.source))
 				if (link.source.fake_in && link.target.fake_in) continue
 				else if (link.source.fake_out && link.target.fake_out) continue
 				else if ((link.source == this.source || link.source.fake_in) && !link.target.fake_in){
@@ -367,6 +370,38 @@ window.SequenceBraiding = class SequenceBraiding {
 			d3.select('#day_' + sequence[0].seq_index)
 				.transition()
 				.attr('d', () => lineGen(drawpath))
+				.duration(duration)
+				.delay(delay)
+		}
+	}
+
+
+	init_nodes(){
+		var svg = d3.select('#' + this.svgname)
+
+		for (var node of this.nodes){
+			svg.append('rect')
+				.datum(node)
+				.attr('id', 'node_' + node.seq_index + '_' + node.depth)
+				.attr('x', this.get_node_x(node, this.horizontal_spacing))
+				.attr('y', this.vertical_spacing)
+				.attr('width', this.node_width)
+				.attr('height', this.vertical_spacing) 
+				.attr('rx', '5px')
+				.attr('fill', node.isanchor ? '#ffffff00' : node.color)
+				.attr('opacity', 0)
+				.on('click', d => console.log(d))
+		}
+	}
+
+
+	redraw_nodes(delay=0, duration=1000){
+		for (var node of this.nodes){
+			d3.select('#' + 'node_' + node.seq_index + '_' + node.depth)
+				.transition()
+				.attr('x', this.get_node_x(node, this.horizontal_spacing))
+				.attr('y', this.top_padding + node.y*this.vertical_spacing - this.vertical_spacing/2)
+				.attr('opacity', 0.5)
 				.duration(duration)
 				.delay(delay)
 		}
@@ -540,6 +575,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	draw_nodes(svg){
+		var svg = d3.select('#' + this.svgname)
 		for (var r=0; r<this.max_rank; r++){
 			if (this.grid[r] == undefined) continue
 
