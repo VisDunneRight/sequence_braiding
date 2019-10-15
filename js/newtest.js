@@ -6,18 +6,23 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.links = []
 		this.max_rank = this.path.length * 3
 		this.svgname = svgname
-		
+		this.opt = options
+
+		this.svg_index = Array.prototype.slice.call(document.getElementsByTagName('svg')).indexOf(document.getElementById(svgname))
+		this.svg = d3.select('#' + this.svgname)
+
 		var svgwidth = document.getElementById(this.svgname).clientWidth
 		var svgheight = document.getElementById(this.svgname).clientHeight
 
 		this.build()
 		this.cleanup(opt.minEventPerColThreshold)
 
-		this.horizontal_spacing = (svgwidth)/(this.path.length-2)
+		
+		this.horizontal_spacing = (svgwidth*0.98)/(this.path.length-2)
+		this.left_padding = -this.horizontal_spacing/4
 		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
 		this.link_stroke_width = this.vertical_spacing*0.4
 		this.link_opacity = 1
-		this.left_padding = - this.horizontal_spacing/2
 		this.top_padding = 80
 		this.node_width = 0.2*this.horizontal_spacing
 		this.init_padding = (1/4)*this.horizontal_spacing
@@ -27,6 +32,8 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.grid = this.sort_nodes_vertically(this.animate)
 		this.add_virtual_nodes(this.grid)
 		this.set_nodes_y(this.grid)
+
+		if (opt.guidelines) this.draw_guidelines()
 		
 		if (this.animate){
 			this.position_links(this.max_iterations*250)
@@ -34,6 +41,34 @@ window.SequenceBraiding = class SequenceBraiding {
 		} else this.draw()
 
 		this.add_path_text()
+	}
+
+	draw_guidelines(){
+
+		var line = d3.line()
+			.x(d => d['x'])
+			.y(d => d['y']);
+
+		for (var level of levels){
+			this.svg.append('path')
+				.attr('class', 'level-guideline')
+				.attr('stroke', '#33333322')
+				.attr('stroke-width', 2)
+				.attr('stroke-dasharray', 5,5)
+				.attr('d', line([
+					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}, 
+					{x: width, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}]))
+			
+			if (this.nodes.filter(n => n.level == level).length > 0 && this.data.length < 30){
+				this.svg.append('text')
+				.attr('x', 0)
+				.attr('font-size', '0.8em')
+				.attr('fill', '#555')
+				.attr('font-family', 'Arial')
+				.attr('y', this.start_heights[level]*this.vertical_spacing + this.top_padding + this.vertical_spacing*1.5)
+				.text(level)
+			}
+		}
 	}
 
 	cleanup(threshold){
@@ -320,17 +355,18 @@ window.SequenceBraiding = class SequenceBraiding {
 			drawpath.push({x: link_collection.indexOf(link)*this.horizontal_spacing, y: this.data.indexOf(sequence)*this.vertical_spacing + Math.random()*0.001})
 
 			this.gen_gradient(svg, link, len, real_link_collection)
+			const svg_index = this.svg_index
 
 			var p = svg.append('path')
 				.attr('id', 'day_' + sequence[0].seq_index)
 				.attr('d', lineGen(drawpath))
-				.style('stroke', "url(#linear-gradient"+link.seq_index+")")
+				.style('stroke', "url(#linear-gradient"+svg_index+'_'+link.seq_index+")")
 				.style('stroke-width', this.link_stroke_width)
 				.style('opacity', this.link_opacity)
 				.attr('fill', '#ffffff00')
 				.on('mouseover', function (d){ d3.select(this).style('stroke', 'black')})
 				.on('mouseout', function(d){
-					d3.select(this).style('stroke', "url(#linear-gradient"+this.id.split("_")[1]+")")
+					d3.select(this).style('stroke', "url(#linear-gradient"+svg_index+'_'+this.id.split("_")[1]+")")
 				})
 		}
 	}
@@ -367,7 +403,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 			drawpath.push({x: drawpath[drawpath.length - 1].x + this.init_padding, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
 
-			d3.select('#day_' + sequence[0].seq_index)
+			svg.select('#day_' + sequence[0].seq_index)
 				.transition()
 				.attr('d', () => lineGen(drawpath))
 				.duration(duration)
@@ -396,8 +432,9 @@ window.SequenceBraiding = class SequenceBraiding {
 
 
 	position_nodes(delay=0, duration=1000){
+		var svg = d3.select('#' + this.svgname)
 		for (var node of this.nodes){
-			d3.select('#' + 'node_' + node.seq_index + '_' + node.depth)
+			svg.select('#' + 'node_' + node.seq_index + '_' + node.depth)
 				.transition()
 				.attr('x', this.get_node_x(node, this.horizontal_spacing))
 				.attr('y', this.top_padding + node.y*this.vertical_spacing - this.vertical_spacing/2)
@@ -431,6 +468,8 @@ window.SequenceBraiding = class SequenceBraiding {
 			start_heights[level] = cur_height
 			cur_height += level_heights[level]
 		}
+
+		this.start_heights = start_heights
 
 		// add virtual blank nodes to make the nodes be at their correct position
 		for (var r=0; r<=this.max_rank; r++){
@@ -577,11 +616,10 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	gen_gradient(svg, link, len, real_link_collection){
 		// Define linear gradient for this specific link
-		// TODO: move definition inside link
 		var defs = svg.append("defs")
            
         var linearGradient = defs.append("linearGradient")
-            .attr("id", "linear-gradient"+link.seq_index)
+            .attr("id", "linear-gradient"+this.svg_index+'_'+link.seq_index)
             //.attr("gradientUnits", "userSpaceOnUse")
 
 		linearGradient.append("stop")
@@ -617,11 +655,13 @@ window.SequenceBraiding = class SequenceBraiding {
 		linearGradient.append("stop")
 		 	.attr('offset', 1)
 		 	.attr('stop-color', '#ffffff00')
+
 	}
 
 	add_path_text(){
 		var svg = d3.select('#' + this.svgname)
 		for (var e in this.path){
+			if (this.path[e] == 'source') continue
 			var t = svg.append('text')
 				.attr('y', 40)
 				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing + this.node_width/2)

@@ -144,13 +144,13 @@ var averageRGB = (function () {
 
 var get_color = function(level){
     switch (level){
-        case "unknown"      : return colorscheme[0];
-        case "very_high"    : return colorscheme[1];
-        case "high"         : return colorscheme[2];
-        case "normal"       : return colorscheme[3];
-        case "low"          : return colorscheme[4];
-        case "very_low"     : return colorscheme[5];
-        default             : return colorscheme[6];
+        case "unknown"      : return opt.colorscheme[0];
+        case "very_high"    : return opt.colorscheme[1];
+        case "high"         : return opt.colorscheme[2];
+        case "normal"       : return opt.colorscheme[3];
+        case "low"          : return opt.colorscheme[4];
+        case "very_low"     : return opt.colorscheme[5];
+        default             : return opt.colorscheme[6];
         //default             : return "#fff"
         
 

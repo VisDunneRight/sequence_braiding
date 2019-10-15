@@ -77,24 +77,24 @@ var gen_sequences_from_data = function(data, numDays){
     return sequences
 }
 
-var init_sankey = function(daynum = numDays){
-    d3.csv('../data/full.csv', (error, data) => {
+var init_sankey = function(daynum = numDays, svgname = 'braids-container-sandbox'){
+    d3.csv('../data/full_refined.csv', (error, data) => {
         if (daynum != undefined) numDays = daynum
         data = invert_order_of_data(data)
-        window.data = select_days(data, numDays);
-        data_sequences = gen_sequences_from_data(window.data, numDays)
+        data = select_days(data, numDays);
+        data_sequences = gen_sequences_from_data(data, numDays)
         var path = find_path(data_sequences)
 
-        d3.select('#braids-container')
+        d3.select('#' + svgname)
             .attr('width', '100%')
-            .attr('height', 500)
+            .attr('height', opt.height)
 
-        newgraph = new SequenceBraiding(data_sequences, path, 'braids-container', opt)
+        newgraph = new SequenceBraiding(data_sequences, path, svgname, opt)
     })
 }
 
 opt = {
-    guidelines: false,
+    guidelines: true,
     MATCH_SCORE: 10,
     MISMATCH_SCORE: -20,
     BEGIN_GAP_PENALTY: 2,
@@ -102,9 +102,11 @@ opt = {
     END_GAP_PENALTY: 2,
     animate: false,
     numDays: numDays,
-    minEventPerColThreshold: Math.round(30*numDays/100),
+    height: 300,
+    minEventPerColThreshold: Math.round(5*numDays/100),
+    colorscheme: ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
 }
 
-colorscheme = ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
 
-init_sankey()
+
+//init_sankey()

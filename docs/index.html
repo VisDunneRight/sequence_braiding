@@ -48,7 +48,19 @@
 		In a controlled experiment we compare Sequence Braiding and IDMVis on user task completion time, correctness, error, and confidence.
 		Our results provide good evidence that users of Sequence Braiding can understand high-level patterns and trends faster and with similar error.</p>
 
-        <svg id='braids-container'></svg>
+		<svg id='braids-container1'></svg>
+
+        <svg id='braids-container2'></svg>
+
+        <h2>Usage</h2>
+
+        Initialize the graph with:
+
+        <pre><code> var graph = new SequenceBraiding(data_sequences, path, svgname, opt)</code></pre>
+
+		<h2>Playground</h2>
+
+        <svg id='braids-container-sandbox'></svg>
 
         <form style='font-size: small; text-align: center'>
         	<div class="row">
@@ -96,8 +108,6 @@
 			  </div>
         </form>
 
-        <h2>Usage</h2>
-        <p>Four is a Node. Test-Driven Development. BEM is Google’s open source JavaScript library for the language. Chai is that will be easily referenced. CSS transpiling, CSS. Gulp is a JavaScript modules asynchronously. RxJS is the browser which could also increased the intermediate to develop 3D content or included from HTML pages, also increased the server. Although there are distinct languages such as the concept of a remote server, the scripting language. Currying is a language a framework sorts out the browser which could also used in the server or graphics facilities, relying for graphic applications. It is a high-level, dynamic, untyped, and performance. Gmail take advantage of this: much of V8 is also used to ease development framework for Behaviour-Driven Development. VueJS is a project or part of calls with focus on data model. example, a JavaScript engines has some kind of JavaScript interpreter that the top of their methods. Moment. Ember is a JavaScript was never intended to pages and fast development..</p>
       </div>
     </div>
   </div>
@@ -113,6 +123,13 @@
 <script src='../js/main.js'></script>
 
 <script>
+
+	graph1 = init_sankey(10, 'braids-container1')
+
+	graph2 = init_sankey(3, 'braids-container2')
+
+	graph_sandbox = init_sankey(25, 'braids-container-sandbox')
+
 	document.getElementById("numdayslider").value = 25
 	document.getElementById("matchscoreslider").value = 10
 	document.getElementById("mismatchscoreslider").value = -20
@@ -120,7 +137,7 @@
 	document.getElementById("gappenaltyslider").value = 1
 	document.getElementById("endgappenaltyslider").value = 2
 
-	document.getElementById('animatecheckbox').checked = true
+	document.getElementById('animatecheckbox').checked = false
 
 	colorschemes = [
 		["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
@@ -135,53 +152,53 @@
 	}
 
 	function numdayschanged(val){
-		document.getElementById('braids-container').innerHTML = ''
+		document.getElementById('braids-container-sandbox').innerHTML = ''
 		document.getElementById("numdaysliderlabel").innerHTML = 'Number of days: ' + val
 		opt.numDays = val
-		init_sankey(val)
+		graph_sandbox = init_sankey(val)
 	}
 
 	function colorschemechanged(val){
-		document.getElementById('braids-container').innerHTML = ''
-		colorscheme = colorschemes[val]
-		console.log(colorscheme)
-		init_sankey()
+		document.getElementById('braids-container-sandbox').innerHTML = ''
+		opt.colorscheme = colorschemes[val]
+		graph_sandbox = init_sankey()
 	}
 
 	function matchscorechanged(val){
 		opt.MATCH_SCORE = val
 		document.getElementById("matchscoresliderlabel").innerHTML = 'Match score: ' + val
-		document.getElementById('braids-container').innerHTML = ''
-		init_sankey()
+		document.getElementById('braids-container-sandbox').innerHTML = ''
+		graph_sandbox = init_sankey()
 	}
 
 	function mismatchscorechanged(val){
 		opt.MISMATCH_SCORE = val
 		document.getElementById("mismatchscoresliderlabel").innerHTML = 'Mismatch score: ' + val
-		document.getElementById('braids-container').innerHTML = ''
-		init_sankey()
+		document.getElementById('braids-container-sandbox').innerHTML = ''
+		graph_sandbox = init_sankey()
 	}
 
 	function begingappenaltychanged(val){
 		opt.BEGIN_GAP_PENALTY = val
 		document.getElementById("begingappenaltysliderlabel").innerHTML = 'Begin gap penalty: ' + val
-		document.getElementById('braids-container').innerHTML = ''
-		init_sankey()
+		document.getElementById('braids-container-sandbox').innerHTML = ''
+		graph_sandbox = init_sankey()
 	}
 
 	function gappenaltychanged(val){
 		opt.GAP_PENALTY = val
 		document.getElementById("gappenaltysliderlabel").innerHTML = 'Gap penalty: ' + val
-		document.getElementById('braids-container').innerHTML = ''
-		init_sankey()
+		document.getElementById('braids-container-sandbox').innerHTML = ''
+		graph_sandbox = init_sankey()
 	}
 
 	function endgappenaltychanged(val){
 		opt.END_GAP_PENALTY = val
 		document.getElementById("endgappenaltysliderlabel").innerHTML = 'End gap penalty: ' + val
-		document.getElementById('braids-container').innerHTML = ''
-		init_sankey()
+		document.getElementById('braids-container-sandbox').innerHTML = ''
+		graph_sandbox = init_sankey()
 	}
+
 </script>
 
 </html>
