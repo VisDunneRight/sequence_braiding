@@ -89,7 +89,7 @@ var init_sankey = function(daynum = numDays){
             .attr('width', '100%')
             .attr('height', 500)
 
-        newgraph = new SequenceBraiding(data_sequences, path, 'braids-container')
+        newgraph = new SequenceBraiding(data_sequences, path, 'braids-container', opt)
     })
 }
 
@@ -99,7 +99,10 @@ opt = {
     MISMATCH_SCORE: -20,
     BEGIN_GAP_PENALTY: 2,
     GAP_PENALTY: 1,
-    END_GAP_PENALTY: 2
+    END_GAP_PENALTY: 2,
+    animate: false,
+    numDays: numDays,
+    minEventPerColThreshold: Math.round(30*numDays/100),
 }
 
 colorscheme = ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]

@@ -141,6 +141,7 @@ var averageRGB = (function () {
   }
 }());
 
+
 var get_color = function(level){
     switch (level){
         case "unknown"      : return colorscheme[0];

@@ -39,7 +39,14 @@
     <div class="row">
       <div class="twelve columns" style="margin-top: 25%" id='body-container'>
         <h1>Sequence Braiding</h1>
-        <p>Four is a Node. Test-Driven Development. BEM is Google’s open source JavaScript library for the language. Chai is that will be easily referenced. CSS transpiling, CSS. Gulp is a JavaScript modules asynchronously. RxJS is the browser which could also increased the intermediate to develop 3D content or included from HTML pages, also increased the server. Although there are distinct languages such as the concept of a remote server, the scripting language. Currying is a language a framework sorts out the browser which could also used in the server or graphics facilities, relying for graphic applications. It is a high-level, dynamic, untyped, and performance. Gmail take advantage of this: much of V8 is also used to ease development framework for Behaviour-Driven Development. VueJS is a project or part of calls with focus on data model. example, a JavaScript engines has some kind of JavaScript interpreter that the top of their methods. Moment. Ember is a JavaScript was never intended to pages and fast development..</p>
+        <p>Temporal event sequence alignment has been used in many domains to visualize nuanced changes and interactions over time.
+		Existing approaches align one or two sentinel events.
+		Overview tasks require examining all alignments of interest using interaction and time or juxtaposition of many visualizations.
+		Furthermore, any event attribute overviews are not closely tied to sequence visualizations.
+		We present Sequence Braiding, a novel overview visualization for temporal event sequences and attributes using a layered directed acyclic network.
+		Sequence Braiding visually aligns many temporal events and attribute groups simultaneously and supports arbitrary ordering, absence, and duplication of events.
+		In a controlled experiment we compare Sequence Braiding and IDMVis on user task completion time, correctness, error, and confidence.
+		Our results provide good evidence that users of Sequence Braiding can understand high-level patterns and trends faster and with similar error.</p>
 
         <svg id='braids-container'></svg>
 
@@ -47,12 +54,14 @@
         	<div class="row">
 			    <div class="six columns">
 			      <label id="numdaysliderlabel" for="numdayslider">Number of days: 25</label>
-			      <div width='100%'><input type="range" min="3" max="100" value="25" class="slider" id="numdayslider" style='width: 90%' onmouseup="numdayschanged(this.value)"></div>
+			      <div width='100%'><input type="range" min="10" max="100" value="25" class="slider" id="numdayslider" style='width: 90%' onmouseup="numdayschanged(this.value)"></div>
 			    </div>
 			    <div class="six columns">
-			      <label for="exampleRecipientInput">Tmp</label>
-			      <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
-			    </div>
+			    	<label class="example-send-yourself-copy">
+				    	<input id="animatecheckbox" type="checkbox" onclick='opt.animate = !opt.animate'>
+				    	<span class="label-body">Animate</span>
+					</label>
+				</div>
 			  </div>
 
 			  <div class='row'>
@@ -111,6 +120,8 @@
 	document.getElementById("gappenaltyslider").value = 1
 	document.getElementById("endgappenaltyslider").value = 2
 
+	document.getElementById('animatecheckbox').checked = true
+
 	colorschemes = [
 		["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
 		["#fff", "#C44D58", "#FF6B6B", "#C7F464", "#4ECDC4", "#556270", "#fff"],
@@ -126,6 +137,7 @@
 	function numdayschanged(val){
 		document.getElementById('braids-container').innerHTML = ''
 		document.getElementById("numdaysliderlabel").innerHTML = 'Number of days: ' + val
+		opt.numDays = val
 		init_sankey(val)
 	}
 
