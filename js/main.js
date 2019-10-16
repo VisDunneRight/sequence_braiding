@@ -93,6 +93,22 @@ var init_sankey = function(daynum = numDays, svgname = 'braids-container-sandbox
     })
 }
 
+var init_sankey = function(daynum = numDays, svgname = 'braids-container-sandbox'){
+    d3.json('../data/jsonglucose.json', (error, data) => {
+        data = data.slice(0, daynum)
+        for (seq of data){
+            for (event of seq) event.seq_index = data.indexOf(seq)
+        }
+        var path = find_path(data)
+
+        d3.select('#' + svgname)
+            .attr('width', '100%')
+            .attr('height', opt.height)
+
+        newgraph = new SequenceBraiding(data, path, svgname, opt)
+    })
+}
+
 opt = {
     guidelines: true,
     MATCH_SCORE: 10,
@@ -102,8 +118,8 @@ opt = {
     END_GAP_PENALTY: 2,
     animate: false,
     numDays: numDays,
-    height: 300,
-    minEventPerColThreshold: Math.round(5*numDays/100),
+    height: 400,
+    minEventPerColThreshold: Math.round(10*numDays/100),
     colorscheme: ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
 }
 

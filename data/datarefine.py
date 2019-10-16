@@ -43,4 +43,22 @@ res = res[::-1]
 for i in range(len(res)):
 	res[i] = res[i][::-1]
 
+for i in res:
+	for j in i:
+		val = int(j['level']) 
+		if val < 54: j['level'] = 'very_low';
+		elif val < 70: j['level'] = 'low';
+		elif val < 180: j['level'] = 'normal';
+		elif val < 250: j['level'] = 'high';
+		else: j['level'] = 'very_high'
+
+		if j['type'] == 'Exercise snack' or j['type'] == 'Afternoon snack': j['type'] = 'Snack'
+		if j['type'] == 'Other (Describe what he is eating below)' or j['type'] == 'Nothing': j['type'] = 'Other'
+		if j['type'] == 'Sugar to treat': j['type'] = 'Sugar'
+    # else if (val < 70) return 'low';
+    # else if (val < 180) return 'normal';
+    # else if (val < 250) return 'high';
+    # else return 'very_high';   
+
+
 json.dump(res, out, indent=4)
