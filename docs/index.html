@@ -50,13 +50,35 @@
 
 		<svg id='braids-container1'></svg>
 
-        <svg id='braids-container2'></svg>
-
-        <h2>Usage</h2>
+		<h2>Usage</h2>
 
         Initialize the graph with:
 
         <pre><code> var graph = new SequenceBraiding(data_sequences, path, svgname, opt)</code></pre>
+
+        Sample dataset for three days:
+
+        <pre><code id='dataset-container' contenteditable="true">[
+	[
+		{"type": "Breakfast",	"level": "very_high"},
+		{"type": "Lunch",	"level": "very_high"},
+		{"type": "Snack",	"level": "very_high"},
+		{"type": "Dinner",	"level": "very_high"}
+	],
+	[
+		{"type": "Breakfast",	"level": "very_high"},
+		{"type": "Snack",	"level": "high"},
+		{"type": "Dinner",	"level": "very_high"}
+	],
+	[
+		{"type": "Breakfast",	"level": "high"},
+		{"type": "Lunch",	"level": "very_high"},
+		{"type": "Snack",	"level": "high"},
+		{"type": "Dinner",	"level": "high"}
+	]
+]</code></pre>
+
+        <svg id='braids-container2'></svg>
 
 		<h2>Playground</h2>
 
@@ -126,7 +148,7 @@
 
 	graph1 = init_sankey(10, 'braids-container1')
 
-	graph2 = init_sankey(3, 'braids-container2')
+	//graph2 = init_sankey(3, 'braids-container2')
 
 	graph_sandbox = init_sankey(25, 'braids-container-sandbox')
 
@@ -199,6 +221,29 @@
 		graph_sandbox = init_sankey()
 	}
 
+</script>
+
+<script>
+	content = document.getElementById('dataset-container').textContent
+	parsedjson = JSON.parse(content)
+	parsedjson.forEach(a => a.forEach(b => b.seq_index = parsedjson.indexOf(a)))
+	path = find_path(parsedjson)
+	d3.select('#braids-container2')
+            .attr('width', '100%')
+            .attr('height', '300px')
+	newgraph = new SequenceBraiding(parsedjson, path, 'braids-container2', opt)
+	document.getElementById('dataset-container').addEventListener('input', function() {
+	    document.getElementById('braids-container2').innerHTML = ''
+		content = document.getElementById('dataset-container').textContent
+		parsedjson = JSON.parse(content)
+		parsedjson.forEach(a => a.forEach(b => b.seq_index = parsedjson.indexOf(a)))
+		path = find_path(parsedjson)
+		d3.select('#braids-container2')
+	            .attr('width', '100%')
+	            .attr('height', '300px')
+		newgraph = new SequenceBraiding(parsedjson, path, 'braids-container2', opt)
+	});
+	
 </script>
 
 </html>

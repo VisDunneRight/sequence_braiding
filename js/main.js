@@ -74,6 +74,4 @@ opt = {
     colorscheme: ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
 }
 
-
-
 //init_sankey()
