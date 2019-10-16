@@ -1,15 +1,29 @@
 window.SequenceBraiding = class SequenceBraiding {
-	constructor(data, path, svgname, options=opt) {
-		this.data = data
-		this.path = path
+	constructor(data, svgname, opt={}) {
+
+		this.opt = this.fill_opt(opt)
+
+		// add seq number to data
+		this.data = data = data.slice(0, opt.numDays)
+		this.data.forEach(a => a.forEach(b => b.seq_index = this.data.indexOf(a)))
+
+		// figure out path
+		if (opt.path == undefined) this.path = find_path(this.data)
+		else this.path = opt.path
+		
 		this.nodes = []
 		this.links = []
 		this.max_rank = this.path.length * 3
 		this.svgname = svgname
-		this.opt = options
 
 		this.svg_index = Array.prototype.slice.call(document.getElementsByTagName('svg')).indexOf(document.getElementById(svgname))
 		this.svg = d3.select('#' + this.svgname)
+
+		this.svg
+            .attr('width', '100%')
+            .attr('height', opt.height)
+
+		this.max_iterations = 20
 
 		var svgwidth = document.getElementById(this.svgname).clientWidth
 		var svgheight = document.getElementById(this.svgname).clientHeight
@@ -17,7 +31,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.build()
 		this.cleanup(opt.minEventPerColThreshold)
 
-		
+		// drawing variables
 		this.horizontal_spacing = (svgwidth*0.98)/(this.path.length-2)
 		this.left_padding = -this.horizontal_spacing/4
 		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
@@ -26,8 +40,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.top_padding = 80
 		this.node_width = 0.2*this.horizontal_spacing
 		this.init_padding = (1/4)*this.horizontal_spacing
-		this.max_iterations = 20
-		this.animate = options.animate
+		this.animate = opt.animate
 
 		this.grid = this.sort_nodes_vertically(this.animate)
 		this.add_virtual_nodes(this.grid)
@@ -41,6 +54,42 @@ window.SequenceBraiding = class SequenceBraiding {
 		} else this.draw()
 
 		this.add_path_text()
+	}
+
+	fill_opt(opt){
+		const original_opt = {
+		    guidelines: true,
+		    MATCH_SCORE: 10,
+		    MISMATCH_SCORE: -20,
+		    BEGIN_GAP_PENALTY: 2,
+		    GAP_PENALTY: 1,
+		    END_GAP_PENALTY: 2,
+		    animate: false,
+		    numDays: 3,
+		    height: 400,
+		    minEventPerColThreshold: Math.round(10*numDays/100),
+		    path: undefined,
+		    numDays: 100,
+		    colorscheme: ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
+		}
+
+		for (var field in original_opt){
+			if (opt[field] == undefined) opt[field] = original_opt[field]
+		}
+
+		return opt
+	}
+
+	get_color(level){
+	    switch (level){
+	        case "unknown"      : return this.opt.colorscheme[0];
+	        case "very_high"    : return this.opt.colorscheme[1];
+	        case "high"         : return this.opt.colorscheme[2];
+	        case "normal"       : return this.opt.colorscheme[3];
+	        case "low"          : return this.opt.colorscheme[4];
+	        case "very_low"     : return this.opt.colorscheme[5];
+	        default             : return this.opt.colorscheme[6];
+    	}
 	}
 
 	draw_guidelines(){
@@ -522,7 +571,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var new_node = {
 			level: event.level,
 			type: event.type,
-			color: isanchor ? averageRGB(get_color(event.level), prevnode.color) : get_color(event.level),
+			color: isanchor ? averageRGB(this.get_color(event.level), prevnode.color) : this.get_color(event.level),
 			incoming_links: [],
 			outgoing_links: [], 
 			next_node: null,
