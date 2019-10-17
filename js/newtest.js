@@ -7,9 +7,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.data = data = data.slice(0, opt.numDays)
 		this.data.forEach(a => a.forEach(b => b.seq_index = this.data.indexOf(a)))
 
-		// figure out path
-		if (opt.path == undefined) this.path = find_path(this.data)
-		else this.path = opt.path
+		// figure out path and levels
+		this.path = opt.path ? opt.path : find_path(this.data)
+		this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
 		
 		this.nodes = []
 		this.links = []
@@ -19,9 +19,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.svg_index = Array.prototype.slice.call(document.getElementsByTagName('svg')).indexOf(document.getElementById(svgname))
 		this.svg = d3.select('#' + this.svgname)
 
-		this.svg
-            .attr('width', '100%')
-            .attr('height', opt.height)
+		this.svg.attr('width', opt.width).attr('height', opt.height)
 
 		this.max_iterations = 20
 
@@ -67,10 +65,14 @@ window.SequenceBraiding = class SequenceBraiding {
 		    animate: false,
 		    numDays: 3,
 		    height: 400,
+		    width: '100%',
 		    minEventPerColThreshold: Math.round(10*numDays/100),
 		    path: undefined,
+		    levels: undefined,
 		    numDays: 100,
-		    colorscheme: ["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
+		    fontSize: '0.9em',
+		    forceLevelName: false,
+		    colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
 		}
 
 		for (var field in original_opt){
@@ -80,16 +82,23 @@ window.SequenceBraiding = class SequenceBraiding {
 		return opt
 	}
 
+	find_levels(data){
+		let lvl = []
+		data.forEach(s => s.forEach(e => lvl.includes(e.level) ? '' : lvl.push(e.level)))
+		return lvl
+	}
+
 	get_color(level){
-	    switch (level){
-	        case "unknown"      : return this.opt.colorscheme[0];
-	        case "very_high"    : return this.opt.colorscheme[1];
-	        case "high"         : return this.opt.colorscheme[2];
-	        case "normal"       : return this.opt.colorscheme[3];
-	        case "low"          : return this.opt.colorscheme[4];
-	        case "very_low"     : return this.opt.colorscheme[5];
-	        default             : return this.opt.colorscheme[6];
-    	}
+		return this.opt.colorscheme[this.levels.indexOf(level)]
+	    // switch (level){
+	    //     case "unknown"      : return this.opt.colorscheme[0];
+	    //     case "very_high"    : return this.opt.colorscheme[1];
+	    //     case "high"         : return this.opt.colorscheme[2];
+	    //     case "normal"       : return this.opt.colorscheme[3];
+	    //     case "low"          : return this.opt.colorscheme[4];
+	    //     case "very_low"     : return this.opt.colorscheme[5];
+	    //     default             : return this.opt.colorscheme[6];
+    	// }
 	}
 
 	draw_guidelines(){
@@ -98,7 +107,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			.x(d => d['x'])
 			.y(d => d['y']);
 
-		for (var level of levels){
+		for (var level of this.levels){
 			this.svg.append('path')
 				.attr('class', 'level-guideline')
 				.attr('stroke', '#33333322')
@@ -108,10 +117,10 @@ window.SequenceBraiding = class SequenceBraiding {
 					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}, 
 					{x: width, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}]))
 			
-			if (this.nodes.filter(n => n.level == level).length > 0 && this.data.length < 30){
+			if (this.nodes.filter(n => n.level == level).length > 0 && (this.data.length < 30 || this.opt.forceLevelName)){
 				this.svg.append('text')
 				.attr('x', 0)
-				.attr('font-size', '0.8em')
+				.attr('font-size', this.opt.fontSize)
 				.attr('fill', '#555')
 				.attr('font-family', 'Arial')
 				.attr('y', this.start_heights[level]*this.vertical_spacing + this.top_padding + this.vertical_spacing*1.5)
@@ -298,12 +307,12 @@ window.SequenceBraiding = class SequenceBraiding {
 	general_cluster_sort(a, b){
 		// an anchor that has source and target at the same level has to stick to the same level
 		// regardless of wmean
-		if (b.isanchor && a.g != undefined && levels.indexOf(b.incoming_links[0].source.level) == levels.indexOf(b.outgoing_links[0].target.level)) 
-			return levels.indexOf(b.outgoing_links[0].target.level) > levels.indexOf(a.g) ? -1 : 1
-		if (a.isanchor && b.g != undefined && levels.indexOf(a.incoming_links[0].source.level) == levels.indexOf(a.outgoing_links[0].target.level)) 
-			return levels.indexOf(a.outgoing_links[0].target.level) > levels.indexOf(b.g) ? 1 : -1
+		if (b.isanchor && a.g != undefined && this.levels.indexOf(b.incoming_links[0].source.level) == this.levels.indexOf(b.outgoing_links[0].target.level)) 
+			return this.levels.indexOf(b.outgoing_links[0].target.level) > this.levels.indexOf(a.g) ? -1 : 1
+		if (a.isanchor && b.g != undefined && this.levels.indexOf(a.incoming_links[0].source.level) == this.levels.indexOf(a.outgoing_links[0].target.level)) 
+			return this.levels.indexOf(a.outgoing_links[0].target.level) > this.levels.indexOf(b.g) ? 1 : -1
 		
-		if (a.g != undefined && b.g != undefined && a.g != b.g) return levels.indexOf(a.g) > levels.indexOf(b.g)
+		if (a.g != undefined && b.g != undefined && a.g != b.g) return this.levels.indexOf(a.g) > this.levels.indexOf(b.g)
 		else return a.wmean > b.wmean ? 1 : -1
 	}
 
@@ -319,7 +328,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		for (var c in grid){
 			grid[c] = grid[c].sort((a, b) => {
-				if (a.level != b.level) return levels.indexOf(a.level) > levels.indexOf(b.level) ? 1 : -1
+				if (a.level != b.level) return this.levels.indexOf(a.level) > this.levels.indexOf(b.level) ? 1 : -1
 				else {
 					var na = a.incoming_links[0].source
 					var nb = b.incoming_links[0].source
@@ -499,7 +508,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var start_heights = {}
 
 		// define maximum heights for each level
-		for (var level of levels){
+		for (var level of this.levels){
 			var max_height = 0
 			for (var r=0; r<=this.max_rank; r++){
 				if (grid[r] == undefined) continue
@@ -513,7 +522,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// define starting heights for each level
 		var cur_height = 0
-		for (var level of levels){
+		for (var level of this.levels){
 			start_heights[level] = cur_height
 			cur_height += level_heights[level]
 		}
@@ -524,7 +533,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var r=0; r<=this.max_rank; r++){
 			
 			if (grid[r] == undefined) continue
-			for (var level of levels){
+			for (var level of this.levels){
 				var lgroup = grid[r].filter(n => n.level == level)
 				var diff = level_heights[level] - lgroup.length
 		
@@ -543,8 +552,8 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// for (var r=0; r<=this.max_rank; r++){
 		// 	if (grid[r] == undefined) continue
-		// 	var cur_level = levels[0]
-		// 	for (var level of levels){
+		// 	var cur_level = this.levels[0]
+		// 	for (var level of this.levels){
 		// 		var group = grid[r].filter(n => n.level == level)
 		// 		var firstNode = group[0]
 		// 		var lastNode = group[group.length - 1]

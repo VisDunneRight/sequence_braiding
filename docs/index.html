@@ -56,9 +56,14 @@
 
         <pre><code> var graph = new SequenceBraiding(data, svgname, options)</code></pre>
 
+        <b>data:</b> an array of arrays containing objects. Each object must have a <i>type</i> and a <i>level</i>. See example below. <br>
+        <b>svgname:</b> the id of the svg in which you want to draw the graph.<br>
+        <b>options:</b> an object containing the parameters for drawing the graph.
+
+        <br><br>
         Sample dataset for three days:
 
-        <pre><code id='dataset-container' contenteditable="true">[
+        <pre><span style="float:right; margin-top: 50px; margin-right: -40px;transform: rotate(45deg); font-size: small; background-color: #333; color: white; width: 200px; text-align: center">Try editing me!</span><code id='dataset-container' contenteditable="true">[
 	[
 		{"type": "Breakfast",	"level": "very_high"},
 		{"type": "Lunch",	"level": "very_high"},
@@ -147,12 +152,14 @@
 <script>
 
 	graph1_options = {
-		numDays: 10
+		numDays: 10,
+		levels: ['very_high', 'high', 'normal', 'low', 'very_low']
 	}
 
 	sandbox_options = {
 		numDays: 25,
-		animate: true
+		animate: true,
+		levels: ['very_high', 'high', 'normal', 'low', 'very_low']
 	}
 
 	d3.json('../data/jsonglucose.json', (error, data) => {
@@ -173,9 +180,9 @@
 	document.getElementById('animatecheckbox').checked = true
 
 	colorschemes = [
-		["#fff", "#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
-		["#fff", "#C44D58", "#FF6B6B", "#C7F464", "#4ECDC4", "#556270", "#fff"],
-		["#fff", "#B05574", "#F87E7B", "#FAB87F", "#DCD1B4", "#5E9FA3", "#fff"]
+		["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
+		["#C44D58", "#FF6B6B", "#C7F464", "#4ECDC4", "#556270", "#fff"],
+		["#B05574", "#F87E7B", "#FAB87F", "#DCD1B4", "#5E9FA3", "#fff"]
 	]
 
 	for (var j in colorschemes){
@@ -237,9 +244,11 @@
 <script>
 	content = document.getElementById('dataset-container').textContent
 	parsedjson = JSON.parse(content)
+	content.replace('\t', '')
 
 	options = {
 		minEventPerColThreshold: 1,
+		height: 300,
 	}
 
 	d3.select('#braids-container2')
@@ -250,6 +259,8 @@
 	document.getElementById('dataset-container').addEventListener('input', function() {
 	    document.getElementById('braids-container2').innerHTML = ''
 		content = document.getElementById('dataset-container').textContent
+		content.replace('\t', '')
+		if (document.getElementById('dataset-container').innerHTML.includes('</code>')) document.getElementById('dataset-container').textContent = document.getElementById('dataset-container').textContent.replace('<code id="dataset-container" contenteditable="true">', '').replace('</code>')
 		parsedjson = JSON.parse(content)
 
 		d3.select('#braids-container2')

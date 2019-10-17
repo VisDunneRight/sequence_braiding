@@ -11,8 +11,6 @@ var edge_spacing = 8;
 var width = window.innerWidth * 0.8;
 var height = 300;
 
-var levels = ['very_high', 'high', 'normal', 'low', 'very_low', 'unknown']
-
 var find_path = function(data_sequences){
     var m_dict = {}
     var index_dict = {}
