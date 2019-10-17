@@ -41,8 +41,10 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.animate = opt.animate
 
 		this.grid = this.sort_nodes_vertically(this.animate)
+		this.last_cleanup()
 		this.add_virtual_nodes(this.grid)
 		this.set_nodes_y(this.grid)
+		
 
 		if (opt.guidelines) this.draw_guidelines()
 		
@@ -52,6 +54,24 @@ window.SequenceBraiding = class SequenceBraiding {
 		} else this.draw()
 
 		this.add_path_text()
+	}
+
+	last_cleanup(){
+		var lastcol = this.grid[this.grid.length - 2]
+		var prevlastcol = this.grid[this.grid.length - 3]
+		lastcol.sort((a, b) => {
+			if (!a.isanchor && !b.isanchor && a.level == b.level){
+				return prevlastcol.indexOf(a.prev_node) < prevlastcol.indexOf(b.prev_node) ? -1 : 1
+			}
+		})
+
+		var firstcol = this.grid[1]
+		var nextfirstcol = this.grid[2]
+		firstcol.sort((a, b) => {
+			if (!a.isanchor && !b.isanchor && a.level == b.level){
+				return nextfirstcol.indexOf(a.next_node) < nextfirstcol.indexOf(b.next_node) ? -1 : 1
+			}
+		})
 	}
 
 	fill_opt(opt){
@@ -90,15 +110,6 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	get_color(level){
 		return this.opt.colorscheme[this.levels.indexOf(level)]
-	    // switch (level){
-	    //     case "unknown"      : return this.opt.colorscheme[0];
-	    //     case "very_high"    : return this.opt.colorscheme[1];
-	    //     case "high"         : return this.opt.colorscheme[2];
-	    //     case "normal"       : return this.opt.colorscheme[3];
-	    //     case "low"          : return this.opt.colorscheme[4];
-	    //     case "very_low"     : return this.opt.colorscheme[5];
-	    //     default             : return this.opt.colorscheme[6];
-    	// }
 	}
 
 	draw_guidelines(){
