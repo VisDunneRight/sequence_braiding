@@ -97,7 +97,7 @@
 			    </div>
 			    <div class="six columns">
 			    	<label class="example-send-yourself-copy">
-				    	<input id="animatecheckbox" type="checkbox" onclick='opt.animate = !opt.animate'>
+				    	<input id="animatecheckbox" type="checkbox" onclick='sandbox_options.animate = !sandbox_options.animate'>
 				    	<span class="label-body">Animate</span>
 					</label>
 				</div>
@@ -158,7 +158,7 @@
 
 	sandbox_options = {
 		numDays: 25,
-		animate: false,
+		animate: true,
 		levels: ['very_high', 'high', 'normal', 'low', 'very_low']
 	}
 
@@ -180,9 +180,9 @@
 	document.getElementById('animatecheckbox').checked = true
 
 	colorschemes = [
-		["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
-		["#C44D58", "#FF6B6B", "#C7F464", "#4ECDC4", "#556270", "#fff"],
-		["#B05574", "#F87E7B", "#FAB87F", "#DCD1B4", "#5E9FA3", "#fff"]
+		["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
+		["#C44D58", "#FF6B6B", "#C7F464", "#4ECDC4", "#556270"],
+		["#B05574", "#F87E7B", "#FAB87F", "#DCD1B4", "#5E9FA3"]
 	]
 
 	for (var j in colorschemes){
