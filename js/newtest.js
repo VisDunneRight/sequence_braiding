@@ -10,7 +10,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		// figure out path and levels
 		this.path = opt.path ? opt.path : find_path(this.data)
 		this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
-		
+
 		this.nodes = []
 		this.links = []
 		this.max_rank = this.path.length * 3
@@ -44,10 +44,10 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.last_cleanup()
 		this.add_virtual_nodes(this.grid)
 		this.set_nodes_y(this.grid)
-		
+
 
 		if (opt.guidelines) this.draw_guidelines()
-		
+
 		if (this.animate){
 			this.position_links(this.max_iterations*250)
 			this.position_nodes(this.max_iterations*250)
@@ -125,9 +125,9 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('stroke-width', 2)
 				.attr('stroke-dasharray', 5,5)
 				.attr('d', line([
-					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}, 
+					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.top_padding},
 					{x: width, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}]))
-			
+
 			if (this.nodes.filter(n => n.level == level).length > 0 && (this.data.length < 30 || this.opt.forceLevelName)){
 				this.svg.append('text')
 				.attr('x', 0)
@@ -217,7 +217,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	            arr.push(undefined);
 	        }
 	    }
-	     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);  
+	     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
 	   return arr;
 	}
 
@@ -252,7 +252,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	gen_cluster(ord, i, index_dict, grid){
 		if (grid[i] == undefined) return []
 		var cluster = []
-			for (var j=0; j<ord[i].length; j++){	
+			for (var j=0; j<ord[i].length; j++){
 				var cur_node = grid[i].find(n => n.seq_index == index_dict[ord[i][j]] && !(n.fake_in || n.fake_out))
 				if (cur_node == undefined) continue
 				if (cur_node.isanchor || cur_node.level == 'unknown') cluster.push(cur_node)
@@ -301,16 +301,16 @@ window.SequenceBraiding = class SequenceBraiding {
 
 			structured_ord.push(cluster)
 		}
-		
+
 		structured_ord = structured_ord.reverse()
 
 		return this.structured_to_normal_ord(structured_ord, date_dict)
 	}
 
-	within_cluster_sort(a, b, direction, ord, index_dict, i){	
+	within_cluster_sort(a, b, direction, ord, index_dict, i){
 		if (a.next_node.fake_out || b.next_node.fake_out) {
 			return ord[i-1].indexOf(index_dict[a.prev_node.seq_index]) > ord[i-1].indexOf(index_dict[b.prev_node.seq_index]) ? 1 : -1
-		} else if (a.prev_node.fake_in || b.prev_node.fake_in) 
+		} else if (a.prev_node.fake_in || b.prev_node.fake_in)
 			return ord[i+1].indexOf(index_dict[a.next_node.seq_index]) > ord[i+1].indexOf(index_dict[b.next_node.seq_index]) ? 1 : -1
 		else return a.wvalue > b.wvalue ? 1 : -1
 	}
@@ -318,11 +318,11 @@ window.SequenceBraiding = class SequenceBraiding {
 	general_cluster_sort(a, b){
 		// an anchor that has source and target at the same level has to stick to the same level
 		// regardless of wmean
-		if (b.isanchor && a.g != undefined && this.levels.indexOf(b.incoming_links[0].source.level) == this.levels.indexOf(b.outgoing_links[0].target.level)) 
+		if (b.isanchor && a.g != undefined && this.levels.indexOf(b.incoming_links[0].source.level) == this.levels.indexOf(b.outgoing_links[0].target.level))
 			return this.levels.indexOf(b.outgoing_links[0].target.level) > this.levels.indexOf(a.g) ? -1 : 1
-		if (a.isanchor && b.g != undefined && this.levels.indexOf(a.incoming_links[0].source.level) == this.levels.indexOf(a.outgoing_links[0].target.level)) 
+		if (a.isanchor && b.g != undefined && this.levels.indexOf(a.incoming_links[0].source.level) == this.levels.indexOf(a.outgoing_links[0].target.level))
 			return this.levels.indexOf(a.outgoing_links[0].target.level) > this.levels.indexOf(b.g) ? 1 : -1
-		
+
 		if (a.g != undefined && b.g != undefined && a.g != b.g) return this.levels.indexOf(a.g) > this.levels.indexOf(b.g)
 		else return a.wmean > b.wmean ? 1 : -1
 	}
@@ -358,7 +358,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		this.apply_ord(best_order, grid, index_dict, date_dict)
 		this.grid = grid
-		
+
 		if (this.animate){
 			this.set_nodes_y(grid)
 			this.init_paths()
@@ -375,7 +375,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			if (this.count_crossings_from_ord(tmpord) < best_crossings){
 				best_order = tmpord
 				best_crossings = this.count_crossings_from_ord(best_order)
-				
+
 				if (animate) {
 				 	this.apply_ord(best_order, grid, index_dict, date_dict)
 				 	this.set_nodes_y(grid)
@@ -402,7 +402,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var sequence of this.data){
 			var link_collection = this.links.filter(l => l.seq_index == sequence[0].seq_index)
 			if (link_collection.length == 0) continue
-			
+
 			var real_link_collection = link_collection.filter(l => !l.source.fake_in && !l.target.fake_out && !(l.source ==this.source || l.target == this.target))
 	        var len = real_link_collection.length
 
@@ -451,7 +451,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var sequence of this.data){
 			var link_collection = this.links.filter(l => l.seq_index == sequence[0].seq_index)
 			if (link_collection.length == 0) continue
-			
+
 			var real_link_collection = link_collection.filter(l => !l.source.fake_in && !l.target.fake_out && !(l.source ==this.source || l.target == this.target))
 	        var len = real_link_collection.length
 
@@ -462,7 +462,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				if (link.source.fake_in && link.target.fake_in) continue
 				else if (link.source.fake_out && link.target.fake_out) continue
 				else if ((link.source == this.source || link.source.fake_in) && !link.target.fake_in){
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + (this.horizontal_spacing - this.init_padding), y: this.top_padding + link.target.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + (this.horizontal_spacing - this.init_padding), y: this.top_padding + link.target.y*this.vertical_spacing + Math.random()*1})
 				} else {
 					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
 					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
@@ -491,7 +491,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('x', this.get_node_x(node, this.horizontal_spacing))
 				.attr('y', this.vertical_spacing)
 				.attr('width', this.node_width)
-				.attr('height', this.vertical_spacing) 
+				.attr('height', this.vertical_spacing)
 				.attr('rx', '5px')
 				.attr('fill', node.isanchor ? '#ffffff00' : node.color)
 				.attr('opacity', 0)
@@ -529,7 +529,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				}
 			}
 			level_heights[level] = max_height + 1
-		} 
+		}
 
 		// define starting heights for each level
 		var cur_height = 0
@@ -542,14 +542,14 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// add virtual blank nodes to make the nodes be at their correct position
 		for (var r=0; r<=this.max_rank; r++){
-			
+
 			if (grid[r] == undefined) continue
 			for (var level of this.levels){
 				var lgroup = grid[r].filter(n => n.level == level)
 				var diff = level_heights[level] - lgroup.length
-		
+
 				if (lgroup.length == 0) diff = level_heights[level]
-				
+
 				for (var i=0; i<diff; i++) {
 					if (lgroup.length != 0) {
 						grid[r].splice(grid[r].indexOf(lgroup[lgroup.length-1]) + 1, 0, {})
@@ -593,7 +593,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			type: event.type,
 			color: isanchor ? averageRGB(this.get_color(event.level), prevnode.color) : this.get_color(event.level),
 			incoming_links: [],
-			outgoing_links: [], 
+			outgoing_links: [],
 			next_node: null,
 			prev_node: prevnode,
 			isanchor: isanchor,
@@ -632,7 +632,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				var index = sequence.indexOf(event)
 				if (this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => event.type == n)) == -1) continue
 				var pdepth = prevnode.depth + this.path.slice(1).slice(prevnode.depth, this.path.length).indexOf(this.path.find(n => event.type == n))
-				
+
 				// add anchors
 				if (pdepth - prevnode.depth >= 0) {
 					var diff = pdepth - prevnode.depth;
@@ -686,7 +686,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	gen_gradient(svg, link, len, real_link_collection){
 		// Define linear gradient for this specific link
 		var defs = svg.append("defs")
-           
+
         var linearGradient = defs.append("linearGradient")
             .attr("id", "linear-gradient"+this.svg_index+'_'+link.seq_index)
             //.attr("gradientUnits", "userSpaceOnUse")
@@ -705,7 +705,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			if (link.source != this.source){
 
 				var colorsource = link.source.color
-				var colortarget = link.target.color 
+				var colortarget = link.target.color
 
 				linearGradient.append("stop")
 					.attr('offset', 0.05*(5/len) + real_link_collection.indexOf(link) * 1/(len))
