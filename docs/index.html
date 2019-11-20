@@ -95,13 +95,14 @@
 			      <label id="numdaysliderlabel" for="numdayslider">Number of days: 25</label>
 			      <div width='100%'><input type="range" min="10" max="100" value="25" class="slider" id="numdayslider" style='width: 90%' onmouseup="numdayschanged(this.value)"></div>
 			    </div>
-			    <div class="six columns">
-			    	<label class="example-send-yourself-copy">
-				    	<input id="animatecheckbox" type="checkbox" onclick='sandbox_options.animate = !sandbox_options.animate'>
-				    	<span class="label-body">Animate</span>
-					</label>
+
+          <div class="six columns">
+  			      <label id="minevsliderlabel" for="minevslider">Minimum events per column: 3</label>
+  			      <div width='100%'><input type="range" min="0" max="10" value="3" class="slider" id="minevslider" style='width: 90%' onmouseup="minevchanged(this.value)"></div>
+  			    </div>
+
 				</div>
-			  </div>
+
 
 			  <div class='row'>
 			  	<h5>Colorschemes</h5>
@@ -110,9 +111,20 @@
 				<button id='buttoncolorscheme2' type="button" style='font-size: large' onclick="colorschemechanged(2)"></button>
 			  </div>
 
+        <div class='row'>
+			  	<h5>Watch the intersection reduction process</h5>
+          <label class="example-send-yourself-copy">
+            <input id="animatecheckbox" type="checkbox" onclick='sandbox_options.animate = !sandbox_options.animate'>
+            <span>Animate</span>
+          </label>
+			  </div>
+
 			  <div class='row'>
-			  	<h5>Sequence alignment parameters</h5>
-			  	<div class='two columns'>
+			  	<div><h5>Sequence alignment parameters</h5>
+            <span style='font-size: small; font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial'> Note: weird parameters may break the visualization. We suggest lowering the minimum threshold of nodes per column to 0 to see the full effect of the change of the parameters. Press the reset button below in case of need.</span>
+            <br><br>
+        </div>
+          <div class='two columns'>
 			  		<label id="matchscoresliderlabel" for="bbb">Match score: 10</label>
 			      	<div width='100%'><input type="range" min="-20" max="20" value="10" class="slider" id="matchscoreslider" style='width: 90%' onmouseup="matchscorechanged(this.value)"></div>
 			  	</div>
@@ -159,18 +171,19 @@
 	sandbox_options = {
 		numDays: 25,
 		animate: true,
-		levels: ['very_high', 'high', 'normal', 'low', 'very_low']
+		levels: ['very_high', 'high', 'normal', 'low', 'very_low'],
+    minEventPerColThreshold: 3,
 	}
 
 	d3.json('../data/jsonglucose.json', (error, data) => {
 		sandbox_data = data
 
 		graph1 = new SequenceBraiding(sandbox_data, 'braids-container1', graph1_options)
-
         graph_sandbox = new SequenceBraiding(sandbox_data, 'braids-container-sandbox', sandbox_options)
     })
 
 	document.getElementById("numdayslider").value = 25
+  document.getElementById("minevslider").value = 3
 	document.getElementById("matchscoreslider").value = 10
 	document.getElementById("mismatchscoreslider").value = -20
 	document.getElementById("begingappenaltyslider").value = 2
@@ -187,7 +200,7 @@
 
 	for (var j in colorschemes){
 		document.getElementById('buttoncolorscheme'+j).innerHTML = ''
-		for (var i in colorschemes[j]) 
+		for (var i in colorschemes[j])
 			document.getElementById('buttoncolorscheme'+j).innerHTML += '<span style="color:'+colorschemes[j][i]+'">●</span>'
 	}
 
@@ -197,6 +210,13 @@
 		sandbox_options.numDays = val
 		graph_sandbox = new SequenceBraiding(sandbox_data, 'braids-container-sandbox', sandbox_options)
 	}
+
+  function minevchanged(val){
+    document.getElementById('braids-container-sandbox').innerHTML = ''
+    document.getElementById("minevsliderlabel").innerHTML = 'Minimum events per column: ' + val
+    sandbox_options.minEventPerColThreshold = val
+    graph_sandbox = new SequenceBraiding(sandbox_data, 'braids-container-sandbox', sandbox_options)
+  }
 
 	function colorschemechanged(val){
 		document.getElementById('braids-container-sandbox').innerHTML = ''
@@ -268,7 +288,7 @@
 	            .attr('height', '300px')
 		newgraph = new SequenceBraiding(parsedjson, 'braids-container2', options)
 	});
-	
+
 </script>
 
 </html>

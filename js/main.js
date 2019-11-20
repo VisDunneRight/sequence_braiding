@@ -11,7 +11,7 @@ var edge_spacing = 8;
 var width = window.innerWidth * 0.8;
 var height = 300;
 
-var find_path = function(data_sequences){
+var find_path = function(data_sequences, opt){
     var m_dict = {}
     var index_dict = {}
 
@@ -33,8 +33,8 @@ var find_path = function(data_sequences){
         char_sequences.push(res_str)
     }
 
-    seq = pairwiseAlignDna(char_sequences)
-    
+    seq = pairwiseAlignDna(char_sequences, opt)
+
     res = []
     for (i in seq){res.push(index_dict[seq[i]])}
 

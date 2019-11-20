@@ -8,7 +8,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.data.forEach(a => a.forEach(b => b.seq_index = this.data.indexOf(a)))
 
 		// figure out path and levels
-		this.path = opt.path ? opt.path : find_path(this.data)
+		this.path = opt.path ? opt.path : find_path(this.data, opt)
 		this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
 
 		this.nodes = []
