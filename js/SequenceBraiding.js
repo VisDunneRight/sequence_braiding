@@ -4,11 +4,11 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.opt = this.fill_opt(opt)
 
 		// add seq number to data
-		this.data = data = data.slice(0, opt.numDays)
+		this.data = data.slice(0, opt.numDays)
 		this.data.forEach(a => a.forEach(b => b.seq_index = this.data.indexOf(a)))
 
 		// figure out path and levels
-		this.path = opt.path ? opt.path : find_path(this.data, opt)
+		this.path = opt.path ? opt.path : this.find_path(this.data, opt)
 		this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
 
 		this.nodes = []
@@ -19,7 +19,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.svg_index = Array.prototype.slice.call(document.getElementsByTagName('svg')).indexOf(document.getElementById(svgname))
 		this.svg = d3.select('#' + this.svgname)
 
-		this.svg.attr('width', opt.width).attr('height', opt.height)
+		this.svg.attr('width', this.opt.width).attr('height', this.opt.height)
 
 		this.max_iterations = 20
 
@@ -74,6 +74,38 @@ window.SequenceBraiding = class SequenceBraiding {
 		})
 	}
 
+	find_path(data_sequences, opt){
+	    var m_dict = {}
+	    var index_dict = {}
+
+	    var count = 0
+	    for (i in data_sequences){
+	        for (j of data_sequences[i]){
+	            if (m_dict[j.type] == undefined) {m_dict[j.type] = String.fromCharCode(parseInt(count) + 65); count++}
+	        }
+	    }
+
+	    for (j in m_dict) index_dict[m_dict[j]] = j
+
+	    var char_sequences = []
+	    for (var day of data_sequences){
+	        day = day.filter(d => d.type.length > 1)
+
+	        var res_str = ""
+	        for (var m of day) res_str += m_dict[m.type]
+	        char_sequences.push(res_str)
+	    }
+
+	    var seq = pairwiseAlignDna(char_sequences, opt)
+
+	    var res = []
+	    for (i in seq){res.push(index_dict[seq[i]])}
+
+	    res.unshift('source')
+	    res.push('sink')
+	    return res
+	}
+
 	fill_opt(opt){
 		const original_opt = {
 		    guidelines: true,
@@ -86,7 +118,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		    numDays: 3,
 		    height: 400,
 		    width: '100%',
-		    minEventPerColThreshold: Math.round(10*numDays/100),
+		    minEventPerColThreshold: 1,
 		    path: undefined,
 		    levels: undefined,
 		    numDays: 100,
@@ -126,7 +158,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('stroke-dasharray', 5,5)
 				.attr('d', line([
 					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.top_padding},
-					{x: width, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}]))
+					{x: this.opt.width, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}]))
 
 			if (this.nodes.filter(n => n.level == level).length > 0 && (this.data.length < 30 || this.opt.forceLevelName)){
 				this.svg.append('text')
