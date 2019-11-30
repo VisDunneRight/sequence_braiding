@@ -47,6 +47,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 
 		if (opt.guidelines) this.draw_guidelines()
+		if (opt.show_seq_names) this.show_seq_names()
 
 		if (this.animate){
 			this.position_links(this.max_iterations*250)
@@ -56,9 +57,26 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.add_path_text()
 	}
 
+
+	show_seq_names(){
+		for (var i of this.grid[1]){
+			if (i.seq_index != undefined) {
+				this.svg.append('text')
+					.text(this.data[i.seq_index][0]['seq_name'])
+					.attr('y', i.y*this.vertical_spacing + this.top_padding - 2)
+					.attr('x', this.horizontal_spacing - this.node_width*1.5)
+					.attr('font-size', 'x-small')
+					.attr('text-anchor', 'end')
+			}
+		}
+	}
+
+
 	last_cleanup(){
 		var lastcol = this.grid[this.grid.length - 2]
 		var prevlastcol = this.grid[this.grid.length - 3]
+		console.log(this.grid)
+		//if (lastcol == undefined) return
 		lastcol.sort((a, b) => {
 			if (!a.isanchor && !b.isanchor && a.level == b.level){
 				return prevlastcol.indexOf(a.prev_node) < prevlastcol.indexOf(b.prev_node) ? -1 : 1
@@ -79,13 +97,13 @@ window.SequenceBraiding = class SequenceBraiding {
 	    var index_dict = {}
 
 	    var count = 0
-	    for (i in data_sequences){
-	        for (j of data_sequences[i]){
+	    for (var i in data_sequences){
+	        for (var j of data_sequences[i]){
 	            if (m_dict[j.type] == undefined) {m_dict[j.type] = String.fromCharCode(parseInt(count) + 65); count++}
 	        }
 	    }
 
-	    for (j in m_dict) index_dict[m_dict[j]] = j
+	    for (var j in m_dict) index_dict[m_dict[j]] = j
 
 	    var char_sequences = []
 	    for (var day of data_sequences){
@@ -99,10 +117,11 @@ window.SequenceBraiding = class SequenceBraiding {
 	    var seq = pairwiseAlignDna(char_sequences, opt)
 
 	    var res = []
-	    for (i in seq){res.push(index_dict[seq[i]])}
+	    for (var i in seq){res.push(index_dict[seq[i]])}
 
 	    res.unshift('source')
 	    res.push('sink')
+	    console.log(res)
 	    return res
 	}
 
@@ -124,7 +143,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		    numDays: 100,
 		    fontSize: '0.9em',
 		    forceLevelName: false,
-		    colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"]
+		    colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
+		    catmullromvalue: 1,
+		    colorbysequence: false,
 		}
 
 		for (var field in original_opt){
@@ -140,8 +161,10 @@ window.SequenceBraiding = class SequenceBraiding {
 		return lvl
 	}
 
-	get_color(level){
-		return this.opt.colorscheme[this.levels.indexOf(level)]
+	get_color(event){
+		if (this.opt.colorbysequence) {
+			return this.opt.colorscheme[event.seq_index % this.opt.colorscheme.length]
+		} else return this.opt.colorscheme[this.levels.indexOf(event.level)  % this.opt.colorscheme.length]
 	}
 
 	draw_guidelines(){
@@ -429,7 +452,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var lineGen = d3.line()
         	.x(function(d) { return d.x })
         	.y(function(d) { return d.y })
-        	.curve(d3.curveCatmullRom.alpha(1))
+        	.curve(d3.curveCatmullRom.alpha(this.opt.catmullromvalue))
 
 		for (var sequence of this.data){
 			var link_collection = this.links.filter(l => l.seq_index == sequence[0].seq_index)
@@ -478,7 +501,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var lineGen = d3.line()
         	.x(function(d) { return d.x })
         	.y(function(d) { return d.y })
-        	.curve(d3.curveCatmullRom.alpha(1))
+        	.curve(d3.curveCatmullRom.alpha(this.opt.catmullromvalue))
 
 		for (var sequence of this.data){
 			var link_collection = this.links.filter(l => l.seq_index == sequence[0].seq_index)
@@ -623,7 +646,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var new_node = {
 			level: event.level,
 			type: event.type,
-			color: isanchor ? averageRGB(this.get_color(event.level), prevnode.color) : this.get_color(event.level),
+			color: isanchor ? averageRGB(this.get_color(event), prevnode.color) : this.get_color(event),
 			incoming_links: [],
 			outgoing_links: [],
 			next_node: null,
@@ -632,7 +655,8 @@ window.SequenceBraiding = class SequenceBraiding {
 			depth: next_depth,
 			fake_out: fake_out,
 			fake_in: fake_in,
-			seq_index: event.seq_index
+			seq_index: event.seq_index,
+			label: event.label
 		}
 
 		var new_link = {

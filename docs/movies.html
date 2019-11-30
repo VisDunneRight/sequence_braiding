@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Sequence Braiding</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Libs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+<body>
+
+  <svg id='chess-svg' style='margin-left: 5%'></svg>
+
+</body>
+<script src='../lib/align_pair_quad.js'></script>
+<script src='../lib/pairwise_alignment_dna.js'></script>
+<script src='../js/util.js'></script>
+<script src='../js/SequenceBraiding.js'></script>
+
+<script type="text/javascript">
+  graph1_options = {
+    //numDays: 200,
+    minEventPerColThreshold: 1,
+    height: 1000,
+    width: window.innerWidth*1.7,
+    forceLevelName: true,
+    //fontSize: '3em',
+    path: ['source', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', 'sink'],
+    levels: [9.5, 9.0, 8.5, 8.0, 7.5, 7.0, 6.5, 6.0, 5.5, 5.0, 4.5, 4.0, 3.5, 3.0, 0],
+    show_seq_names: true,
+    colorscheme: ['#70C14A', '#33CC94', '#31C3D9', '#4983C4', '#A25AA1', '#DD4C79', '#EE5545', '#F28728', '#E6B211', '#AE8C4C'],
+    catmullromvalue: 0.9,
+    colorbysequence: false,
+  }
+
+  d3.json('../data/movies.json', (error, data) => {
+    graph_sandbox = new SequenceBraiding(data, 'chess-svg', graph1_options)
+})
+</script>
+</html>

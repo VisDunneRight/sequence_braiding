@@ -28,10 +28,10 @@ var getParams = function (url) {
 // divides data into days. returns arrays of events in a single day.
 // warning: always assumes that events are temporally sorted
 var days_iterator = function* (data){
-    
+
     cur_date = null
     day_arr = []
-    
+
     for (ev of data){
         date = new Date(ev.Date)
         if (!isValidDate(date)) continue;
@@ -40,10 +40,10 @@ var days_iterator = function* (data){
         else if (isSameDay(cur_date, date)) day_arr.push(ev)
         else { // return the array when the date changes
             yield day_arr
-            
+
             cur_date = date
             day_arr = []
-        }     
+        }
     }
 }
 
@@ -54,7 +54,7 @@ var deepClone = function (obj, hash = new WeakMap()) {
         if (hash.has(obj)) return hash.get(obj); // cyclic reference
         const result = obj instanceof Date ? new Date(obj)
                      : obj instanceof RegExp ? new RegExp(obj.source, obj.flags)
-                     : obj.constructor ? new obj.constructor() 
+                     : obj.constructor ? new obj.constructor()
                      : Object.create(null);
         hash.set(obj, result);
         if (obj instanceof Map)
@@ -72,7 +72,7 @@ var get_glucose_level = function(val){
     else if (val < 70) return 'low';
     else if (val < 180) return 'normal';
     else if (val < 250) return 'high';
-    else return 'very_high';   
+    else return 'very_high';
 }
 
 
@@ -109,7 +109,7 @@ var select_days = function(data, numdays){
     return result
 }
 
-// Expects input as 'nnnnnn' where each nn is a 
+// Expects input as 'nnnnnn' where each nn is a
 // 2 character hex number for an RGB color value
 // e.g. #3f33c6
 // Returns the average as a hex number without leading #
@@ -124,6 +124,8 @@ var averageRGB = (function () {
 
   return function (c1, c2) {
 
+    if (c1 == undefined) return c2
+
     // Split into parts
     var b1 = c1.match(reSegment);
     var b2 = c2.match(reSegment);
@@ -135,7 +137,7 @@ var averageRGB = (function () {
       t = dec2hex( (hex2dec(b1[--i]) + hex2dec(b2[i])) >> 1 );
 
       // Add leading zero if only one character
-      c[i] = t.length == 2? '' + t : '0' + t; 
+      c[i] = t.length == 2? '' + t : '0' + t;
     }
     return  '#' + c.join('');
   }
@@ -152,7 +154,7 @@ var get_color = function(level){
         case "very_low"     : return opt.colorscheme[5];
         default             : return opt.colorscheme[6];
         //default             : return "#fff"
-        
+
 
         // colorbrewe colors
         //case "unknown"      : return "#888888";
@@ -164,7 +166,7 @@ var get_color = function(level){
         //default             : return "#333333";
     }
 
-    
+
 }
 
 
@@ -180,19 +182,19 @@ var find_unique_targets = function(link_collection){
     res = []
     for (link of link_collection) if (res.indexOf(link.target) == -1) res.push(link.target)
     return res
-} 
+}
 
 var find_unique_sources = function(link_collection){
     res = []
     for (link of link_collection) if (res.indexOf(link.source) == -1) res.push(link.source)
     return res
-} 
+}
 
 var create_gradient = function(d, i){
 
     defs = svg.select('defs')
 
-    // make unique gradient ids  
+    // make unique gradient ids
     const gradientID = `gradient${i}`;
     const startColor = d.source.color;
     const stopColor = d.target.color;
@@ -205,13 +207,13 @@ var create_gradient = function(d, i){
     const linearGradient = defs.append('linearGradient')
         .attr('id', gradientID);
 
-    linearGradient.selectAll('stop') 
-      .data([                             
-          {offset: startPercent, color: startColor },      
-          {offset: endPercent, color: stopColor }    
-        ])                  
+    linearGradient.selectAll('stop')
+      .data([
+          {offset: startPercent, color: startColor },
+          {offset: endPercent, color: stopColor }
+        ])
       .enter().append('stop')
-      .attr('offset', d => d.offset)   
+      .attr('offset', d => d.offset)
       .attr('stop-color', d => d.color)
 
     return `url(#${gradientID})`;
@@ -224,25 +226,25 @@ var create_transparent_black_gradients = function(){
     var t_to_b_gradient = defs.append('linearGradient')
         .attr('id', 'transparent_to_black_gradient')
 
-    t_to_b_gradient.selectAll('stop') 
-      .data([                             
-          {offset: 0, color: '#ffffff00' },      
-          {offset: 1, color: '#000' }    
-        ])                  
+    t_to_b_gradient.selectAll('stop')
+      .data([
+          {offset: 0, color: '#ffffff00' },
+          {offset: 1, color: '#000' }
+        ])
       .enter().append('stop')
-      .attr('offset', d => d.offset)   
+      .attr('offset', d => d.offset)
       .attr('stop-color', d => d.color)
 
     var b_to_t_gradient = defs.append('linearGradient')
         .attr('id', 'black_to_transparent_gradient')
 
-    b_to_t_gradient.selectAll('stop') 
-      .data([                             
-          {offset: 0, color: '#000' },      
-          {offset: 1, color: '#ffffff00' }    
-        ])                  
+    b_to_t_gradient.selectAll('stop')
+      .data([
+          {offset: 0, color: '#000' },
+          {offset: 1, color: '#ffffff00' }
+        ])
       .enter().append('stop')
-      .attr('offset', d => d.offset)   
+      .attr('offset', d => d.offset)
       .attr('stop-color', d => d.color)
 }
 
@@ -279,55 +281,55 @@ var draw_grid = function(path){
 }
 
 
-var onSegment = function(p, q, r) { 
-    if (q.x <= Math.max(p.x, r.x) && q.x >= Math.min(p.x, r.x) 
-        && q.y <= Math.max(p.y, r.y) && q.y >= Math.min(p.y, r.y)) return true; 
-  
-    return false; 
-} 
-  
-// To find orientation of ordered triplet (p, q, r). 
-// The function returns following values 
-// 0 --> p, q and r are colinear 
-// 1 --> Clockwise 
-// 2 --> Counterclockwise 
-var check_orientation = function(p, q, r) { 
-    // See https://www.geeksforgeeks.org/orientation-3-ordered-points/ 
-    // for details of below formula. 
+var onSegment = function(p, q, r) {
+    if (q.x <= Math.max(p.x, r.x) && q.x >= Math.min(p.x, r.x)
+        && q.y <= Math.max(p.y, r.y) && q.y >= Math.min(p.y, r.y)) return true;
+
+    return false;
+}
+
+// To find orientation of ordered triplet (p, q, r).
+// The function returns following values
+// 0 --> p, q and r are colinear
+// 1 --> Clockwise
+// 2 --> Counterclockwise
+var check_orientation = function(p, q, r) {
+    // See https://www.geeksforgeeks.org/orientation-3-ordered-points/
+    // for details of below formula.
 
     var val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
-  
-    if (val == 0) return 0;  // colinear 
-  
-    return (val > 0) ? 1 : 2; // clock or counterclock wise 
-} 
+
+    if (val == 0) return 0;  // colinear
+
+    return (val > 0) ? 1 : 2; // clock or counterclock wise
+}
 
 var check_intersection = function(p1, q1, p2, q2){
 
-    // Find the four orientations needed for general and 
-    // special cases 
-    var o1 = check_orientation(p1, q1, p2); 
-    var o2 = check_orientation(p1, q1, q2); 
-    var o3 = check_orientation(p2, q2, p1); 
-    var o4 = check_orientation(p2, q2, q1); 
-  
-    // General case 
-    if (o1 != o2 && o3 != o4) 
-        return true; 
-  
-    // Special Cases 
-    // p1, q1 and p2 are colinear and p2 lies on segment p1q1 
-    if (o1 == 0 && onSegment(p1, p2, q1)) return true; 
-  
-    // p1, q1 and q2 are colinear and q2 lies on segment p1q1 
-    if (o2 == 0 && onSegment(p1, q2, q1)) return true; 
-  
-    // p2, q2 and p1 are colinear and p1 lies on segment p2q2 
-    if (o3 == 0 && onSegment(p2, p1, q2)) return true; 
-  
-     // p2, q2 and q1 are colinear and q1 lies on segment p2q2 
-    if (o4 == 0 && onSegment(p2, q1, q2)) return true; 
-  
+    // Find the four orientations needed for general and
+    // special cases
+    var o1 = check_orientation(p1, q1, p2);
+    var o2 = check_orientation(p1, q1, q2);
+    var o3 = check_orientation(p2, q2, p1);
+    var o4 = check_orientation(p2, q2, q1);
+
+    // General case
+    if (o1 != o2 && o3 != o4)
+        return true;
+
+    // Special Cases
+    // p1, q1 and p2 are colinear and p2 lies on segment p1q1
+    if (o1 == 0 && onSegment(p1, p2, q1)) return true;
+
+    // p1, q1 and q2 are colinear and q2 lies on segment p1q1
+    if (o2 == 0 && onSegment(p1, q2, q1)) return true;
+
+    // p2, q2 and p1 are colinear and p1 lies on segment p2q2
+    if (o3 == 0 && onSegment(p2, p1, q2)) return true;
+
+     // p2, q2 and q1 are colinear and q1 lies on segment p2q2
+    if (o4 == 0 && onSegment(p2, q1, q2)) return true;
+
     return false; // Doesn't fall in any of the above cases
 }
 
@@ -341,14 +343,14 @@ var count_intersections = function (highlight = false, index){
 
     for (var i = 0; i < tmp_links.length; i++){
         var link_i = tmp_links[i]
-        
+
         for (var a = 0; a < link_i.anchors .length - 1; a++){
             var p1 = link_i.anchors[a]
             var q1 = link_i.anchors[a + 1]
 
             for (var j=i+1; j<tmp_links.length; j++){
                 var link_j = tmp_links[j]
-                
+
                 for (var b = 0; b < link_j.anchors.length - 1; b++){
                     var p2 = link_j.anchors[b]
                     var q2 = link_j.anchors[b + 1]
@@ -356,9 +358,9 @@ var count_intersections = function (highlight = false, index){
                     if (check_intersection(p1, q1, p2, q2) == true) {
                         num_intersections++
                         if (highlight) hightlight_intersection(p1, q1, p2, q2)
-                    }                    
+                    }
                 }
-            }   
+            }
         }
     }
 

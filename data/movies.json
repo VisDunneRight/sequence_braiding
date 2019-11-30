@@ -1,0 +1,1396 @@
+[
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "Iron Man",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 1,
+            "level": 6.5,
+            "label": "The Incredible Hulk",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 2,
+            "level": 7.0,
+            "label": "Iron Man 2",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 3,
+            "level": 7.0,
+            "label": "Thor",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 4,
+            "level": 7.0,
+            "label": "Captain America: The First Avenger",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 5,
+            "level": 8.0,
+            "label": "The Avengers",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 6,
+            "level": 7.0,
+            "label": "Iron Man Three",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 7,
+            "level": 7.0,
+            "label": "Thor: The Dark World",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 8,
+            "level": 7.5,
+            "label": "Captain America: The Winter Soldier",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 9,
+            "level": 8.0,
+            "label": "Guardians of the Galaxy",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 10,
+            "level": 7.5,
+            "label": "Avengers: Age of Ultron",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 11,
+            "level": 7.5,
+            "label": "Ant-Man",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 12,
+            "level": 8.0,
+            "label": "Captain America: Civil War",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 13,
+            "level": 7.5,
+            "label": "Doctor Strange",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 14,
+            "level": 7.5,
+            "label": "Guardians of the Galaxy Vol. 2",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 15,
+            "level": 7.5,
+            "label": "Spider-Man: Homecoming",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 16,
+            "level": 8.0,
+            "label": "Thor: Ragnarok",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 17,
+            "level": 7.5,
+            "label": "Black Panther",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 18,
+            "level": 8.5,
+            "label": "Avengers: Infinity War",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 19,
+            "level": 7.0,
+            "label": "Ant-Man and the Wasp",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 20,
+            "level": 7.0,
+            "label": "Captain Marvel",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 21,
+            "level": 8.5,
+            "label": "Avengers: Endgame",
+            "seq_name": "Marvel"
+        },
+        {
+            "type": 22,
+            "level": 7.5,
+            "label": "Spider-Man: Far From Home",
+            "seq_name": "Marvel"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.5,
+            "label": "Star Wars",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 1,
+            "level": 8.5,
+            "label": "Star Wars: Episode V - The Empire Strikes Back",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 2,
+            "level": 8.5,
+            "label": "Star Wars: Episode VI - Return of the Jedi",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Star Wars: Episode I - The Phantom Menace",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Star Wars: Episode II - Attack of the Clones",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 5,
+            "level": 7.5,
+            "label": "Star Wars: Episode III - Revenge of the Sith",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 6,
+            "level": 8.0,
+            "label": "Rogue One",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 7,
+            "level": 8.0,
+            "label": "Star Wars: Episode VII - The Force Awakens",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 8,
+            "level": 7.0,
+            "label": "Star Wars: Episode VIII - The Last Jedi",
+            "seq_name": "Star Wars"
+        },
+        {
+            "type": 9,
+            "level": 7.0,
+            "label": "Solo: A Star Wars Story",
+            "seq_name": "Star Wars"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "Harry Potter and the Sorcerer's Stone",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Harry Potter and the Chamber of Secrets",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 2,
+            "level": 8.0,
+            "label": "Harry Potter and the Prisoner of Azkaban",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 3,
+            "level": 7.5,
+            "label": "Harry Potter and the Goblet of Fire",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 4,
+            "level": 7.5,
+            "label": "Harry Potter and the Order of the Phoenix",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 5,
+            "level": 7.5,
+            "label": "Harry Potter and the Half-Blood Prince",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 6,
+            "level": 7.5,
+            "label": "Harry Potter and the Deathly Hallows: Part 1",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 7,
+            "level": 8.0,
+            "label": "Harry Potter and the Deathly Hallows: Part 2",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 8,
+            "level": 7.5,
+            "label": "Fantastic Beasts and Where to Find Them",
+            "seq_name": "Harry Potter"
+        },
+        {
+            "type": 9,
+            "level": 6.5,
+            "label": "Fantastic Beasts: The Crimes of Grindelwald",
+            "seq_name": "Harry Potter"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "Spider-Man",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Spider-Man 2",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "Spider-Man 3",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 3,
+            "level": 7.0,
+            "label": "The Amazing Spider-Man",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "The Amazing Spider-Man 2",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 5,
+            "level": 7.5,
+            "label": "Spider-Man: Homecoming",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 6,
+            "level": 8.5,
+            "label": "Spider-Man: Into the Spider-Verse",
+            "seq_name": "Spider-Man"
+        },
+        {
+            "type": 7,
+            "level": 7.5,
+            "label": "Spider-Man: Far From Home",
+            "seq_name": "Spider-Man"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "X-Men",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "X2",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 2,
+            "level": 6.5,
+            "label": "X-Men: The Last Stand",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "X-Men Origins: Wolverine",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 4,
+            "level": 7.5,
+            "label": "X: First Class",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 5,
+            "level": 6.5,
+            "label": "The Wolverine",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 6,
+            "level": 8.0,
+            "label": "X-Men: Days of Future Past",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 7,
+            "level": 8.0,
+            "label": "Deadpool",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 8,
+            "level": 7.0,
+            "label": "X-Men: Apocalypse",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 9,
+            "level": 8.0,
+            "label": "Logan",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 10,
+            "level": 7.5,
+            "label": "Deadpool 2",
+            "seq_name": "X-Men"
+        },
+        {
+            "type": 11,
+            "level": 6.0,
+            "label": "Dark Phoenix",
+            "seq_name": "X-Men"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "Batman",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 1,
+            "level": 7.0,
+            "label": "Batman Returns",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 2,
+            "level": 8.0,
+            "label": "Batman: Mask of the Phantasm",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 3,
+            "level": 5.5,
+            "label": "Batman Forever",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 4,
+            "level": 3.5,
+            "label": "Batman & Robin",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 5,
+            "level": 8.0,
+            "label": "Batman Begins",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 6,
+            "level": 9.0,
+            "label": "The Dark Knight",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 7,
+            "level": 8.5,
+            "label": "The Dark Knight Rises",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 8,
+            "level": 6.5,
+            "label": "Batman v Superman: Dawn of Justice",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 9,
+            "level": 6.0,
+            "label": "Suicide Squad",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 10,
+            "level": 7.5,
+            "label": "The Lego Batman Movie",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 11,
+            "level": 6.5,
+            "label": "Justice League",
+            "seq_name": "Batman"
+        },
+        {
+            "type": 12,
+            "level": 9.0,
+            "label": "Joker",
+            "seq_name": "Batman"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "Dr. No",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "From Russia with Love",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 2,
+            "level": 7.5,
+            "label": "Goldfinger",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 3,
+            "level": 7.0,
+            "label": "Thunderball",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 4,
+            "level": 7.0,
+            "label": "You Only Live Twice",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 5,
+            "level": 6.5,
+            "label": "On Her Majesty's Secret Service",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 6,
+            "level": 6.5,
+            "label": "Diamonds Are Forever",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 7,
+            "level": 7.0,
+            "label": "Live and Let Die",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 8,
+            "level": 7.0,
+            "label": "The Man with the Golden Gun",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 9,
+            "level": 6.5,
+            "label": "Moonraker",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 10,
+            "level": 7.0,
+            "label": "For Your Eyes Only",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 11,
+            "level": 6.5,
+            "label": "Octopussy",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 12,
+            "level": 6.5,
+            "label": "A View to a Kill",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 13,
+            "level": 6.5,
+            "label": "The Living Daylights",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 14,
+            "level": 6.5,
+            "label": "Licence to Kill",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 15,
+            "level": 7.0,
+            "label": "GoldenEye",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 16,
+            "level": 6.5,
+            "label": "Tomorrow Never Dies",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 17,
+            "level": 6.5,
+            "label": "The World is Not Enough",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 18,
+            "level": 6.0,
+            "label": "Die Another Day",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 19,
+            "level": 8.0,
+            "label": "Casino Royale",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 20,
+            "level": 6.5,
+            "label": "Quantum of Solace",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 21,
+            "level": 7.5,
+            "label": "Skyfall",
+            "seq_name": "James Bond"
+        },
+        {
+            "type": 22,
+            "level": 7.0,
+            "label": "Spectre",
+            "seq_name": "James Bond"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.0,
+            "label": "Man of Steel",
+            "seq_name": "DC"
+        },
+        {
+            "type": 1,
+            "level": 6.5,
+            "label": "Batman v Superman: Dawn of Justice",
+            "seq_name": "DC"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "Suicide Squad",
+            "seq_name": "DC"
+        },
+        {
+            "type": 3,
+            "level": 7.5,
+            "label": "Wonder Woman",
+            "seq_name": "DC"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Justice League",
+            "seq_name": "DC"
+        },
+        {
+            "type": 5,
+            "level": 7.0,
+            "label": "Aquaman",
+            "seq_name": "DC"
+        },
+        {
+            "type": 6,
+            "level": 7.0,
+            "label": "Shazam!",
+            "seq_name": "DC"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 9.0,
+            "label": "The Lord of the Rings: The Fellowship of the Ring",
+            "seq_name": "Middle Earth"
+        },
+        {
+            "type": 1,
+            "level": 8.5,
+            "label": "The Lord of the Rings: The Two Towers",
+            "seq_name": "Middle Earth"
+        },
+        {
+            "type": 2,
+            "level": 9.0,
+            "label": "The Lord of the Rings: The Return of the King",
+            "seq_name": "Middle Earth"
+        },
+        {
+            "type": 3,
+            "level": 8.0,
+            "label": "The Hobbit: An Unexpected Journey",
+            "seq_name": "Middle Earth"
+        },
+        {
+            "type": 4,
+            "level": 8.0,
+            "label": "The Hobbit: The Desolation of Smaug",
+            "seq_name": "Middle Earth"
+        },
+        {
+            "type": 5,
+            "level": 7.5,
+            "label": "The Hobbit: The Battle of the Five Armies",
+            "seq_name": "Middle Earth"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "Jurassic Park",
+            "seq_name": "Jurassic Park"
+        },
+        {
+            "type": 1,
+            "level": 6.5,
+            "label": "The Lost World: Jurassic Park",
+            "seq_name": "Jurassic Park"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "Jurassic Park III",
+            "seq_name": "Jurassic Park"
+        },
+        {
+            "type": 3,
+            "level": 7.0,
+            "label": "Jurassic World",
+            "seq_name": "Jurassic Park"
+        },
+        {
+            "type": 4,
+            "level": 6.0,
+            "label": "Jurassic World: Fallen Kingdom",
+            "seq_name": "Jurassic Park"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.0,
+            "label": "The Fast and the Furious",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 1,
+            "level": 6.0,
+            "label": "2 Fast 2 Furious",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "The Fast and the Furious: Tokyo Drift",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Fast & Furious",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 4,
+            "level": 7.5,
+            "label": "Fast Five",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 5,
+            "level": 7.0,
+            "label": "Furious 6",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 6,
+            "level": 7.0,
+            "label": "Furious Seven",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 7,
+            "level": 6.5,
+            "label": "The Fate of the Furious",
+            "seq_name": "Fast and Furious"
+        },
+        {
+            "type": 8,
+            "level": 6.5,
+            "label": "Fast & Furious Presents: Hobbs & Shaw",
+            "seq_name": "Fast and Furious"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.0,
+            "label": "Transformers",
+            "seq_name": "Transformers"
+        },
+        {
+            "type": 1,
+            "level": 6.0,
+            "label": "Transformers: Revenge of the Fallen",
+            "seq_name": "Transformers"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "Transformers: Dark of the Moon",
+            "seq_name": "Transformers"
+        },
+        {
+            "type": 3,
+            "level": 5.5,
+            "label": "Transformers: Age of Extinction",
+            "seq_name": "Transformers"
+        },
+        {
+            "type": 4,
+            "level": 5.0,
+            "label": "Transformers: The Last Knight",
+            "seq_name": "Transformers"
+        },
+        {
+            "type": 5,
+            "level": 7.0,
+            "label": "Bumblebee",
+            "seq_name": "Transformers"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "Pirates of the Caribbean: The Curse of the Black Pearl",
+            "seq_name": "Pirates of the Caribbean"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Pirates of the Caribbean: Dead Man's Chest",
+            "seq_name": "Pirates of the Caribbean"
+        },
+        {
+            "type": 2,
+            "level": 7.0,
+            "label": "Pirates of the Caribbean: At World's End",
+            "seq_name": "Pirates of the Caribbean"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Pirates of the Caribbean: On Stranger Tides",
+            "seq_name": "Pirates of the Caribbean"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Pirates of the Caribbean: Dead Men Tell No Tales",
+            "seq_name": "Pirates of the Caribbean"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.0,
+            "label": "The Hunger Games",
+            "seq_name": "Hunger Games"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "The Hunger Games: Catching Fire",
+            "seq_name": "Hunger Games"
+        },
+        {
+            "type": 2,
+            "level": 6.5,
+            "label": "The Hunger Games: Mockingjay - Part 1",
+            "seq_name": "Hunger Games"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "The Hunger Games: Mockingjay - Part 2",
+            "seq_name": "Hunger Games"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "Shrek",
+            "seq_name": "Shrek"
+        },
+        {
+            "type": 1,
+            "level": 7.0,
+            "label": "Shrek 2",
+            "seq_name": "Shrek"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "Shrek the Third",
+            "seq_name": "Shrek"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Shrek Forever After",
+            "seq_name": "Shrek"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Puss in Boots",
+            "seq_name": "Shrek"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 6.5,
+            "label": "Star Trek: The Motion Picture",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Star Trek II: The Wrath of Khan",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 2,
+            "level": 6.5,
+            "label": "Star Trek III: The Search for Spock",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 3,
+            "level": 7.5,
+            "label": "Star Trek IV: The Voyage Home",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 4,
+            "level": 5.5,
+            "label": "Star Trek V: The Final Frontier",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 5,
+            "level": 7.0,
+            "label": "Star Trek VI: The Undiscovered Country",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 6,
+            "level": 6.5,
+            "label": "Star Trek: Generations",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 7,
+            "level": 7.5,
+            "label": "Star Trek: First Contact",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 8,
+            "level": 6.5,
+            "label": "Star Trek: Insurrection",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 9,
+            "level": 6.5,
+            "label": "Star Trek: Nemesis",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 10,
+            "level": 8.0,
+            "label": "Star Trek",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 11,
+            "level": 7.5,
+            "label": "Star Trek Into Darkness",
+            "seq_name": "Star Trek"
+        },
+        {
+            "type": 12,
+            "level": 7.0,
+            "label": "Star Trek Beyond",
+            "seq_name": "Star Trek"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 5.0,
+            "label": "Twilight",
+            "seq_name": "Twilight"
+        },
+        {
+            "type": 1,
+            "level": 4.5,
+            "label": "The Twilight Saga: New Moon",
+            "seq_name": "Twilight"
+        },
+        {
+            "type": 2,
+            "level": 5.0,
+            "label": "The Twilight Saga: Eclipse",
+            "seq_name": "Twilight"
+        },
+        {
+            "type": 3,
+            "level": 5.0,
+            "label": "The Twilight Saga: Breaking Dawn - Part 1",
+            "seq_name": "Twilight"
+        },
+        {
+            "type": 4,
+            "level": 5.5,
+            "label": "The Twilight Saga: Breaking Dawn - Part 2",
+            "seq_name": "Twilight"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.5,
+            "label": "Toy Story",
+            "seq_name": "Toy Story"
+        },
+        {
+            "type": 1,
+            "level": 8.0,
+            "label": "Toy Story 2",
+            "seq_name": "Toy Story"
+        },
+        {
+            "type": 2,
+            "level": 8.5,
+            "label": "Toy Story 3",
+            "seq_name": "Toy Story"
+        },
+        {
+            "type": 3,
+            "level": 8.0,
+            "label": "Toy Story 4",
+            "seq_name": "Toy Story"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "Despicable Me",
+            "seq_name": "Despicable Me"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Despicable Me 2",
+            "seq_name": "Despicable Me"
+        },
+        {
+            "type": 2,
+            "level": 6.5,
+            "label": "Minions",
+            "seq_name": "Despicable Me"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Despicable Me 3",
+            "seq_name": "Despicable Me"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.0,
+            "label": "Mission: Impossible",
+            "seq_name": "Mission: Impossible"
+        },
+        {
+            "type": 1,
+            "level": 6.0,
+            "label": "Mission: Impossible II",
+            "seq_name": "Mission: Impossible"
+        },
+        {
+            "type": 2,
+            "level": 7.0,
+            "label": "Mission: Impossible III",
+            "seq_name": "Mission: Impossible"
+        },
+        {
+            "type": 3,
+            "level": 7.5,
+            "label": "Mission: Impossible - Ghost Protocol",
+            "seq_name": "Mission: Impossible"
+        },
+        {
+            "type": 4,
+            "level": 7.5,
+            "label": "Mission: Impossible - Rogue Nation",
+            "seq_name": "Mission: Impossible"
+        },
+        {
+            "type": 5,
+            "level": 8.0,
+            "label": "Mission: Impossible - Fallout",
+            "seq_name": "Mission: Impossible"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.5,
+            "label": "Raiders of the Lost Ark",
+            "seq_name": "Indiana Jones"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Indiana Jones and the Temple of Doom",
+            "seq_name": "Indiana Jones"
+        },
+        {
+            "type": 2,
+            "level": 8.0,
+            "label": "Indiana Jones and the Last Crusade",
+            "seq_name": "Indiana Jones"
+        },
+        {
+            "type": 3,
+            "level": 6.0,
+            "label": "Indiana Jones and the Kingdom of the Crystal Skull",
+            "seq_name": "Indiana Jones"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "The Bourne Identity",
+            "seq_name": "Bourne"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "The Bourne Supremacy",
+            "seq_name": "Bourne"
+        },
+        {
+            "type": 2,
+            "level": 8.0,
+            "label": "The Bourne Ultimatum",
+            "seq_name": "Bourne"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "The Bourne Legacy",
+            "seq_name": "Bourne"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Jason Bourne",
+            "seq_name": "Bourne"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 5.5,
+            "label": "Planet of the Apes",
+            "seq_name": "Planet of the Apes"
+        },
+        {
+            "type": 1,
+            "level": 7.5,
+            "label": "Rise of the Planet of the Apes",
+            "seq_name": "Planet of the Apes"
+        },
+        {
+            "type": 2,
+            "level": 7.5,
+            "label": "Dawn of the Planet of the Apes",
+            "seq_name": "Planet of the Apes"
+        },
+        {
+            "type": 3,
+            "level": 7.5,
+            "label": "War for the Planet of the Apes",
+            "seq_name": "Planet of the Apes"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "Ice Age",
+            "seq_name": "Ice Age"
+        },
+        {
+            "type": 1,
+            "level": 7.0,
+            "label": "Ice Age: The Meltdown",
+            "seq_name": "Ice Age"
+        },
+        {
+            "type": 2,
+            "level": 7.0,
+            "label": "Ice Age: Dawn of the Dinosaurs",
+            "seq_name": "Ice Age"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Ice Age: Continental Drift",
+            "seq_name": "Ice Age"
+        },
+        {
+            "type": 4,
+            "level": 5.5,
+            "label": "Ice Age: Collision Course",
+            "seq_name": "Ice Age"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "Rocky",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 1,
+            "level": 7.0,
+            "label": "Rocky II",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 2,
+            "level": 7.0,
+            "label": "Rocky III",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 3,
+            "level": 7.0,
+            "label": "Rocky IV",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 4,
+            "level": 5.5,
+            "label": "Rocky V",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 5,
+            "level": 7.0,
+            "label": "Rocky Balboa",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 6,
+            "level": 7.5,
+            "label": "Creed",
+            "seq_name": "Rocky"
+        },
+        {
+            "type": 7,
+            "level": 7.0,
+            "label": "Creed II",
+            "seq_name": "Rocky"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 7.5,
+            "label": "First Blood",
+            "seq_name": "Rambo"
+        },
+        {
+            "type": 1,
+            "level": 6.5,
+            "label": "Rambo: First Blood Part II",
+            "seq_name": "Rambo"
+        },
+        {
+            "type": 2,
+            "level": 6.0,
+            "label": "Rambo III",
+            "seq_name": "Rambo"
+        },
+        {
+            "type": 3,
+            "level": 7.0,
+            "label": "Rambo",
+            "seq_name": "Rambo"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Rambo: Last Blood",
+            "seq_name": "Rambo"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.0,
+            "label": "The Terminator",
+            "seq_name": "Terminator"
+        },
+        {
+            "type": 1,
+            "level": 8.5,
+            "label": "Terminator 2: Judgment Day",
+            "seq_name": "Terminator"
+        },
+        {
+            "type": 2,
+            "level": 6.5,
+            "label": "Terminator 3: Rise of the Machines",
+            "seq_name": "Terminator"
+        },
+        {
+            "type": 3,
+            "level": 6.5,
+            "label": "Terminator Salvation",
+            "seq_name": "Terminator"
+        },
+        {
+            "type": 4,
+            "level": 6.5,
+            "label": "Terminator Genisys",
+            "seq_name": "Terminator"
+        },
+        {
+            "type": 5,
+            "level": 6.5,
+            "label": "Terminator: Dark Fate",
+            "seq_name": "Terminator"
+        }
+    ],
+    [
+        {
+            "type": 0,
+            "level": 8.5,
+            "label": "Alien",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 1,
+            "level": 8.5,
+            "label": "Aliens",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 2,
+            "level": 6.5,
+            "label": "Alien\u00b3",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 3,
+            "level": 6.0,
+            "label": "Alien Resurrection",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 4,
+            "level": 5.5,
+            "label": "AVP: Alien vs. Predator",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 5,
+            "level": 4.5,
+            "label": "AVPR: Aliens vs Predator - Requiem",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 6,
+            "level": 7.0,
+            "label": "Prometheus",
+            "seq_name": "Alien"
+        },
+        {
+            "type": 7,
+            "level": 6.5,
+            "label": "Alien: Covenant",
+            "seq_name": "Alien"
+        }
+    ]
+]
