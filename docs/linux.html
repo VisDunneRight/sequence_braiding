@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Sequence Braiding</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Libs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+<body>
+
+  <svg id='chess-svg' style='margin-left: 5%'></svg>
+
+</body>
+<script src='../lib/align_pair_quad.js'></script>
+<script src='../lib/pairwise_alignment_dna.js'></script>
+<script src='../js/util.js'></script>
+<script src='../js/SequenceBraiding.js'></script>
+<script type="text/javascript">
+
+
+
+  d3.json('../data/linuxcommits.json', (error, data) => {
+
+    tmppath = []
+    tmpdata = []
+    //1291142769
+
+    for (d of data){
+      for (e of d){
+        e.type = Math.round(parseFloat(e.type)/20000).toString()
+        //t = e.type
+        //tmppath.push(t)
+      }
+    }
+
+    for (d of data){
+      d = d.filter(e => e.type*20000 > 1485974769 && e.type*20000 < 1488393969)
+      tmpseq = []
+      for (i in d){
+        if (i == 0) continue
+        else if (tmpseq.length != 0 && d[i].type == tmpseq[tmpseq.length - 1].type) continue
+        else tmpseq.push(d[i])
+      }
+      d = tmpseq
+      if (d.length > 2) tmpdata.push(d)
+    }
+    data = tmpdata
+
+    console.log('data length', data.length)
+
+    //console.log(data)
+
+    //tmppath = tmppath.sort()
+    //tmppath.unshift('source')
+    //tmppath.push('sink')
+
+    //console.log('tmppath: ', tmppath)
+
+    graph1_options = {
+      numDays: 100,
+      minEventPerColThreshold: 0,
+      height: 3000,
+      width: 20000,
+      forceLevelName: true,
+      //colorscheme: ['#70C14A', '#33CC94', '#31C3D9', '#4983C4', '#A25AA1', '#DD4C79', '#EE5545', '#F28728', '#E6B211', '#AE8C4C'],
+      dnalevels: true,
+      catmullromvalue: 0.7,
+      link_stroke_width: 2,
+      //fontSize: '3em',
+      //path: tmppath
+      //path: ['source', '1', '3', '5', '7', '9', '11', '13', '15', '17', 'sink']
+      //levels: ['very_high', 'high', 'normal', 'low', 'very_low']
+    }
+
+    graph_sandbox = new SequenceBraiding(data, 'chess-svg', graph1_options)
+})
+</script>
+</html>

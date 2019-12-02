@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Sequence Braiding</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Libs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+<body>
+
+  <svg id='chess-svg' style='margin-left: 5%'></svg>
+
+</body>
+<script src='../lib/align_pair_quad.js'></script>
+<script src='../lib/pairwise_alignment_dna.js'></script>
+<script src='../js/util.js'></script>
+<script src='../js/SequenceBraiding.js'></script>
+<script type="text/javascript">
+  graph1_options = {
+    numDays: 10,
+    minEventPerColThreshold: 1,
+    height: 2000,
+    width: window.innerWidth*0.5,
+    forceLevelName: true,
+    node_width_factor: 0.08,
+    svg_width: window.innerWidth*0.95,
+    //path: ['source', '1', '3', '5', '7', '9', '11', '13', '15', '17', 'sink']
+    //levels: ['very_high', 'high', 'normal', 'low', 'very_low']
+  }
+
+  d3.json('../data/jsonglucose.json', (error, data) => {
+    graph_sandbox = new SequenceBraiding(data, 'chess-svg', graph1_options)
+
+    svg = graph_sandbox.svg
+    details = ['date', 'glucose_graph']
+    row_height = 20
+
+    d3.json('../data/seq_info.json', (error, data) => {
+      data = data.filter(d => graph_sandbox.data.map(a => a[0].seq_index).indexOf(d.seq_index) != -1)
+      for (i in data){
+        g = svg.append('g')
+        .attr('transform', 'translate(' + (graph1_options.width + 30) + ',' + (i * row_height + graph_sandbox.top_padding) +')')
+
+        g.append('circle')
+          .attr('cx', 0)
+          .attr('cy', -4)
+          .attr('r', row_height/6)
+          .attr('fill', 'gray')
+
+        node_col = graph_sandbox.nodes.filter(n => n.seq_index == data[i].seq_index)
+        last_node = node_col[node_col.length - 1]
+        console.log(last_node)
+
+        g.append('text')
+          .attr('font-size', '0.7em')
+          .attr('transform', 'translate('+ 10 +',0)')
+          .text(data[i].date)
+
+        carbs_chart = g.append('g').attr('transform', 'translate('+ 80 +',0)')
+
+        carbs_chart.selectAll('rect')
+          .data(data[i].carbs)
+          .enter()
+          .append('rect')
+          .attr('x', (d, i) => i*5)
+          .attr('y', d => - d/10)
+          .attr('width', 4)
+          .attr('height', d => d/10)
+          .attr('fill', '#029DAF')
+      }
+    })
+
+    // for (detail of details){
+    //   svg.append('text')
+    //     .attr('x', window.innerWidth*0.6)
+    //     .attr('y', 100)
+    //     .attr('font-size', 'small')
+    //     .attr('transform', 'rotate(10)')
+    //     .text(detail)
+    // }
+})
+</script>
+</html>

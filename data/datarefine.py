@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+from pprint import pprint
 
 f = open('full.csv', 'r')
 out = open('full_refined.csv', 'w')
@@ -6,6 +8,11 @@ out = open('full_refined.csv', 'w')
 for line in f:
 	count = 0
 	st = ''
+	
+	#if len(line.split(',')[0].split('/')) == 3:
+	#	curdate = datetime(int(line.split(',')[0].split('/')[2]), int(line.split(',')[0].split('/')[0]), int(line.split(',')[0].split('/')[1]))
+	#	if curdate < datetime(2019, 6, 25): continue
+
 	for elem in line.split(','):
 		if count == 0 and len(elem) > 1: st += elem + ','
 		if count == 10 and len(elem) > 1: st += elem + ','
@@ -21,6 +28,7 @@ res = []
 cur_seq = []
 cur_date = ''
 count = 0
+seq_info_list = []
 for line in f:
 	spl = line.split(',')
 	count += 1
@@ -30,13 +38,33 @@ for line in f:
 		cur_date = spl[0]
 		res.append(cur_seq)
 		cur_seq = []
+
+		# here starts new section on sequence info
+		seq_info_item = {
+			'date' : cur_date,
+			'seq_index' : len(res)
+		}
+		
+		remyinfo = open('remy.csv', 'r')
+		carbs_seq = []
+		for l2 in remyinfo:
+			if l2.split(',')[0] == cur_date:
+				if l2.split(',')[12] != '':
+					carbs_seq.append(l2.split(',')[12])
+
+		seq_info_item['carbs'] = carbs_seq
+		seq_info_list.append(seq_info_item)
+
 	
 	event = {
 		'type': spl[2].strip(),
-		'level': spl[1].strip() 
+		'level': spl[1].strip(),
+		'seq_index': len(res)
 	}
 	cur_seq.append(event)
 	
+json.dump(seq_info_list, open('seq_info.json', 'w'), indent=4)
+
 res.append(cur_seq)
 
 res = res[::-1]
@@ -60,5 +88,5 @@ for i in res:
     # else if (val < 250) return 'high';
     # else return 'very_high';   
 
-
 json.dump(res, out, indent=4)
+

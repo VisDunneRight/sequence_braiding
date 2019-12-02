@@ -124,7 +124,7 @@ var averageRGB = (function () {
 
   return function (c1, c2) {
 
-    if (c1 == undefined) return c2
+    //if (c1 == undefined) return c2
 
     // Split into parts
     var b1 = c1.match(reSegment);

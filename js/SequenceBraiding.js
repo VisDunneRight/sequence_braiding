@@ -5,11 +5,12 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// add seq number to data
 		this.data = data.slice(0, opt.numDays)
-		this.data.forEach(a => a.forEach(b => b.seq_index = this.data.indexOf(a)))
+		this.data.forEach(a => a.forEach(b => b.seq_index == undefined ? b.seq_index = this.data.indexOf(a) : b.seq_index = b.seq_index))
 
 		// figure out path and levels
 		this.path = opt.path ? opt.path : this.find_path(this.data, opt)
-		this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
+		if (!opt.dnalevels) this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
+		else this.levels = opt.levels ? opt.levels : this.dna_levels(this.data)
 
 		this.nodes = []
 		this.links = []
@@ -19,7 +20,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.svg_index = Array.prototype.slice.call(document.getElementsByTagName('svg')).indexOf(document.getElementById(svgname))
 		this.svg = d3.select('#' + this.svgname)
 
-		this.svg.attr('width', this.opt.width).attr('height', this.opt.height)
+		this.svg.attr('width', this.opt.svg_width).attr('height', this.opt.height)
 
 		this.max_iterations = 20
 
@@ -30,13 +31,13 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.cleanup(opt.minEventPerColThreshold)
 
 		// drawing variables
-		this.horizontal_spacing = (svgwidth*0.98)/(this.path.length-2)
+		this.horizontal_spacing = (this.opt.width*0.98)/(this.path.length-2)
 		this.left_padding = -this.horizontal_spacing/4
 		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
-		this.link_stroke_width = this.vertical_spacing*0.4
+		this.link_stroke_width = this.opt.link_stroke_width
 		this.link_opacity = 1
 		this.top_padding = 80
-		this.node_width = 0.2*this.horizontal_spacing
+		this.node_width = this.opt.node_width_factor*this.horizontal_spacing
 		this.init_padding = (1/4)*this.horizontal_spacing
 		this.animate = opt.animate
 
@@ -92,6 +93,40 @@ window.SequenceBraiding = class SequenceBraiding {
 		})
 	}
 
+
+	dna_levels(data_sequences){
+		var m_dict = {}
+	    var index_dict = {}
+
+	    var count = 0
+	    for (var i in data_sequences){
+	        for (var j of data_sequences[i]){
+	            if (m_dict[j.level] == undefined) {m_dict[j.level] = String.fromCharCode(parseInt(count) + 65); count++}
+	        }
+	    }
+
+	    for (var j in m_dict) index_dict[m_dict[j]] = j
+
+	    var char_sequences = []
+	    for (var day of data_sequences){
+	        day = day.filter(d => d.level.length > 1)
+
+	        var res_str = ""
+	        for (var m of day) res_str += m_dict[m.level]
+	        char_sequences.push(res_str)
+	    }
+
+	    var seq = pairwiseAlignDna(char_sequences, this.opt)
+
+	    var res = []
+	    for (var i in seq){res.push(index_dict[seq[i]])}
+	    res = [... new Set(res)]
+
+	    console.log('levels: ', res)
+	    return res
+	}
+
+
 	find_path(data_sequences, opt){
 	    var m_dict = {}
 	    var index_dict = {}
@@ -143,9 +178,13 @@ window.SequenceBraiding = class SequenceBraiding {
 		    numDays: 100,
 		    fontSize: '0.9em',
 		    forceLevelName: false,
-		    colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43", "#fff"],
+		    colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
 		    catmullromvalue: 1,
 		    colorbysequence: false,
+		    dnalevels: false,
+		    link_stroke_width: 4,
+		    node_width_factor: 0.2, 
+		    svg_width: '100%'
 		}
 
 		for (var field in original_opt){
@@ -485,7 +524,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('id', 'day_' + sequence[0].seq_index)
 				.attr('d', lineGen(drawpath))
 				.style('stroke', "url(#linear-gradient"+svg_index+'_'+link.seq_index+")")
-				.style('stroke-width', this.link_stroke_width)
+				.style('stroke-width', this.opt.link_stroke_width)
 				.style('opacity', this.link_opacity)
 				.attr('fill', '#ffffff00')
 				.on('mouseover', function (d){ d3.select(this).style('stroke', 'black')})
@@ -677,7 +716,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	build(){
-		this.source = {depth: 0, incoming_links:[], outgoing_links:[], color:'gray', fake_in:true}
+		this.source = {depth: 0, incoming_links:[], outgoing_links:[], color:'#fff', fake_in:true}
 		this.sink = {depth: path.length + 1, incoming_links:[], outgoing_links:[], color:'gray', fake_out:true}
 		//this.nodes.push(this.source)
 
@@ -786,7 +825,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	add_path_text(){
 		var svg = d3.select('#' + this.svgname)
 		for (var e in this.path){
-			if (this.path[e] == 'source') continue
+			if (this.path[e] == 'source' || this.path[e] == 'sink') continue
 			var t = svg.append('text')
 				.attr('y', 40)
 				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing + this.node_width/2)
