@@ -156,15 +156,15 @@ window.SequenceBraiding = class SequenceBraiding {
 
 	    res.unshift('source')
 	    res.push('sink')
-	    console.log(res)
+
 	    return res
 	}
 
 	fill_opt(opt){
 		const original_opt = {
 		    guidelines: true,
-		    MATCH_SCORE: 10,
-		    MISMATCH_SCORE: -20,
+		    MATCH_SCORE: 100,
+		    MISMATCH_SCORE: -10,
 		    BEGIN_GAP_PENALTY: 2,
 		    GAP_PENALTY: 1,
 		    END_GAP_PENALTY: 2,
