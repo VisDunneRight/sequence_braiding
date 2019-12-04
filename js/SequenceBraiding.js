@@ -32,7 +32,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// drawing variables
 		this.horizontal_spacing = (this.opt.width*0.98)/(this.path.length-2)
-		this.left_padding = -this.horizontal_spacing/4
+		this.left_padding = -this.horizontal_spacing/4 
 		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
 		this.link_stroke_width = this.opt.link_stroke_width
 		this.link_opacity = 1
@@ -521,7 +521,9 @@ window.SequenceBraiding = class SequenceBraiding {
 			const svg_index = this.svg_index
 
 			var p = svg.append('path')
+				.datum({'seq_index' : sequence[0].seq_index})
 				.attr('id', 'day_' + sequence[0].seq_index)
+				.attr('class', 'seqpath')
 				.attr('d', lineGen(drawpath))
 				.style('stroke', "url(#linear-gradient"+svg_index+'_'+link.seq_index+")")
 				.style('stroke-width', this.opt.link_stroke_width)
@@ -582,6 +584,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			svg.append('rect')
 				.datum(node)
 				.attr('id', 'node_' + node.seq_index + '_' + node.depth)
+				.attr('class', 'seqnode')
 				.attr('x', this.get_node_x(node, this.horizontal_spacing))
 				.attr('y', this.vertical_spacing)
 				.attr('width', this.node_width)
