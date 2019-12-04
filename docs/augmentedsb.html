@@ -75,17 +75,17 @@
       apply_reordering = function(){
         d3.selectAll('.detailg')
           .transition()
-          .duration(500)
+          .duration(400)
           .attr('transform', (d)  => 'translate(' + (graph1_options.width + 30) + ',' + (data.indexOf(d) * row_height + gs.top_padding) +')')
 
         for (item of data){
           node_col = gs.nodes.filter(n => n.seq_index == item.seq_index && !n.fake_out)
           last_node = node_col[node_col.length - 1]
-          pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.left_padding + gs.node_width
+          pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.left_padding - gs.node_width * 1.5 + gs.horizontal_spacing/2
 
           d3.select('#connector_' + item['seq_index'])
             .transition()
-            .duration(500)
+            .duration(400)
             .attr('d', line([
               {x: graph1_options.width - 40 - pathpad, y: last_node.y * gs.vertical_spacing + gs.top_padding},
               {x: graph1_options.width - 38 - pathpad, y: last_node.y * gs.vertical_spacing + gs.top_padding},
@@ -95,11 +95,13 @@
       }
 
       update_selection = function(){
-        highlight_by_seq_num(selection)
         data = data.sort((a, b) => sortbyselection(a, b))
         apply_reordering()
+        d3.selectAll('.connectorpath').filter(d => selection.indexOf(d.seq_index) != -1).style('display', 'block')
+        d3.selectAll('.connectorpath').filter(d => selection.indexOf(d.seq_index) == -1).style('display', 'none')
         d3.selectAll('.detailg').filter(d => selection.indexOf(d.seq_index) != -1).style('display', 'block')
         d3.selectAll('.detailg').filter(d => selection.indexOf(d.seq_index) == -1).style('display', 'none')
+        highlight_by_seq_num(selection, 401)
       }
 
       d3.selectAll('.seqpath')
@@ -142,21 +144,25 @@
         return last_node_a.y > last_node_b.y ? 1 : -1
       }
 
-      highlight_by_seq_num = function(seq_nums){
+      highlight_by_seq_num = function(seq_nums, delay=0){
         d3.selectAll('.detailg').transition()
+          .delay(delay)
           .duration(100)
           .attr('opacity', 0.3)
-        d3.selectAll('path').transition()
+        d3.selectAll('.seqpath').transition()
+          //.delay(delay)
           .duration(100)
           .style('opacity', 0.3)
 
         for (seq_n of seq_nums){
           d3.select('#detailg' + seq_n)
             .transition()
+            .delay(delay)
             .duration(110)
             .attr('opacity', 1)
           d3.select('#day_' + seq_n)
             .transition()
+            //.delay(0)
             .duration(110)
             .style('opacity', 1)
         }
@@ -199,7 +205,9 @@
         pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.left_padding - gs.node_width * 1.5 + gs.horizontal_spacing/2
 
         svg.append('path')
+          .datum({'seq_index' : data[i]['seq_index']})
           .attr('id', 'connector_' + data[i]['seq_index'])
+          .attr('class', 'connectorpath')
           .attr('stroke', 'gray')
           .attr('fill', 'none')
           .attr('opacity', 0.5)
