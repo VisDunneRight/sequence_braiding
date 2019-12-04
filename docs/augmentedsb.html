@@ -66,19 +66,51 @@
 
     d3.json('../data/seq_info.json', (error, data) => {
       data = data.filter(d => graph_sandbox.data.map(a => a[0].seq_index).indexOf(d.seq_index) != -1)
-      data = data.sort((a, b) => {
+
+      sortbylastnode = function(a, b){
         node_col_a = graph_sandbox.nodes.filter(n => n.seq_index == a.seq_index && !n.fake_out)
         last_node_a = node_col_a[node_col_a.length - 1]
         node_col_b = graph_sandbox.nodes.filter(n => n.seq_index == b.seq_index && !n.fake_out)
         last_node_b = node_col_b[node_col_b.length - 1]
+        if (last_node_a.y == last_node_b.y) return last_node_a.depth > last_node_b.depth ? 1 : -1
+        return last_node_a.y > last_node_b.y ? 1 : -1
+      }
 
-        if (last_node_a.y == last_node_b.y) return last_node_a.depth > last_node_b.depth
-
-        return last_node_a.y > last_node_b.y
-      })
+      data = data.sort((a, b) => sortbylastnode(a, b))
       for (i in data){
         g = svg.append('g')
-        .attr('transform', 'translate(' + (graph1_options.width + 30) + ',' + (i * row_height + graph_sandbox.top_padding) +')')
+          .datum(data[i])
+          .attr('transform', 'translate(' + (graph1_options.width + 30) + ',' + (i * row_height + graph_sandbox.top_padding) +')')
+          .attr('class', 'detailg')
+          .attr('id', 'detailg' + data[i]['seq_index'])
+          .on('mouseover', (d) => {
+            d3.selectAll('.detailg')
+              .transition()
+              .duration(100)
+              .attr('opacity', 0.3)
+            d3.selectAll('path')
+              .transition()
+              .duration(100)
+              .style('opacity', 0.3)
+            d3.select('#detailg' + d['seq_index'])
+              .transition()
+              .duration(110)
+              .attr('opacity', 1)
+            d3.selectAll('#day_' + d['seq_index'])
+              .transition()
+              .duration(110)
+              .style('opacity', 1)
+          })
+          .on('mouseout', () => {
+            d3.selectAll('.detailg')
+              .transition()
+              .duration(100)
+              .attr('opacity', 1)
+            d3.selectAll('path')
+              .transition()
+              .duration(100)
+              .style('opacity', 1)
+          })
 
         // connector
         g.append('circle')
@@ -98,6 +130,7 @@
         pathpad = (graph_sandbox.path.length - last_node.depth - 2) * graph_sandbox.horizontal_spacing + graph_sandbox.left_padding + graph_sandbox.node_width
 
         svg.append('path')
+          .attr('id', 'connector_' + data[i]['seq_index'])
           .attr('stroke', 'gray')
           .attr('fill', 'none')
           .attr('opacity', 0.5)
@@ -165,21 +198,49 @@
             .attr('fill', graph_sandbox.opt.colorscheme[l])
             .attr('transform', 'translate('+((prevsum)*width_factor)+','+ -row_height/2 +')')
         }
-
-        // time_ratio_chart.append('rect')
-        //   .attr('width', data[i]['time_ratio']['very_high']*width_factor)
-        //   .attr('height', row_height*height_factor)
-        //   .attr('fill', graph_sandbox.opt.colorscheme[0])
-        //   .attr('transform', 'translate('+0+','+ -row_height/2 +')')
-        //
-        //
-        //
-        // time_ratio_chart.append('rect')
-        //   .attr('width', data[i]['time_ratio']['normal']*width_factor)
-        //   .attr('height', row_height*height_factor)
-        //   .attr('fill', graph_sandbox.opt.colorscheme[2])
-        //   .attr('transform', 'translate('+(data[i]['time_ratio']['high'] + data[i]['time_ratio']['very_high'] + minipadding*2)*width_factor+','+ -row_height/2 +')')
       }
+
+      // sortbutton
+      sortedbydate = false
+      symbolgenerator = d3.symbol().size(100)
+      buttong = svg.append('g').attr('transform', 'translate(' + graph_sandbox.opt.width + ',40)')
+      buttong.append('path')
+        .attr("id", "sorttriangle")
+        .attr("d", symbolgenerator.type(d3.symbolTriangle))
+        .attr('transform', 'translate(60, 0)')
+        .attr('fill', 'gray')
+        .on('click', () => {
+          sortedbydate = !sortedbydate
+          if (sortedbydate) data = data.sort((a, b) => new Date(a.date) > new Date(b.date) ? 1 : -1)
+          else data = data.sort((a, b) => sortbylastnode(a, b))
+          d3.selectAll('.detailg')
+            .transition()
+            .duration(500)
+            .attr('transform', (d)  => 'translate(' + (graph1_options.width + 30) + ',' + (data.indexOf(d) * row_height + graph_sandbox.top_padding) +')')
+
+          for (item of data){
+            node_col = graph_sandbox.nodes.filter(n => n.seq_index == item.seq_index && !n.fake_out)
+            last_node = node_col[node_col.length - 1]
+            pathpad = (graph_sandbox.path.length - last_node.depth - 2) * graph_sandbox.horizontal_spacing + graph_sandbox.left_padding + graph_sandbox.node_width
+
+            d3.select('#connector_' + item['seq_index'])
+              .transition()
+              .duration(500)
+              .attr('d', line([
+                {x: graph1_options.width - 40 - pathpad, y: last_node.y * graph_sandbox.vertical_spacing + graph_sandbox.top_padding},
+                {x: graph1_options.width - 38 - pathpad, y: last_node.y * graph_sandbox.vertical_spacing + graph_sandbox.top_padding},
+                {x: graph1_options.width + 28, y: data.indexOf(item) * row_height + graph_sandbox.top_padding - 4},
+                {x: graph1_options.width + 30, y: data.indexOf(item) * row_height + graph_sandbox.top_padding - 4}]))
+          }
+
+          d3.select("#sorttriangle")
+            .transition()
+            .duration(500)
+            .attr('transform', () => {
+              if (sortedbydate) return 'translate(60, 0)rotate(180)'
+              else return 'translate(60, 0)rotate(0)'
+              })
+        })
     })
 
     // for (detail of details){
