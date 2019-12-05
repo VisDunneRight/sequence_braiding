@@ -31,8 +31,8 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.cleanup(opt.minEventPerColThreshold)
 
 		// drawing variables
-		this.horizontal_spacing = (this.opt.width*0.98)/(this.path.length-2)
-		this.left_padding = -this.horizontal_spacing/4 
+		this.horizontal_spacing = this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.98)/(this.path.length-2)
+		this.left_padding = - this.horizontal_spacing/4 
 		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
 		this.link_stroke_width = this.opt.link_stroke_width
 		this.link_opacity = 1
@@ -777,7 +777,8 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	get_node_x(node){
-		return this.left_padding + node.depth * this.horizontal_spacing
+		console.log(this.horizontal_spacing)
+		return node.depth * this.horizontal_spacing
 	}
 
 

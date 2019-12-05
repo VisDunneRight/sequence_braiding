@@ -174,7 +174,7 @@
     minEventPerColThreshold: 3,
 	}
 
-	d3.json('../data/jsonglucose.json', (error, data) => {
+	d3.json('../data/sandboxdata.json', (error, data) => {
 		sandbox_data = data
 
 		graph1 = new SequenceBraiding(sandbox_data, 'braids-container1', graph1_options)
@@ -182,7 +182,7 @@
     })
 
 	document.getElementById("numdayslider").value = 25
-  document.getElementById("minevslider").value = 3
+  	document.getElementById("minevslider").value = 3
 	document.getElementById("matchscoreslider").value = 10
 	document.getElementById("mismatchscoreslider").value = -20
 	document.getElementById("begingappenaltyslider").value = 2
