@@ -58,6 +58,40 @@
     //data.splice(0, 0)
     data = data.filter(d => d.length > 1)
 
+    isinselection = function(d, s){
+      return d.y * gs.vertical_spacing + gs.top_padding < s[1][1]
+        && d.y * gs.vertical_spacing + gs.top_padding > s[0][1]
+        && d.depth * gs.horizontal_spacing - gs.horizontal_spacing*.25 > s[0][0]
+        && d.depth * gs.horizontal_spacing - gs.horizontal_spacing*.25 < s[1][0]
+        && !d.isanchor
+    }
+
+    // brush
+    brushmove = function(){
+      if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return;
+      var s = d3.event.selection;
+      //d3.selectAll('.seqnode').filter(d => !d.fake_in && !d.fake_out && !d.isanchor && !isinselection(d, s)).attr('fill', d => d.color)
+      //d3.selectAll('.seqnode').filter(d => isinselection(d, s)).attr('fill', 'red')
+    }
+
+    brushend = function(){
+      if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return;
+      var s = d3.event.selection;
+      selection = []
+      d3.selectAll('.seqnode')
+        .filter(d => !d.fake_in && !d.fake_out && !d.isanchor && isinselection(d, s) && selection.indexOf(d.seq_index) == -1)
+        .each(d => selection.push(d.seq_index))
+      update_selection()
+    }
+
+    d3.select('#chess-svg')
+      .attr('width', graph1_options.width)
+      .attr('height', graph1_options.height)
+      .append("g")
+      .attr("class", "brush")
+      .call(d3.brush().on("brush", brushmove).on("end", brushend));
+
+
     gs = new SequenceBraiding(data, 'chess-svg', graph1_options)
 
     svg = gs.svg
@@ -114,26 +148,6 @@
           }
           update_selection()
         })
-
-      // brush
-      brushed = function(){
-        if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return;
-        var s = d3.event.selection;
-        console.log(s)
-        isinselection = function(d){
-          return d.y * gs.vertical_spacing + gs.top_padding < s[1][1]
-            && d.y * gs.vertical_spacing + gs.top_padding > s[0][1]
-            && d.depth * gs.horizontal_spacing> s[0][0]
-            && d.depth * gs.horizontal_spacing < s[1][0]
-            && !d.isanchor
-        }
-        d3.selectAll('.seqnode').filter(d => !d.fake_in && !d.fake_out && !d.isanchor && !isinselection(d)).attr('fill', d => d.color)
-        d3.selectAll('.seqnode').filter(d => isinselection(d)).attr('fill', 'red')
-      }
-
-      svg.append("g")
-        .attr("class", "brush")
-        //.call(d3.brush().on("brush", brushed));
 
       sortbylastnode = function(a, b){
         node_col_a = gs.nodes.filter(n => n.seq_index == a.seq_index && !n.fake_out)
