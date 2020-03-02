@@ -9,7 +9,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		// figure out path and levels
 		this.path = opt.path ? opt.path : this.find_path(this.data, opt)
-		if (!opt.dnalevels) this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
+		if (!opt.pairwise_align_levels) this.levels = opt.levels ? opt.levels : this.find_levels(this.data)
 		else this.levels = opt.levels ? opt.levels : this.dna_levels(this.data)
 
 		this.nodes = []
@@ -22,49 +22,86 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		this.svg.attr('width', this.opt.svg_width).attr('height', this.opt.height)
 
-		this.max_iterations = 20
-
 		var svgwidth = document.getElementById(this.svgname).clientWidth
 		var svgheight = document.getElementById(this.svgname).clientHeight
 
 		this.build()
-		this.cleanup(opt.minEventPerColThreshold)
+		this.cleanup(this.opt.minEventPerColThreshold)
 
 		// drawing variables
 		this.horizontal_spacing = this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.98)/(this.path.length-2)
-		this.left_padding = - this.horizontal_spacing/4 
 		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
-		this.link_stroke_width = this.opt.link_stroke_width
-		this.link_opacity = 1
-		this.top_padding = 80
 		this.node_width = this.opt.node_width_factor*this.horizontal_spacing
-		this.init_padding = (1/4)*this.horizontal_spacing
-		this.animate = opt.animate
 
-		this.grid = this.sort_nodes_vertically(this.animate)
+		this.grid = this.sort_nodes_vertically(this.opt.animate)
 		this.last_cleanup()
 		this.add_virtual_nodes(this.grid)
 		this.set_nodes_y(this.grid)
 
+		if (this.opt.guidelines) this.draw_guidelines()
+		if (this.opt.show_seq_names) this.show_seq_names()
 
-		if (opt.guidelines) this.draw_guidelines()
-		if (opt.show_seq_names) this.show_seq_names()
-
-		if (this.animate){
-			this.position_links(this.max_iterations*250)
-			this.position_nodes(this.max_iterations*250)
+		if (this.opt.animate){
+			this.position_links(this.opt.max_iterations*250)
+			this.position_nodes(this.opt.max_iterations*250)
 		} else this.draw()
 
 		this.add_path_text()
 	}
 
+	fill_opt(opt){
+		const original_opt = {
+				// special features
+		    guidelines: true,
+		    animate: false,
+				colorbysequence: false,
+				forceLevelName: false,
+
+				// graph building variables
+		    minEventPerColThreshold: 1,
+		    numDays: 100,
+				max_iterations: 20,
+
+				// graphical representation
+				height: 400,
+		    width: '100%',
+				svg_width: '100%',
+
+				link_opacity: 1,
+				node_width_factor: 0.2,
+				link_stroke_width: 4,
+				padding: {top: 40, left: 40},
+				colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
+				fontSize: '0.9em',
+				catmullromvalue: 1,
+
+				// force path and/or levels
+				path: undefined,
+		    levels: undefined,
+				pairwise_align_levels: false, // use pairwise alignment to get sequence of levels
+
+				pairwise_alignment_vars: {
+					MATCH_SCORE: 100,
+			    MISMATCH_SCORE: -10,
+			    BEGIN_GAP_PENALTY: 2,
+			    GAP_PENALTY: 1,
+			    END_GAP_PENALTY: 2,
+				}
+		}
+
+		for (var field in original_opt){
+			if (opt[field] == undefined) opt[field] = original_opt[field]
+		}
+
+		return opt
+	}
 
 	show_seq_names(){
 		for (var i of this.grid[1]){
 			if (i.seq_index != undefined) {
 				this.svg.append('text')
 					.text(this.data[i.seq_index][0]['seq_name'])
-					.attr('y', i.y*this.vertical_spacing + this.top_padding - 2)
+					.attr('y', i.y*this.vertical_spacing + this.opt.padding.top - 2)
 					.attr('x', this.horizontal_spacing - this.node_width*1.5)
 					.attr('font-size', 'x-small')
 					.attr('text-anchor', 'end')
@@ -116,13 +153,13 @@ window.SequenceBraiding = class SequenceBraiding {
 	        char_sequences.push(res_str)
 	    }
 
-	    var seq = pairwiseAlignDna(char_sequences, this.opt)
+	    var seq = pairwiseAlignDna(char_sequences, this.opt.pairwise_alignment_vars)
 
 	    var res = []
 	    for (var i in seq){res.push(index_dict[seq[i]])}
 	    res = [... new Set(res)]
 
-	    console.log('levels: ', res)
+	    //console.log('levels: ', res)
 	    return res
 	}
 
@@ -160,40 +197,6 @@ window.SequenceBraiding = class SequenceBraiding {
 	    return res
 	}
 
-	fill_opt(opt){
-		const original_opt = {
-		    guidelines: true,
-		    MATCH_SCORE: 100,
-		    MISMATCH_SCORE: -10,
-		    BEGIN_GAP_PENALTY: 2,
-		    GAP_PENALTY: 1,
-		    END_GAP_PENALTY: 2,
-		    animate: false,
-		    numDays: 3,
-		    height: 400,
-		    width: '100%',
-		    minEventPerColThreshold: 1,
-		    path: undefined,
-		    levels: undefined,
-		    numDays: 100,
-		    fontSize: '0.9em',
-		    forceLevelName: false,
-		    colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
-		    catmullromvalue: 1,
-		    colorbysequence: false,
-		    dnalevels: false,
-		    link_stroke_width: 4,
-		    node_width_factor: 0.2, 
-		    svg_width: '100%'
-		}
-
-		for (var field in original_opt){
-			if (opt[field] == undefined) opt[field] = original_opt[field]
-		}
-
-		return opt
-	}
-
 	find_levels(data){
 		let lvl = []
 		data.forEach(s => s.forEach(e => lvl.includes(e.level) ? '' : lvl.push(e.level)))
@@ -219,8 +222,8 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('stroke-width', 2)
 				.attr('stroke-dasharray', 5,5)
 				.attr('d', line([
-					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.top_padding},
-					{x: this.opt.width, y: this.start_heights[level]*this.vertical_spacing + this.top_padding}]))
+					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top},
+					{x: this.opt.width, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top}]))
 
 			if (this.nodes.filter(n => n.level == level).length > 0 && (this.data.length < 30 || this.opt.forceLevelName)){
 				this.svg.append('text')
@@ -228,7 +231,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('font-size', this.opt.fontSize)
 				.attr('fill', '#555')
 				.attr('font-family', 'Arial')
-				.attr('y', this.start_heights[level]*this.vertical_spacing + this.top_padding + this.vertical_spacing*1.5)
+				.attr('y', this.start_heights[level]*this.vertical_spacing + this.opt.padding.top + this.vertical_spacing*1.5)
 				.text(level)
 			}
 		}
@@ -453,7 +456,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.apply_ord(best_order, grid, index_dict, date_dict)
 		this.grid = grid
 
-		if (this.animate){
+		if (this.opt.animate){
 			this.set_nodes_y(grid)
 			this.init_paths()
 			this.init_nodes()
@@ -461,7 +464,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			this.position_nodes(0)
 		}
 
-		for (var i=0; i<this.max_iterations; i++){
+		for (var i=0; i<this.opt.max_iterations; i++){
 
 			if (i%2 == 0) var tmpord = this.wmedian_nodes_left(deepClone(best_order), date_dict, index_dict, grid)
 			else var tmpord = this.wmedian_nodes_right(deepClone(best_order), date_dict, index_dict, grid)
@@ -527,7 +530,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('d', lineGen(drawpath))
 				.style('stroke', "url(#linear-gradient"+svg_index+'_'+link.seq_index+")")
 				.style('stroke-width', this.opt.link_stroke_width)
-				.style('opacity', this.link_opacity)
+				.style('opacity', this.opt.link_opacity)
 				.attr('fill', '#ffffff00')
 				.on('mouseover', function (d){ d3.select(this).style('stroke', 'black')})
 				.on('mouseout', function(d){
@@ -558,15 +561,15 @@ window.SequenceBraiding = class SequenceBraiding {
 				if (link.source.fake_in && link.target.fake_in) continue
 				else if (link.source.fake_out && link.target.fake_out) continue
 				else if ((link.source == this.source || link.source.fake_in) && !link.target.fake_in){
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + (this.horizontal_spacing - this.init_padding), y: this.top_padding + link.target.y*this.vertical_spacing + Math.random()*1})
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing) + (this.horizontal_spacing - this.opt.padding.left), y: this.opt.padding.top + link.target.y*this.vertical_spacing + Math.random()*1})
 				} else {
-					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
-					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
-					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: this.top_padding + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.get_node_x(link.source, this.horizontal_spacing), y: this.opt.padding.top + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.node_width/2 + this.get_node_x(link.source, this.horizontal_spacing), y: this.opt.padding.top + link.source.y*this.vertical_spacing + Math.random()*0.001})
+					drawpath.push({x: this.node_width + this.get_node_x(link.source, this.horizontal_spacing), y: this.opt.padding.top + link.source.y*this.vertical_spacing + Math.random()*0.001})
 				}
 			}
 
-			drawpath.push({x: drawpath[drawpath.length - 1].x + this.init_padding, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
+			drawpath.push({x: drawpath[drawpath.length - 1].x + this.opt.padding.left, y: drawpath[drawpath.length - 1].y  + Math.random()*0.001})
 
 			svg.select('#day_' + sequence[0].seq_index)
 				.transition()
@@ -603,7 +606,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			svg.select('#' + 'node_' + node.seq_index + '_' + node.depth)
 				.transition()
 				.attr('x', this.get_node_x(node, this.horizontal_spacing))
-				.attr('y', this.top_padding + node.y*this.vertical_spacing - this.vertical_spacing/2)
+				.attr('y', this.opt.padding.top + node.y*this.vertical_spacing - this.vertical_spacing/2)
 				.attr('opacity', 0.5)
 				.duration(duration)
 				.delay(delay)
@@ -831,8 +834,8 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var e in this.path){
 			if (this.path[e] == 'source' || this.path[e] == 'sink') continue
 			var t = svg.append('text')
-				.attr('y', 40)
-				.attr('x', (d, i) => this.left_padding + e*this.horizontal_spacing + this.node_width/2)
+				.attr('y', 10)
+				.attr('x', (d, i) => /*this.opt.padding.left*/ + e*this.horizontal_spacing + this.node_width/2)
 				.attr('text-anchor', 'middle')
 				.attr('font-family', 'Arial')
 				.attr('font-size', '0.8em')
