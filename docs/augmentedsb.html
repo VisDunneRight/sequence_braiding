@@ -52,7 +52,7 @@
     node_width_factor: 0.08,
     svg_width: window.innerWidth*0.95,
     //path: ['source', '1', '3', '5', '7', '9', '11', '13', '15', '17', 'sink']
-    levels: ['very_high', 'high', 'normal', 'low', 'very_low']
+    levels: ['very_high', 'high', 'normal', 'low', 'very_low'],
   }
 
   d3.json('../data/jsonglucose.json', (error, data) => {
@@ -61,8 +61,8 @@
     data = data.filter(d => d.length > 1)
 
     isinselection = function(d, s){
-      return d.y * gs.vertical_spacing + gs.top_padding < s[1][1]
-        && d.y * gs.vertical_spacing + gs.top_padding > s[0][1]
+      return d.y * gs.vertical_spacing + gs.opt.padding.top < s[1][1]
+        && d.y * gs.vertical_spacing + gs.opt.padding.top > s[0][1]
         && d.depth * gs.horizontal_spacing - gs.horizontal_spacing*.25 > s[0][0]
         && d.depth * gs.horizontal_spacing - gs.horizontal_spacing*.25 < s[1][0]
         && !d.isanchor
@@ -112,21 +112,21 @@
         d3.selectAll('.detailg')
           .transition()
           .duration(400)
-          .attr('transform', (d)  => 'translate(' + (graph1_options.width + 30) + ',' + (data.indexOf(d) * row_height + gs.top_padding) +')')
+          .attr('transform', (d)  => 'translate(' + (graph1_options.width + 30) + ',' + (data.indexOf(d) * row_height + gs.opt.padding.top) +')')
 
         for (item of data){
           node_col = gs.nodes.filter(n => n.seq_index == item.seq_index && !n.fake_out)
           last_node = node_col[node_col.length - 1]
-          pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.left_padding - gs.node_width * 1.5 + gs.horizontal_spacing/2
+          pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.opt.padding.left - gs.node_width * 1.5 + gs.horizontal_spacing/2
 
           d3.select('#connector_' + item['seq_index'])
             .transition()
             .duration(400)
             .attr('d', line([
-              {x: graph1_options.width - 40 - pathpad, y: last_node.y * gs.vertical_spacing + gs.top_padding},
-              {x: graph1_options.width - 38 - pathpad, y: last_node.y * gs.vertical_spacing + gs.top_padding},
-              {x: graph1_options.width + 28, y: data.indexOf(item) * row_height + gs.top_padding - 4},
-              {x: graph1_options.width + 30, y: data.indexOf(item) * row_height + gs.top_padding - 4}]))
+              {x: graph1_options.width - 40 - pathpad, y: last_node.y * gs.vertical_spacing + gs.opt.padding.top},
+              {x: graph1_options.width - 38 - pathpad, y: last_node.y * gs.vertical_spacing + gs.opt.padding.top},
+              {x: graph1_options.width + 28, y: data.indexOf(item) * row_height + gs.opt.padding.top - 4},
+              {x: graph1_options.width + 30, y: data.indexOf(item) * row_height + gs.opt.padding.top - 4}]))
         }
       }
 
@@ -188,7 +188,7 @@
       for (i in data){
         g = svg.append('g')
           .datum(data[i])
-          .attr('transform', 'translate(' + (graph1_options.width + 30) + ',' + (i * row_height + gs.top_padding) +')')
+          .attr('transform', 'translate(' + (graph1_options.width + 30) + ',' + (i * row_height + gs.opt.padding.top) +')')
           .attr('class', 'detailg')
           .attr('id', 'detailg' + data[i]['seq_index'])
           .on('mouseover', (d) => highlight_by_seq_num([d.seq_index]))
@@ -218,7 +218,7 @@
           .y(function(d) { return d.y })
           .curve(d3.curveCatmullRom.alpha(1))
 
-        pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.left_padding - gs.node_width * 1.5 + gs.horizontal_spacing/2
+        pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.opt.padding.left - gs.node_width * 1.5 + gs.horizontal_spacing/2
 
         svg.append('path')
           .datum({'seq_index' : data[i]['seq_index']})
@@ -228,10 +228,10 @@
           .attr('fill', 'none')
           .attr('opacity', 0.5)
           .attr('d', line([
-            {x: graph1_options.width - 40 - pathpad, y: last_node.y * gs.vertical_spacing + gs.top_padding},
-            {x: graph1_options.width - 38 - pathpad, y: last_node.y * gs.vertical_spacing + gs.top_padding},
-            {x: graph1_options.width + 28, y: i * row_height + gs.top_padding - 4},
-            {x: graph1_options.width + 30, y: i * row_height + gs.top_padding - 4}]))
+            {x: graph1_options.width - 40 - pathpad, y: last_node.y * gs.vertical_spacing + gs.opt.padding.top},
+            {x: graph1_options.width - 38 - pathpad, y: last_node.y * gs.vertical_spacing + gs.opt.padding.top},
+            {x: graph1_options.width + 28, y: i * row_height + gs.opt.padding.top - 4},
+            {x: graph1_options.width + 30, y: i * row_height + gs.opt.padding.top - 4}]))
 
         // date
         pad = function (num) { return ("0"+num).slice(-2);}
@@ -296,7 +296,7 @@
       // sortbutton
       sortedbydate = false
       symbolgenerator = d3.symbol().size(100)
-      buttong = svg.append('g').attr('transform', 'translate(' + gs.opt.width + ',40)')
+      buttong = svg.append('g').attr('transform', 'translate(' + gs.opt.width + ', 10)')
       buttong.append('path')
         .attr("id", "sorttriangle")
         .attr("d", symbolgenerator.type(d3.symbolTriangle))

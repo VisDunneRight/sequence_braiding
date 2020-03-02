@@ -74,6 +74,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
 				fontSize: '0.9em',
 				catmullromvalue: 1,
+				path_text_y: 10,
 
 				// force path and/or levels
 				path: undefined,
@@ -210,7 +211,6 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	draw_guidelines(){
-
 		var line = d3.line()
 			.x(d => d['x'])
 			.y(d => d['y']);
@@ -834,8 +834,8 @@ window.SequenceBraiding = class SequenceBraiding {
 		for (var e in this.path){
 			if (this.path[e] == 'source' || this.path[e] == 'sink') continue
 			var t = svg.append('text')
-				.attr('y', 10)
-				.attr('x', (d, i) => /*this.opt.padding.left*/ + e*this.horizontal_spacing + this.node_width/2)
+				.attr('y', this.opt.path_text_y)
+				.attr('x', (d, i) => e*this.horizontal_spacing + this.node_width/2)
 				.attr('text-anchor', 'middle')
 				.attr('font-family', 'Arial')
 				.attr('font-size', '0.8em')

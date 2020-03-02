@@ -31,7 +31,7 @@
   <script src="https://d3js.org/d3.v4.min.js"></script>
 
 </head>
-<body>
+<body style="margin-bottom: 200px">
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -50,17 +50,17 @@
 
 		<svg id='braids-container1'></svg>
 
-		<h2>Usage</h2>
+    <h2>Table of Contents</h2>
+    <ul>
+      <li><a href="#dataset">Dataset format</a></li>
+      <li><a href="#playground">Playground</a></li>
+      <li><a href="#casestudies">Case studies and examples</a></li>
+      <li><a href="#usage">Usage</a></li>
+    </ul>
 
-        Initialize the graph with:
+    <br><br>
 
-        <pre><code> var graph = new SequenceBraiding(data, svgname, options)</code></pre>
-
-        <b>data:</b> an array of arrays containing objects. Each object must have a <i>type</i> and a <i>level</i>. See example below. <br>
-        <b>svgname:</b> the id of the svg in which you want to draw the graph.<br>
-        <b>options:</b> an object containing the parameters for drawing the graph.
-
-        <br><br>
+		<h2 id="dataset">Dataset format</h2>
         Sample dataset for three days:
 
         <pre><span style="float:right; margin-top: 50px; margin-right: -40px;transform: rotate(45deg); font-size: small; background-color: #333; color: white; width: 200px; text-align: center">Try editing me!</span><code id='dataset-container' contenteditable="true">[
@@ -85,7 +85,8 @@
 
         <svg id='braids-container2'></svg>
 
-		<h2>Playground</h2>
+
+		<h2 id="playground">Playground</h2>
 
         <svg id='braids-container-sandbox'></svg>
 
@@ -147,6 +148,100 @@
 			  </div>
         </form>
 
+        <h2 id="casestudies">Case Studies and examples</h2>
+        <img src="images/sbanim.gif" width="50%"><img src="images/sbanimselection.gif" width="50%"><br>
+        <b><a href="https://visdunneright.github.io/sequence_braiding/docs/augmentedsb.html">Augmented Sequence Braiding</a></b>, a plugin to display additional features associated to the sequences.
+
+        <img src="images/chess.png" width="100%"  style="padding: 5%"><br>
+        <b><a href="https://visdunneright.github.io/sequence_braiding/docs/chess.html">Chess</a></b>, a visualization of the sequences of moves played in 200 games of chess.
+
+        <img src="images/movies.png" width="100%"  style="padding: 5%"><br>
+        <b><a href="https://visdunneright.github.io/sequence_braiding/docs/movies.html">How many movies does it take to kill a franchise?</a></b>, a visualization of the IMDb ratings of sequences of movies in the same franchise.
+
+        <br><br>
+
+        <h2 id="usage">Usage</h2>
+
+        Initialize the graph with:
+
+        <pre><code> var graph = new SequenceBraiding(data, "svgname", options)</code></pre>
+
+        <b>data:</b> an array of arrays containing objects. Each object must have a <i>type</i> and a <i>level</i>. See example below. <br>
+        <b>svgname:</b> the id of the svg in which you want to draw the graph.<br>
+        <b>options:</b> an object containing the parameters for drawing the graph.
+
+        <br><br>
+
+        <h4>Options</h4>
+
+        The options object is a javascript object that allows you to customize Sequence Braiding in terms of visual representation or to give parameters to the algorithm. <br><br>
+
+        Example:
+
+        <pre><code> graph_options = {
+          numDays: 10,
+          minEventPerColThreshold: 1,
+          height: 1000,
+          width: window.innerWidth*0.7,
+          forceLevelName: true,
+          node_width_factor: 0.08,
+          levels: ['very_high', 'high', 'normal', 'low', 'very_low'],
+        }</code></pre>
+
+        The following section contains an explanation of every parameter that can be customized through the options object.
+
+        <br><br>
+
+        <h5>Features</h5>
+        <b>guidelines:</b> draws faint lines between a level and the other to help distinguish them.<br>
+        Default: true<br>
+        <b>animate:</b> activates or deactivates animations in the graph, which show how the nodes are moved at each iteration of the intersection reduction algorithm.<br>
+        Default: false<br>
+        <b>colorbysequence:</b> if set to true, each sequence line will have a specific color, and the colors won't change according to the node level, but will be the same color throughout the full sequence.<br>
+        Default: false<br>
+        <b>forceLevelName:</b> forces the level name to be displayed even with a high number of lines.<br>
+        Default: false<br>
+        <br>
+        <h5>Data parameters</h5>
+		    <b>numDays:</b> determines the maximum amount of sequences to display.<br>
+        Default: 10<br>
+        <b>minEventPerColThreshold:</b> columns that contain a number of events under this threshold will be filtered out.<br>
+        Default: 1<br>
+        <br>
+        <h5>Algorithm parameters</h5>
+        <b>max_iterations:</b> maximum number of iterations to be run by the intersection reduction algorithm.<br>
+        Default: 20<br>
+        <b>path:</b> can be used to force the order of events. If left undefined, the algorithm will guess it while also trying to reduce the intersections as much as possible.<br>
+        Example: path: ["source", "breakfast", "lunch", "sink"]<br>
+        Default: undefined<br>
+        <b>levels:</b> can be used to force the order of levels. Especially useful when the levels have a sequential ordering. If left undefined, the algorithm will try to guess it.<br>
+        Default: undefined<br>
+        <br>
+        <h5>Pairwise alignment parameters</h5>
+        Pairwise alignment parameters are used to generate the minimum supersequence of event types. If <b>path</b> is not forced, Sequence Braiding will use these parameters to generate a supersequence using pairwise DNA alignment.
+        Depending on the needs of the specific user, these parameters can be changed. <br>
+        pairwise_alignment_vars: {
+					MATCH_SCORE: 100,
+			    MISMATCH_SCORE: -10,
+			    BEGIN_GAP_PENALTY: 2,
+			    GAP_PENALTY: 1,
+			    END_GAP_PENALTY: 2,
+				}
+        <br>
+        <h5>Graphical presentation</h5>
+				height: 400,
+		    width: '100%',
+				svg_width: '100%',
+				link_opacity: 1,
+				node_width_factor: 0.2,
+				link_stroke_width: 4,
+				padding: {top: 40, left: 40},
+				colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
+				fontSize: '0.9em',
+				catmullromvalue: 1,
+				path_text_y: 10,
+        <br>
+        <div style="text-align:center; padding-top: 100px"><img src="images/lablogoblack.png" width="30%"></div>
       </div>
     </div>
   </div>
@@ -182,7 +277,7 @@
     })
 
 	document.getElementById("numdayslider").value = 25
-  	document.getElementById("minevslider").value = 3
+  document.getElementById("minevslider").value = 3
 	document.getElementById("matchscoreslider").value = 10
 	document.getElementById("mismatchscoreslider").value = -20
 	document.getElementById("begingappenaltyslider").value = 2
