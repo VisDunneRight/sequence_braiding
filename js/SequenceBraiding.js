@@ -4,7 +4,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.opt = this.fill_opt(opt)
 
 		// add seq number to data
-		this.data = data.slice(0, opt.numDays)
+		this.data = data.slice(0, opt.numSequences)
 		this.data.forEach(a => a.forEach(b => b.seq_index == undefined ? b.seq_index = this.data.indexOf(a) : b.seq_index = b.seq_index))
 
 		// figure out path and levels
@@ -59,7 +59,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 				// graph building variables
 		    minEventPerColThreshold: 1,
-		    numDays: 100,
+		    numSequences: 100,
 				max_iterations: 20,
 
 				// graphical representation
