@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Sequence Braiding</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Libs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+<body>
+
+  <svg id='chess-svg' style='margin-left: 5%'></svg>
+
+</body>
+<script src='../lib/align_pair_quad.js'></script>
+<script src='../lib/pairwise_alignment_dna.js'></script>
+<script src='../js/util.js'></script>
+<script src='../js/SequenceBraiding.js'></script>
+
+<script type="text/javascript">
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+  graph1_options = {
+    numSequences: 100,
+    minEventPerColThreshold: 1,
+    height: 2000,
+    width: window.innerWidth,
+    forceLevelName: true,
+    //fontSize: '3em',
+    path: ['source', '1980', '1984', '1988', '1992', '1996', '2000', '2004', '2008', '2012', '2016', 'sink'],
+    levels: [0, 1, 2, 3, '4 to 9', '10 to 20', '20 to 40', 'more than 40'].reverse(),
+    show_seq_names: true,
+    colorscheme: ['#AAE4F9', '#83CDF0', '#1577A6', '#efca08', '#f49f0a', '#ff5c00'].reverse(),
+    catmullromvalue: 0.9,
+    //colorbysequence: true,
+    node_width_factor: 0.05,
+    link_stroke_width: 4,
+    vertical_spacing: 10,
+    horizontal_spacing: 180
+  }
+
+  d3.json('../data/olympics.json', (error, data) => {
+    shuffleArray(data)
+    graph_sandbox = new SequenceBraiding(data, 'chess-svg', graph1_options)
+})
+</script>
+</html>

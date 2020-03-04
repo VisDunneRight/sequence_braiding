@@ -29,8 +29,10 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.cleanup(this.opt.minEventPerColThreshold)
 
 		// drawing variables
-		this.horizontal_spacing = this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.98)/(this.path.length-2)
-		this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
+		if (this.opt.horizontal_spacing == undefined) this.horizontal_spacing = this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.98)/(this.path.length-2)
+		else this.horizontal_spacing = this.opt.horizontal_spacing
+		if (this.opt.vertical_spacing == undefined) this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
+		else this.vertical_spacing = opt.vertical_spacing
 		this.node_width = this.opt.node_width_factor*this.horizontal_spacing
 
 		this.grid = this.sort_nodes_vertically(this.opt.animate)
@@ -39,7 +41,6 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.set_nodes_y(this.grid)
 
 		if (this.opt.guidelines) this.draw_guidelines()
-		if (this.opt.show_seq_names) this.show_seq_names()
 
 		if (this.opt.animate){
 			this.position_links(this.opt.max_iterations*250)
@@ -47,6 +48,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		} else this.draw()
 
 		this.add_path_text()
+		if (this.opt.show_seq_names) this.show_seq_names()
 	}
 
 	fill_opt(opt){
@@ -98,14 +100,30 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	show_seq_names(){
-		for (var i of this.grid[1]){
-			if (i.seq_index != undefined) {
-				this.svg.append('text')
-					.text(this.data[i.seq_index][0]['seq_name'])
-					.attr('y', i.y*this.vertical_spacing + this.opt.padding.top - 2)
-					.attr('x', this.horizontal_spacing - this.node_width*1.5)
-					.attr('font-size', 'x-small')
-					.attr('text-anchor', 'end')
+		let named = []
+		for (var j in this.grid){
+			if (this.grid[j] == undefined) continue
+			for (var i of this.grid[j]){
+				if (i.seq_index != undefined) {
+					let seq_name = this.data[i.seq_index][0]['seq_name']
+					if (named.indexOf(seq_name) == -1){
+						named.push(seq_name)
+						this.svg.append('text')
+							.text(seq_name)
+							.attr('y', i.y*this.vertical_spacing + this.opt.padding.top + this.opt.link_stroke_width)
+							.attr('x', j*this.horizontal_spacing - this.node_width)
+							.attr('font-size', 'x-small')
+							.attr('text-anchor', 'end')
+							.attr('stroke', 'white')
+							.attr('stroke-width', 5)
+						this.svg.append('text')
+							.text(seq_name)
+							.attr('y', i.y*this.vertical_spacing + this.opt.padding.top + this.opt.link_stroke_width)
+							.attr('x', j*this.horizontal_spacing - this.node_width)
+							.attr('font-size', 'x-small')
+							.attr('text-anchor', 'end')
+					}
+				}
 			}
 		}
 	}
@@ -115,6 +133,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		var lastcol = this.grid[this.grid.length - 2]
 		var prevlastcol = this.grid[this.grid.length - 3]
 		console.log(this.grid)
+		console.log(this.grid.length)
 		//if (lastcol == undefined) return
 		lastcol.sort((a, b) => {
 			if (!a.isanchor && !b.isanchor && a.level == b.level){
