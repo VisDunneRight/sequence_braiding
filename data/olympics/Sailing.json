@@ -1,0 +1,862 @@
+[
+    [
+        {
+            "type": "1980",
+            "seq_name": "Finland",
+            "level": 3
+        },
+        {
+            "type": "2000",
+            "seq_name": "Finland",
+            "level": 2
+        },
+        {
+            "type": "2012",
+            "seq_name": "Finland",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1988",
+            "seq_name": "Norway",
+            "level": 2
+        },
+        {
+            "type": "1992",
+            "seq_name": "Norway",
+            "level": 1
+        },
+        {
+            "type": "1996",
+            "seq_name": "Norway",
+            "level": 1
+        },
+        {
+            "type": "2000",
+            "seq_name": "Norway",
+            "level": 3
+        },
+        {
+            "type": "2004",
+            "seq_name": "Norway",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Spain",
+            "level": 2
+        },
+        {
+            "type": "1984",
+            "seq_name": "Spain",
+            "level": 2
+        },
+        {
+            "type": "1988",
+            "seq_name": "Spain",
+            "level": 1
+        },
+        {
+            "type": "1992",
+            "seq_name": "Spain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1996",
+            "seq_name": "Spain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2004",
+            "seq_name": "Spain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2008",
+            "seq_name": "Spain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2012",
+            "seq_name": "Spain",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "Canada",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1988",
+            "seq_name": "Canada",
+            "level": 2
+        },
+        {
+            "type": "1992",
+            "seq_name": "Canada",
+            "level": 2
+        },
+        {
+            "type": "2004",
+            "seq_name": "Canada",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "West Germany",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "United States",
+            "level": "10 to 20"
+        },
+        {
+            "type": "1988",
+            "seq_name": "United States",
+            "level": "10 to 20"
+        },
+        {
+            "type": "1992",
+            "seq_name": "United States",
+            "level": "10 to 20"
+        },
+        {
+            "type": "1996",
+            "seq_name": "United States",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2000",
+            "seq_name": "United States",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2004",
+            "seq_name": "United States",
+            "level": 3
+        },
+        {
+            "type": "2008",
+            "seq_name": "United States",
+            "level": 2
+        },
+        {
+            "type": "2016",
+            "seq_name": "United States",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "France",
+            "level": 2
+        },
+        {
+            "type": "1988",
+            "seq_name": "France",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1992",
+            "seq_name": "France",
+            "level": 3
+        },
+        {
+            "type": "2004",
+            "seq_name": "France",
+            "level": 3
+        },
+        {
+            "type": "2008",
+            "seq_name": "France",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2012",
+            "seq_name": "France",
+            "level": 1
+        },
+        {
+            "type": "2016",
+            "seq_name": "France",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Brazil",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1984",
+            "seq_name": "Brazil",
+            "level": 3
+        },
+        {
+            "type": "1988",
+            "seq_name": "Brazil",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1996",
+            "seq_name": "Brazil",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2000",
+            "seq_name": "Brazil",
+            "level": 3
+        },
+        {
+            "type": "2004",
+            "seq_name": "Brazil",
+            "level": 3
+        },
+        {
+            "type": "2008",
+            "seq_name": "Brazil",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2012",
+            "seq_name": "Brazil",
+            "level": 2
+        },
+        {
+            "type": "2016",
+            "seq_name": "Brazil",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Germany",
+            "level": 3
+        },
+        {
+            "type": "2000",
+            "seq_name": "Germany",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2008",
+            "seq_name": "Germany",
+            "level": 2
+        },
+        {
+            "type": "2016",
+            "seq_name": "Germany",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Soviet Union",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1988",
+            "seq_name": "Soviet Union",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Greece",
+            "level": 3
+        },
+        {
+            "type": "1996",
+            "seq_name": "Greece",
+            "level": 1
+        },
+        {
+            "type": "2004",
+            "seq_name": "Greece",
+            "level": 3
+        },
+        {
+            "type": "2008",
+            "seq_name": "Greece",
+            "level": 3
+        },
+        {
+            "type": "2016",
+            "seq_name": "Greece",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1992",
+            "seq_name": "Estonia",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "Great Britain",
+            "level": 2
+        },
+        {
+            "type": "1988",
+            "seq_name": "Great Britain",
+            "level": 2
+        },
+        {
+            "type": "1992",
+            "seq_name": "Great Britain",
+            "level": 3
+        },
+        {
+            "type": "1996",
+            "seq_name": "Great Britain",
+            "level": 3
+        },
+        {
+            "type": "2000",
+            "seq_name": "Great Britain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2004",
+            "seq_name": "Great Britain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2008",
+            "seq_name": "Great Britain",
+            "level": "10 to 20"
+        },
+        {
+            "type": "2012",
+            "seq_name": "Great Britain",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2016",
+            "seq_name": "Great Britain",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Sweden",
+            "level": 2
+        },
+        {
+            "type": "1988",
+            "seq_name": "Sweden",
+            "level": 2
+        },
+        {
+            "type": "1996",
+            "seq_name": "Sweden",
+            "level": 2
+        },
+        {
+            "type": "2000",
+            "seq_name": "Sweden",
+            "level": 1
+        },
+        {
+            "type": "2004",
+            "seq_name": "Sweden",
+            "level": 2
+        },
+        {
+            "type": "2008",
+            "seq_name": "Sweden",
+            "level": 2
+        },
+        {
+            "type": "2012",
+            "seq_name": "Sweden",
+            "level": 3
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Italy",
+            "level": 2
+        },
+        {
+            "type": "1984",
+            "seq_name": "Italy",
+            "level": 2
+        },
+        {
+            "type": "1996",
+            "seq_name": "Italy",
+            "level": 1
+        },
+        {
+            "type": "2000",
+            "seq_name": "Italy",
+            "level": 2
+        },
+        {
+            "type": "2004",
+            "seq_name": "Italy",
+            "level": 1
+        },
+        {
+            "type": "2008",
+            "seq_name": "Italy",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "New Zealand",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1988",
+            "seq_name": "New Zealand",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1992",
+            "seq_name": "New Zealand",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1996",
+            "seq_name": "New Zealand",
+            "level": 1
+        },
+        {
+            "type": "2000",
+            "seq_name": "New Zealand",
+            "level": 2
+        },
+        {
+            "type": "2008",
+            "seq_name": "New Zealand",
+            "level": 1
+        },
+        {
+            "type": "2012",
+            "seq_name": "New Zealand",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2016",
+            "seq_name": "New Zealand",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "Australia",
+            "level": 2
+        },
+        {
+            "type": "1992",
+            "seq_name": "Australia",
+            "level": 3
+        },
+        {
+            "type": "1996",
+            "seq_name": "Australia",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2000",
+            "seq_name": "Australia",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2008",
+            "seq_name": "Australia",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2012",
+            "seq_name": "Australia",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2016",
+            "seq_name": "Australia",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1984",
+            "seq_name": "Netherlands",
+            "level": 1
+        },
+        {
+            "type": "1992",
+            "seq_name": "Netherlands",
+            "level": 1
+        },
+        {
+            "type": "1996",
+            "seq_name": "Netherlands",
+            "level": 2
+        },
+        {
+            "type": "2000",
+            "seq_name": "Netherlands",
+            "level": 1
+        },
+        {
+            "type": "2008",
+            "seq_name": "Netherlands",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2012",
+            "seq_name": "Netherlands",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2016",
+            "seq_name": "Netherlands",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Argentina",
+            "level": 1
+        },
+        {
+            "type": "2000",
+            "seq_name": "Argentina",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2004",
+            "seq_name": "Argentina",
+            "level": 2
+        },
+        {
+            "type": "2008",
+            "seq_name": "Argentina",
+            "level": 2
+        },
+        {
+            "type": "2012",
+            "seq_name": "Argentina",
+            "level": 2
+        },
+        {
+            "type": "2016",
+            "seq_name": "Argentina",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Israel",
+            "level": 1
+        },
+        {
+            "type": "2004",
+            "seq_name": "Israel",
+            "level": 1
+        },
+        {
+            "type": "2008",
+            "seq_name": "Israel",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Denmark",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1988",
+            "seq_name": "Denmark",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1992",
+            "seq_name": "Denmark",
+            "level": "4 to 9"
+        },
+        {
+            "type": "1996",
+            "seq_name": "Denmark",
+            "level": 1
+        },
+        {
+            "type": "2000",
+            "seq_name": "Denmark",
+            "level": 3
+        },
+        {
+            "type": "2004",
+            "seq_name": "Denmark",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2008",
+            "seq_name": "Denmark",
+            "level": 2
+        },
+        {
+            "type": "2012",
+            "seq_name": "Denmark",
+            "level": 3
+        },
+        {
+            "type": "2016",
+            "seq_name": "Denmark",
+            "level": 3
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Portugal",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1988",
+            "seq_name": "United States Virgin Islands",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "2016",
+            "seq_name": "Croatia",
+            "level": 3
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Japan",
+            "level": 2
+        },
+        {
+            "type": "2004",
+            "seq_name": "Japan",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Hungary",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "2008",
+            "seq_name": "Lithuania",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Poland",
+            "level": 1
+        },
+        {
+            "type": "2004",
+            "seq_name": "Poland",
+            "level": 1
+        },
+        {
+            "type": "2012",
+            "seq_name": "Poland",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Russia",
+            "level": 3
+        },
+        {
+            "type": "2016",
+            "seq_name": "Russia",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Belgium",
+            "level": 1
+        },
+        {
+            "type": "2012",
+            "seq_name": "Belgium",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "East Germany",
+            "level": 2
+        },
+        {
+            "type": "1988",
+            "seq_name": "East Germany",
+            "level": 3
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Austria",
+            "level": 3
+        },
+        {
+            "type": "2000",
+            "seq_name": "Austria",
+            "level": 3
+        },
+        {
+            "type": "2004",
+            "seq_name": "Austria",
+            "level": 3
+        },
+        {
+            "type": "2016",
+            "seq_name": "Austria",
+            "level": 2
+        }
+    ],
+    [
+        {
+            "type": "1988",
+            "seq_name": "Netherlands Antilles",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Ukraine",
+            "level": "4 to 9"
+        },
+        {
+            "type": "2000",
+            "seq_name": "Ukraine",
+            "level": 2
+        },
+        {
+            "type": "2004",
+            "seq_name": "Ukraine",
+            "level": "4 to 9"
+        }
+    ],
+    [
+        {
+            "type": "1980",
+            "seq_name": "Ireland",
+            "level": 2
+        },
+        {
+            "type": "2016",
+            "seq_name": "Ireland",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1996",
+            "seq_name": "Hong Kong",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "1992",
+            "seq_name": "China",
+            "level": 1
+        },
+        {
+            "type": "2004",
+            "seq_name": "China",
+            "level": 1
+        },
+        {
+            "type": "2008",
+            "seq_name": "China",
+            "level": 2
+        },
+        {
+            "type": "2012",
+            "seq_name": "China",
+            "level": 1
+        },
+        {
+            "type": "2016",
+            "seq_name": "China",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "2004",
+            "seq_name": "Slovenia",
+            "level": 1
+        },
+        {
+            "type": "2008",
+            "seq_name": "Slovenia",
+            "level": 1
+        },
+        {
+            "type": "2016",
+            "seq_name": "Slovenia",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "2012",
+            "seq_name": "Cyprus",
+            "level": 1
+        }
+    ],
+    [
+        {
+            "type": "2004",
+            "seq_name": "Czech Republic",
+            "level": 1
+        }
+    ]
+]

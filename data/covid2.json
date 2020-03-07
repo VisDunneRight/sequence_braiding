@@ -1,0 +1,1642 @@
+[
+    [
+        {
+            "seq_name": "Mainland China",
+            "type": "1/19/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Mainland China",
+            "type": "1/26/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Mainland China",
+            "type": "2/2/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Mainland China",
+            "type": "2/9/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Mainland China",
+            "type": "2/16/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Mainland China",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Mainland China",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Thailand",
+            "type": "1/19/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Thailand",
+            "type": "1/26/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Thailand",
+            "type": "2/2/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Thailand",
+            "type": "2/9/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Thailand",
+            "type": "2/16/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Thailand",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Thailand",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Japan",
+            "type": "1/19/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Japan",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Japan",
+            "type": "2/2/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Japan",
+            "type": "2/9/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Japan",
+            "type": "2/16/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Japan",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Japan",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "South Korea",
+            "type": "1/19/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "South Korea",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "South Korea",
+            "type": "2/2/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "South Korea",
+            "type": "2/9/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "South Korea",
+            "type": "2/16/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "South Korea",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "South Korea",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Taiwan",
+            "type": "1/19/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Taiwan",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Taiwan",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Taiwan",
+            "type": "2/9/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Taiwan",
+            "type": "2/16/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Taiwan",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Taiwan",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "US",
+            "type": "1/19/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "US",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "US",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "US",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "US",
+            "type": "2/16/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "US",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "US",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Macau",
+            "type": "1/19/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Macau",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Macau",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Macau",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Macau",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Macau",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Macau",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Hong Kong",
+            "type": "1/19/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Hong Kong",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Hong Kong",
+            "type": "2/2/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Hong Kong",
+            "type": "2/9/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Hong Kong",
+            "type": "2/16/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Hong Kong",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Hong Kong",
+            "type": "3/1/20",
+            "level": "200 to 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Singapore",
+            "type": "1/19/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Singapore",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Singapore",
+            "type": "2/2/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Singapore",
+            "type": "2/9/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Singapore",
+            "type": "2/16/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Singapore",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Singapore",
+            "type": "3/1/20",
+            "level": "200 to 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Vietnam",
+            "type": "1/19/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Vietnam",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Vietnam",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Vietnam",
+            "type": "2/9/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Vietnam",
+            "type": "2/16/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Vietnam",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Vietnam",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "France",
+            "type": "1/19/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "France",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "France",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "France",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "France",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "France",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "France",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Nepal",
+            "type": "1/19/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Nepal",
+            "type": "1/26/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Nepal",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Nepal",
+            "type": "2/9/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Nepal",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Nepal",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Nepal",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Malaysia",
+            "type": "1/19/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Malaysia",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Malaysia",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Malaysia",
+            "type": "2/9/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Malaysia",
+            "type": "2/16/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Malaysia",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Malaysia",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Canada",
+            "type": "1/19/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Canada",
+            "type": "1/26/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Canada",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Canada",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Canada",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Canada",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Canada",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Australia",
+            "type": "1/19/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Australia",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Australia",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Australia",
+            "type": "2/9/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Australia",
+            "type": "2/16/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Australia",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Australia",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Cambodia",
+            "type": "1/26/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Cambodia",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Cambodia",
+            "type": "2/9/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Cambodia",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Cambodia",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Cambodia",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Sri Lanka",
+            "type": "1/26/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sri Lanka",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sri Lanka",
+            "type": "2/9/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sri Lanka",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sri Lanka",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sri Lanka",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Germany",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Germany",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Germany",
+            "type": "2/9/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Germany",
+            "type": "2/16/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Germany",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Germany",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Finland",
+            "type": "1/26/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Finland",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Finland",
+            "type": "2/9/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Finland",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Finland",
+            "type": "2/23/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Finland",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "United Arab Emirates",
+            "type": "1/26/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "United Arab Emirates",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "United Arab Emirates",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "United Arab Emirates",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "United Arab Emirates",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "United Arab Emirates",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Philippines",
+            "type": "1/26/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Philippines",
+            "type": "2/2/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Philippines",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Philippines",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Philippines",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Philippines",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "India",
+            "type": "1/26/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "India",
+            "type": "2/2/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "India",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "India",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "India",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "India",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Italy",
+            "type": "1/26/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Italy",
+            "type": "2/2/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Italy",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Italy",
+            "type": "2/16/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Italy",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Italy",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "UK",
+            "type": "1/26/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "UK",
+            "type": "2/2/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "UK",
+            "type": "2/9/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "UK",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "UK",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "UK",
+            "type": "3/1/20",
+            "level": "200 to 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Russia",
+            "type": "1/26/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Russia",
+            "type": "2/2/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Russia",
+            "type": "2/9/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Russia",
+            "type": "2/16/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Russia",
+            "type": "2/23/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Russia",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Sweden",
+            "type": "1/26/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Sweden",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sweden",
+            "type": "2/9/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sweden",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Sweden",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Sweden",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Spain",
+            "type": "1/26/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Spain",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Spain",
+            "type": "2/9/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Spain",
+            "type": "2/16/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Spain",
+            "type": "2/23/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Spain",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Belgium",
+            "type": "2/2/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Belgium",
+            "type": "2/9/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Belgium",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Belgium",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Belgium",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Others",
+            "type": "2/2/20",
+            "level": "100 to 200"
+        },
+        {
+            "seq_name": "Others",
+            "type": "2/9/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Others",
+            "type": "2/16/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Others",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Others",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Egypt",
+            "type": "2/9/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Egypt",
+            "type": "2/16/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Egypt",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Egypt",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Iran",
+            "type": "2/16/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Iran",
+            "type": "2/23/20",
+            "level": "more than 500"
+        },
+        {
+            "seq_name": "Iran",
+            "type": "3/1/20",
+            "level": "more than 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Lebanon",
+            "type": "2/16/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Lebanon",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Lebanon",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Israel",
+            "type": "2/16/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Israel",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Israel",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Iraq",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Iraq",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Oman",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Oman",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Afghanistan",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Afghanistan",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Bahrain",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Bahrain",
+            "type": "3/1/20",
+            "level": "200 to 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Kuwait",
+            "type": "2/23/20",
+            "level": "200 to 500"
+        },
+        {
+            "seq_name": "Kuwait",
+            "type": "3/1/20",
+            "level": "200 to 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Algeria",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Algeria",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Croatia",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Croatia",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Switzerland",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Switzerland",
+            "type": "3/1/20",
+            "level": "200 to 500"
+        }
+    ],
+    [
+        {
+            "seq_name": "Austria",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Austria",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Pakistan",
+            "type": "2/23/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Pakistan",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Brazil",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Brazil",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Georgia",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Georgia",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Greece",
+            "type": "2/23/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Greece",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "North Macedonia",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "North Macedonia",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Norway",
+            "type": "2/23/20",
+            "level": "20 to 100"
+        },
+        {
+            "seq_name": "Norway",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "Romania",
+            "type": "2/23/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Romania",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Denmark",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Denmark",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Estonia",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Estonia",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Netherlands",
+            "type": "2/23/20",
+            "level": "10 to 20"
+        },
+        {
+            "seq_name": "Netherlands",
+            "type": "3/1/20",
+            "level": "100 to 200"
+        }
+    ],
+    [
+        {
+            "seq_name": "San Marino",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "San Marino",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Belarus",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Belarus",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Iceland",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Iceland",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Lithuania",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Lithuania",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Mexico",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Mexico",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "New Zealand",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "New Zealand",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Nigeria",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Nigeria",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Ireland",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Ireland",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Luxembourg",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Luxembourg",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Monaco",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Monaco",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Qatar",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Qatar",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Ecuador",
+            "type": "2/23/20",
+            "level": "5 to 10"
+        },
+        {
+            "seq_name": "Ecuador",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Azerbaijan",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Azerbaijan",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Czech Republic",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Czech Republic",
+            "type": "3/1/20",
+            "level": "20 to 100"
+        }
+    ],
+    [
+        {
+            "seq_name": "Armenia",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Armenia",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Dominican Republic",
+            "type": "2/23/20",
+            "level": "1 to 5"
+        },
+        {
+            "seq_name": "Dominican Republic",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Indonesia",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Portugal",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Andorra",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Latvia",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Morocco",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Saudi Arabia",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Senegal",
+            "type": "3/1/20",
+            "level": "10 to 20"
+        }
+    ],
+    [
+        {
+            "seq_name": "Argentina",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Chile",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Jordan",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Ukraine",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Saint Barthelemy",
+            "type": "3/1/20",
+            "level": "5 to 10"
+        }
+    ],
+    [
+        {
+            "seq_name": "Hungary",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Faroe Islands",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Gibraltar",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Liechtenstein",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Poland",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Tunisia",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Palestine",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Bosnia and Herzegovina",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "Slovenia",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ],
+    [
+        {
+            "seq_name": "South Africa",
+            "type": "3/1/20",
+            "level": "1 to 5"
+        }
+    ]
+]
