@@ -58,6 +58,9 @@ window.SequenceBraiding = class SequenceBraiding {
 		    animate: false,
 				colorbysequence: false,
 				forceLevelName: false,
+				verbose_stats: true,
+				formulate_ilp: false,
+				retrieve_ilp: false,
 
 				// graph building variables
 		    minEventPerColThreshold: 1,
@@ -132,8 +135,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	last_cleanup(){
 		var lastcol = this.grid[this.grid.length - 2]
 		var prevlastcol = this.grid[this.grid.length - 3]
-		console.log(this.grid)
-		console.log(this.grid.length)
+
 		//if (lastcol == undefined) return
 		lastcol.sort((a, b) => {
 			if (!a.isanchor && !b.isanchor && a.level == b.level){
@@ -179,7 +181,6 @@ window.SequenceBraiding = class SequenceBraiding {
 	    for (var i in seq){res.push(index_dict[seq[i]])}
 	    res = [... new Set(res)]
 
-	    //console.log('levels: ', res)
 	    return res
 	}
 
@@ -242,15 +243,26 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('stroke-dasharray', 5,5)
 				.attr('d', line([
 					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top},
-					{x: this.opt.width, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top}]))
+					{x: document.getElementById(this.svgname).clientWidth, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top}]))
 
 			if (this.nodes.filter(n => n.level == level).length > 0 && (this.data.length < 30 || this.opt.forceLevelName)){
-				this.svg.append('text')
-				.attr('x', 0)
+				let translatey = (this.start_heights[level] + this.level_heights[level]*.5)*this.vertical_spacing + this.opt.padding.top + this.vertical_spacing*1.5
+				let glvlname = this.svg.append('g')
+					.attr('transform', 'translate(5, '+ translatey +')')
+					.attr('class', 'lvlname')
+
+				glvlname.append('circle')
+				.attr('cx', 0)
+				.attr('cy', - 5)
+				.attr('r', 4)
+				.attr('fill', this.opt.colorscheme[this.levels.indexOf(level)%this.opt.colorscheme.length])
+
+				glvlname.append('text')
+				.attr('x', 7)
 				.attr('font-size', this.opt.fontSize)
 				.attr('fill', '#555')
 				.attr('font-family', 'Arial')
-				.attr('y', this.start_heights[level]*this.vertical_spacing + this.opt.padding.top + this.vertical_spacing*1.5)
+				//.attr('y', this.start_heights[level]*this.vertical_spacing + this.opt.padding.top + this.vertical_spacing*1.5)
 				.text(level)
 			}
 		}
@@ -278,9 +290,16 @@ window.SequenceBraiding = class SequenceBraiding {
 		var ord = []
 		var inverse_index_dict = {}
 		var index_dict = []
+		let lvl_dict = []
+
 		var day_index = 0
+
+		// for each rank
 		for (var i in grid){
+			lvl_dict[i] = []
+			// for each node in that rank
 			for (var j in grid[i]){
+				lvl_dict[i].push(grid[i][j].level)
 				if (inverse_index_dict[grid[i][j].seq_index] == undefined) {
 					inverse_index_dict[grid[i][j].seq_index] = day_index
 					index_dict[day_index] = grid[i][j].seq_index
@@ -296,7 +315,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			ord.push(cur_ord)
 		}
 
-		return [ord, index_dict, inverse_index_dict]
+		return [ord, index_dict, inverse_index_dict, lvl_dict]
 	}
 
 	count_crossings_from_ord(ord){
@@ -318,7 +337,12 @@ window.SequenceBraiding = class SequenceBraiding {
 		}
 	}
 
-
+	apply_ord_for_ilp(ord, grid, index_dict, date_dict){
+		for (var i in grid){
+			if (ord[i-1] == undefined) continue
+			grid[i] = grid[i].sort((a, b) => ord[i-1].indexOf(date_dict[a.seq_index]) > ord[i-1].indexOf(date_dict[b.seq_index]))
+		}
+	}
 
 	move(arr, old_index, new_index) {
 	    while (old_index < 0) {
@@ -335,34 +359,6 @@ window.SequenceBraiding = class SequenceBraiding {
 	    }
 	     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
 	   return arr;
-	}
-
-
-	wmedian_nodes_left(ord, date_dict, index_dict, grid){
-		var structured_ord = []
-		for (var i=0; i<ord.length; i++){
-			var cluster = this.gen_cluster(ord, i, index_dict, grid)
-
-			for (var j in cluster){
-				if (cluster[j].g == undefined) cluster[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cluster[j].seq_index))
-				else {
-					cluster[j].wmean = 0
-					for (var n of cluster[j].nodes){
-						n.wvalue = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
-						cluster[j].wmean += n.wvalue
-					}
-
-					cluster[j].nodes.sort((a, b) => this.within_cluster_sort(a, b, 'left', ord, date_dict, i))
-					cluster[j].wmean = cluster[j].wmean / cluster[j].nodes.length
-				}
-			}
-
-			cluster = cluster.sort((a, b) => this.general_cluster_sort(a, b))
-
-			structured_ord.push(cluster)
-		}
-
-		return this.structured_to_normal_ord(structured_ord, date_dict)
 	}
 
 	gen_cluster(ord, i, index_dict, grid){
@@ -394,9 +390,39 @@ window.SequenceBraiding = class SequenceBraiding {
 		return res_ord
 	}
 
+	wmedian_nodes_left(ord, date_dict, index_dict, grid){
+		var structured_ord = []
+		for (var i=0; i<ord.length; i++){
+			var cluster = this.gen_cluster(ord, i, index_dict, grid)
+
+			for (var j in cluster){
+				if (cluster[j].g == undefined) cluster[j].wmean = ord[i-1].indexOf(ord[i-1].find(n => index_dict[n] == cluster[j].seq_index))
+				else {
+					cluster[j].wmean = 0
+					for (var n of cluster[j].nodes){
+						n.wvalue = ord[i-1].indexOf(ord[i-1].find(nn => index_dict[nn] == n.seq_index))
+						cluster[j].wmean += n.wvalue
+					}
+
+					cluster[j].nodes.sort((a, b) => this.within_cluster_sort(a, b, 'left', ord, date_dict, i))
+					cluster[j].wmean = cluster[j].wmean / cluster[j].nodes.length
+				}
+			}
+
+			cluster = cluster.sort((a, b) => this.general_cluster_sort(a, b))
+
+			structured_ord.push(cluster)
+		}
+
+		return this.structured_to_normal_ord(structured_ord, date_dict)
+	}
+
 	wmedian_nodes_right(ord, date_dict, index_dict, grid){
 		var structured_ord = []
+
+		// go through all the ranks
 		for (var i=ord.length-1; i>-1; i--){
+
 			var cluster = this.gen_cluster(ord, i, index_dict, grid)
 			for (var j in cluster){
 				if (ord[i+1] == undefined) continue
@@ -409,6 +435,54 @@ window.SequenceBraiding = class SequenceBraiding {
 					}
 
 					cluster[j].nodes.sort((a, b) => this.within_cluster_sort(a, b, 'right', ord, date_dict, i))
+					cluster[j].wmean = cluster[j].wmean / cluster[j].nodes.length
+				}
+			}
+
+			cluster = cluster.sort((a, b) => this.general_cluster_sort(a, b))
+
+			structured_ord.push(cluster)
+		}
+
+		structured_ord = structured_ord.reverse()
+
+		return this.structured_to_normal_ord(structured_ord, date_dict)
+	}
+
+	wmedian_n(ord, date_dict, index_dict, grid, direction = 'right'){
+		var structured_ord = []
+
+		let startindex = 0
+		let condition_end = undefined
+		let mov = 0
+		if (direction == 'right'){ // right
+			startindex = ord.length - 1
+			condition_end = i => i>-1
+			mov = +1
+		} else { // left
+			startindex = 0
+			condition_end = i => i < ord.length
+			mov = -1
+		}
+
+		// go through all the ranks
+		for (var i=startindex; condition_end(i); direction == 'right'? i-- : i++){
+
+			// generate the clusters of nodes per bin
+			var cluster = this.gen_cluster(ord, i, index_dict, grid)
+
+			// for each node in the cluster
+			for (var j in cluster){
+				if (ord[i+mov] == undefined) continue
+				if (cluster[j].g == undefined) cluster[j].wmean = ord[i+mov].indexOf(ord[i+mov].find(n => index_dict[n] == cluster[j].seq_index))
+				else {
+					cluster[j].wmean = 0
+					for (var n of cluster[j].nodes){
+						n.wvalue = ord[i+mov].indexOf(ord[i+mov].find(nn => index_dict[nn] == n.seq_index))
+						cluster[j].wmean += n.wvalue
+					}
+
+					cluster[j].nodes.sort((a, b) => this.within_cluster_sort(a, b, direction, ord, date_dict, i))
 					cluster[j].wmean = cluster[j].wmean / cluster[j].nodes.length
 				}
 			}
@@ -443,7 +517,37 @@ window.SequenceBraiding = class SequenceBraiding {
 		else return a.wmean > b.wmean ? 1 : -1
 	}
 
+	transpose(tmpord, date_dict, index_dict, grid){
+		console.log(date_dict)
+		console.log(index_dict)
+		let improved = true
+		while(improved){
+			improved = false
+			for (let r=0; r<tmpord.length; r++){
+				//console.log('rank: ', r)
+				for (let i=0; i<tmpord[r].length - 1; i++){
+					let u = tmpord[r][i]
+					let v = tmpord[r][i+1]
+					let prevcross = this.count_crossings_from_ord(tmpord.slice(r-1, r+1))
+					tmpord[r][i] = v
+					tmpord[r][i+1] = u
+					let nextcross = this.count_crossings_from_ord(tmpord.slice(r-1, r+1))
+					if (nextcross < prevcross){
+						//console.log(prevcross, nextcross)
+						improved = true
+					} else {
+						tmpord[r][i] = u
+						tmpord[r][i+1] = v
+					}
+				}
+			}
+		}
+		return tmpord
+	}
+
 	sort_nodes_vertically(animate = false){
+		var startDate = new Date();
+
 		var grid = []
 		var max_rank = this.max_rank
 
@@ -453,23 +557,24 @@ window.SequenceBraiding = class SequenceBraiding {
 			for (var node of this.nodes.filter(n => n.depth == curdepth)) grid[curdepth].push(node)
 		}
 
-		for (var c in grid){
-			grid[c] = grid[c].sort((a, b) => {
-				if (a.level != b.level) return this.levels.indexOf(a.level) > this.levels.indexOf(b.level) ? 1 : -1
-				else {
-					var na = a.incoming_links[0].source
-					var nb = b.incoming_links[0].source
-					if (grid[c-1] != undefined) return grid[c-1].indexOf(na) > grid[c-1].indexOf(nb) ? 1 : -1
-				}
-			})
-		}
+		// for (var c in grid){
+		// 	grid[c] = grid[c].sort((a, b) => {
+		// 		if (a.level != b.level) return this.levels.indexOf(a.level) > this.levels.indexOf(b.level) ? 1 : -1
+		// 		else {
+		// 			var na = a.incoming_links[0].source
+		// 			var nb = b.incoming_links[0].source
+		// 			if (grid[c-1] != undefined) return grid[c-1].indexOf(na) > grid[c-1].indexOf(nb) ? 1 : -1
+		// 		}
+		// 	})
+		// }
 
 		var initial_order = this.get_grid_order(grid)[0]
 		var index_dict = this.get_grid_order(grid)[1]
 		var date_dict = this.get_grid_order(grid)[2]
+		var lvl_dict = this.get_grid_order(grid)[3]
 		var initial_crossings = this.count_crossings_from_ord(initial_order)
 
-		var best_crossings = 100000
+		var best_crossings = Infinity
 		var best_order = initial_order
 
 		this.apply_ord(best_order, grid, index_dict, date_dict)
@@ -483,12 +588,29 @@ window.SequenceBraiding = class SequenceBraiding {
 			this.position_nodes(0)
 		}
 
+		if (this.opt.formulate_ilp) this.formulate_ilp(initial_order, lvl_dict)
+
+		let seenResults = {}
+
 		for (var i=0; i<this.opt.max_iterations; i++){
 
-			if (i%2 == 0) var tmpord = this.wmedian_nodes_left(deepClone(best_order), date_dict, index_dict, grid)
-			else var tmpord = this.wmedian_nodes_right(deepClone(best_order), date_dict, index_dict, grid)
+			if (i%2 == 0) var tmpord = this.wmedian_nodes_left(deepClone(best_order), date_dict, index_dict, grid, 'left')
+			else var tmpord = this.wmedian_nodes_right(deepClone(best_order), date_dict, index_dict, grid, 'right')
 
-			if (this.count_crossings_from_ord(tmpord) < best_crossings){
+			//tmpord = this.transpose(tmpord, date_dict, index_dict, grid)
+
+			let cur_crossings = this.count_crossings_from_ord(tmpord)
+
+			// max iteration stop
+			if (seenResults[cur_crossings] == undefined) seenResults[cur_crossings] = 0
+			seenResults[cur_crossings] += 1
+			if (seenResults[cur_crossings] == 3){
+				if (this.opt.verbose_stats) console.log('num iterations: ', i, '\t final crossings: ', best_crossings, '\t time: ', ((new Date()).getTime() - startDate.getTime()) / 1000 + ' s')
+				break
+			}
+
+			// compare current result
+			if (cur_crossings < best_crossings){
 				best_order = tmpord
 				best_crossings = this.count_crossings_from_ord(best_order)
 
@@ -499,12 +621,186 @@ window.SequenceBraiding = class SequenceBraiding {
 				 	this.position_nodes((i+1)*1000)
 				}
 			}
-			console.log('crossings: ', best_crossings)
+
+			if (this.opt.verbose_stats) console.log('i: ', i,'\t best crossings: ', best_crossings, '\t cur crossings: ', cur_crossings, '\t time: ', ((new Date()).getTime() - startDate.getTime()) / 1000 + ' s')
 		}
 
-		this.apply_ord(best_order, grid, index_dict, date_dict)
+
+		if (this.opt.retrieve_ilp) {
+			best_order = getoordfromilp(this.opt.ilpdata, initial_order)
+			console.log('ilp order: ', best_order, this.count_crossings_from_ord(best_order))
+			this.apply_ord_for_ilp(best_order, grid, index_dict, date_dict)
+		} else if (this.opt.initial_layout) {
+			this.apply_ord(initial_order, grid, index_dict, date_dict)
+		} else {
+			// original solution
+			this.apply_ord(best_order, grid, index_dict, date_dict)
+		}
 
 		return grid
+	}
+
+
+	formulate_ilp = (ord, lvl_dict) => {
+
+		lvl_dict = lvl_dict.slice(1)
+
+		let mkx = (k, u1, u2) => {
+			return 'x_' + "k" + k + "_" + + u1 + "_" + u2
+		}
+
+		let mkc = (k, u1, v1, u2, v2) => {
+			return "c_" + "k" + k + "_" + u1 + "_" + v1 + "_" + u2 + "_" + v2
+		}
+		let res_str = ""
+
+		let tord = ord
+		//console.log('ord: ', tord.toString())
+
+		let minimize = "Minimize\n"
+		for (let k=0; k<tord.length-1; k++){
+			for (let u1 of tord[k]){
+				let v1 = tord[k+1].find(n => n == u1)
+				for (let u2 of tord[k]){
+					if (u1 == u2) continue
+					let v2 = tord[k+1].find(n => n == u2)
+					minimize += " + " + mkc(k, u1, v1, u2, v2) + " "
+				}
+			}
+		}
+		minimize += "\n"
+
+		res_str += minimize
+		let ccount = 0
+
+
+		let subject_to = "Subject To\n"
+		for (let k in tord){
+			for (let i1 of tord[k]){
+				for (let i2 of tord[k]){
+					let u1 = tord[k][i1]
+					let u2 = tord[k][i2]
+					if (u1 == u2) continue
+					subject_to += 'C' + ccount + ": " + mkx(k, u1, u2) + " + " + mkx(k, u2, u1) + " = 1\n"
+					ccount += 1
+				}
+			}
+		}
+
+		// count intersections
+		for (let k in tord){
+			for (let i1 in tord[k]){
+				let u1 = tord[k][i1]
+				for (let i2 in tord[k]){
+					let u2 = tord[k][i2]
+					if (u1 == u2) continue
+					for (let i3 in tord[k]){
+						let u3 = tord[k][i3]
+						if (u1 == u3) continue
+						if (u2 == u3) continue
+						subject_to += 'C' + ccount + ": " + mkx(k, u3, u2) + " + " + mkx(k, u2, u1) + " - " + mkx(k, u3, u1) + " <= " + "1\n"
+						ccount += 1
+					}
+				}
+			}
+		}
+
+		// count intersections
+		for (let k=0; k < tord.length - 1; k++){
+			for (let i1 in tord[k]){
+				let u1 = tord[k][i1]
+				let v1 = tord[k+1].find(n => n == u1)
+				for (let i2 in tord[k]){
+					let u2 = tord[k][i2]
+					let v2 = tord[k+1].find(n => n == u2)
+					if (u1 == u2) continue
+					subject_to += "C" + ccount + ": " + mkc(k, u1, v1, u2, v2) + " + " + mkx(k, u2, u1) + " + " + mkx(k + 1, v1, v2) + " >= 1\n"
+					ccount += 1
+					subject_to += "C" + ccount + ": " + mkc(k, u1, v1, u2, v2) + " + " + mkx(k, u1, u2) + " + " + mkx(k + 1, v2, v1) + " >= 1\n"
+					ccount += 1
+				}
+			}
+		}
+
+		res_str += subject_to
+
+		let bounds = "Bounds\n"
+
+		console.log('tord', tord)
+
+		// level bounds
+		for (let k=0; k<tord.length; k++){
+				for (let i1 in tord[k]){
+						let u1 = tord[k][i1]
+						let lvlu1 = this.levels.indexOf(lvl_dict[k][i1])
+						for (let i2 in tord[k]){
+							let u2 = tord[k][i2]
+							if (u1 == u2) continue
+							let lvlu2 = this.levels.indexOf(lvl_dict[k][i2])
+							if (k==1 && i1 == 0) console.log('k:',k,'u1', u1,'lvlu1', lvlu1,'u2', u2,'lvlu2', lvlu2)
+							if (lvlu1 < lvlu2){
+								bounds += mkx(k, u1, u2) + ' = 1\n'
+								//console.log('k:',k,'u1', u1,'lvlu1', lvlu1,'u2', u2,'lvlu2', lvlu2)
+							}
+						}
+				}
+		}
+
+		res_str += bounds
+
+		let binaries = "Binaries\n"
+		for (let k in tord){
+			for (let i1 of tord[k]){
+				for (let i2 of tord[k]){
+					let u1 = tord[k][i1]
+					let u2 = tord[k][i2]
+					if (u1 == u2) continue
+					binaries += 'x_' + "k" + k + "_" + + u1 + "_" + u2 + " "
+				}
+			}
+		}
+		for (let k=0; k<tord.length-1; k++){
+			for (let u1 of tord[k]){
+				let v1 = tord[k+1].find(n => n == u1)
+				for (let u2 of tord[k]){
+					if (u1 == u2) continue
+					let v2 = tord[k+1].find(n => n == u2)
+					binaries += "c_" + "k" + k + "_" + + u1 + "_" + v1 + "_" + u2 + "_" + v2 + " "
+				}
+			}
+		}
+
+		res_str += binaries
+		res_str += '\nEnd'
+
+		function saveTextAsFile(t){
+    //var textToWrite = document.getElementById("inputTextToSave").value;
+    var textFileAsBlob = new Blob([t], {type:'text/plain'});
+    var fileNameToSaveAs = 'sb.lp';
+      var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    if (window.webkitURL != null)
+    {
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    }
+    else
+    {
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.onclick = destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+    }
+
+    downloadLink.click();
+	}
+
+		saveTextAsFile(res_str)
+		//console.log(res_str)
 	}
 
 
@@ -658,6 +954,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		}
 
 		this.start_heights = start_heights
+		this.level_heights = level_heights
 
 		// add virtual blank nodes to make the nodes be at their correct position
 		for (var r=0; r<=this.max_rank; r++){
@@ -799,7 +1096,6 @@ window.SequenceBraiding = class SequenceBraiding {
 	}
 
 	get_node_x(node){
-		console.log(this.horizontal_spacing)
 		return node.depth * this.horizontal_spacing
 	}
 
@@ -857,6 +1153,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('x', (d, i) => e*this.horizontal_spacing + this.node_width/2)
 				.attr('text-anchor', 'middle')
 				.attr('font-family', 'Arial')
+				.attr('class', 'path_top_text')
 				.attr('font-size', '0.8em')
 				.attr('fill', 'black')
 				.text(this.path[e])

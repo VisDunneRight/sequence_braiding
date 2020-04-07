@@ -165,9 +165,11 @@ def covid():
         count+=1
 
     percentdict = {}
+    totalsumdict = {}
     for country in tmpdict:
         curdate = datetime.datetime.strptime('1/5/20', '%m/%d/%y')
         percentdict[country] = {}
+        totalsumdict[country] = 0
         #for d in tmpdict[country]:
         #    print(d)
         #    print(datetime.strptime(d, '%m/%d/%y'))
@@ -176,23 +178,31 @@ def covid():
             curdate += datetime.timedelta(days=7)
             curdatestr = datetime.datetime.strftime(curdate, '%-m/%-d/%y')
             prevdatestr =  datetime.datetime.strftime(prevdate, '%-m/%-d/%y')
-            print(curdatestr, prevdatestr)
             if prevdatestr not in tmpdict[country] or curdatestr not in tmpdict[country]:
                 continue
             else:
                 diff = tmpdict[country][curdatestr] - tmpdict[country][prevdatestr]
                 percentdiff = math.floor(10*diff*100/float(tmpdict[country][prevdatestr]))/10
                 percentdict[country][curdatestr] = percentdiff
+                totalsumdict[country] = tmpdict[country][curdatestr]
+
+    pprint(totalsumdict)
 
     #print(percentdict['Italy'])
     for country in percentdict:
+        if totalsumdict[country] < 400: 
+        	continue
         seq = []
         for elem in percentdict[country]:
             level = percentdict[country][elem]
             if level <= 0:
                 level = '0%'
-            elif level > 0 and level <= 10:
-                level = '0% to 10%'
+            elif level > 0 and level <= 2:
+            	level = '0% to 2%'
+            elif level > 2 and level <= 5:
+                level = '2% to 5%'
+            elif level > 5 and level <= 10:
+                level = '5% to 10%'
             elif level > 10 and level <= 50:
                 level = '10% to 50%'
             elif level > 50 and level <= 100:
@@ -289,20 +299,6 @@ def covid2():
         seq = []
         for elem in tmpdict[country]:
             level = tmpdict[country][elem]
-            # if level <= 0:
-            #     level = '0%'
-            # elif level > 0 and level <= 10:
-            #     level = '0% to 10%'
-            # elif level > 10 and level <= 50:
-            #     level = '10% to 50%'
-            # elif level > 50 and level <= 100:
-            #     level = '50% to 100%'
-            # elif level > 100 and level <= 200:
-            #     level = '100% to 200%'
-            # elif level > 200 and level <= 500:
-            #     level = '200% to 500%'
-            # else:
-            #     level = 'more than 500%'
             if level <= 5:
                 level = '1 to 5'
             elif level > 5 and level <= 10:
@@ -315,8 +311,12 @@ def covid2():
                 level = '100 to 200'
             elif level > 200 and level <= 500:
                 level = '200 to 500'
+            elif level > 500 and level <= 1000:
+            	level = '500 to 1000'
+            elif level > 1000 and level <= 5000:
+            	level = '1000 to 5000'
             else:
-                level = 'more than 500'
+                level = 'more than 5000'
             seq.append({'seq_name': country, 'type': elem, 'level': level})
         seq = sorted(seq, key = lambda x: datetime.datetime.strptime(x['type'], '%m/%d/%y'))
         #if country == "Italy": print(seq)
@@ -333,5 +333,5 @@ def covid2():
     json.dump(res, open('covid2.json', 'w'), indent=4)
 
 
-covid2()
+covid()
 #athletes()
