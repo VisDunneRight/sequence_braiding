@@ -1,12 +1,20 @@
 var gulp          = require('gulp');
 var concat        = require('gulp-concat');
 var browserSync   = require("browser-sync").create();
+var sourcemaps    = require('gulp-sourcemaps');
+var pipeline      = require('readable-stream').pipeline;
+var terser        = require('gulp-terser');
 
 // concatenate all the files
 gulp.task('concat', function() {
-  return gulp.src(['./js/*.js', './lib/*.js'])
-    .pipe(concat('sequence_braiding.js'))
-    .pipe(gulp.dest('./dist/'));
+  return pipeline(
+    gulp.src(['./js/*.js', './lib/*.js']),
+    sourcemaps.init(),
+    terser(),
+    concat('sequence_braiding.js'),
+    sourcemaps.write(),
+    gulp.dest('./dist/')
+  )
 });
 
 // serve page from root folder, go directly to docs
