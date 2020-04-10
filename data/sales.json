@@ -1,0 +1,808 @@
+[
+    [
+        {
+            "seq_name": "Blu-Ray",
+            "type": 1,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 2,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 3,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 4,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 5,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 6,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 7,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 8,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 9,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 10,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 11,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "Blu-Ray",
+            "type": 12,
+            "level": "5000 to 10000"
+        }
+    ],
+    [
+        {
+            "seq_name": "Vinyl",
+            "type": 1,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 2,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 3,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 4,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 5,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 6,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 7,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 8,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 9,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 10,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 11,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Vinyl",
+            "type": 12,
+            "level": "500 to 1000"
+        }
+    ],
+    [
+        {
+            "seq_name": "XBOX 360",
+            "type": 1,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 2,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 3,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 4,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 5,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 6,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 7,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 8,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 9,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 10,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 11,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "XBOX 360",
+            "type": 12,
+            "level": "more than 10000"
+        }
+    ],
+    [
+        {
+            "seq_name": "PS3",
+            "type": 1,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 2,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 3,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 4,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 5,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 6,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 7,
+            "level": "5000 to 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 8,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 9,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 10,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 11,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "PS3",
+            "type": 12,
+            "level": "more than 10000"
+        }
+    ],
+    [
+        {
+            "seq_name": "PSP",
+            "type": 1,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 2,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 3,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 4,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 5,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 6,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 7,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 8,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 9,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 10,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 11,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSP",
+            "type": 12,
+            "level": "1000 to 2000"
+        }
+    ],
+    [
+        {
+            "seq_name": "DVD",
+            "type": 1,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 2,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 3,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 4,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 5,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 6,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 7,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 8,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 9,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 10,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 11,
+            "level": "more than 10000"
+        },
+        {
+            "seq_name": "DVD",
+            "type": 12,
+            "level": "more than 10000"
+        }
+    ],
+    [
+        {
+            "seq_name": "PSVita",
+            "type": 1,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 2,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 3,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 4,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 5,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 6,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 7,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 8,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 9,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 10,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 11,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "PSVita",
+            "type": 12,
+            "level": "2000 to 5000"
+        }
+    ],
+    [
+        {
+            "seq_name": "PS4",
+            "type": 1,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 2,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 3,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 4,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 5,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 6,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 7,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 8,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 9,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 10,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 11,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "PS4",
+            "type": 12,
+            "level": "5000 to 10000"
+        }
+    ],
+    [
+        {
+            "seq_name": "PSN",
+            "type": 1,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 2,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 3,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 4,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 5,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 6,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 7,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 8,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 9,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 10,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 11,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "PSN",
+            "type": 12,
+            "level": "1000 to 2000"
+        }
+    ],
+    [
+        {
+            "seq_name": "Accessories for games",
+            "type": 1,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 2,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 3,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 4,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 5,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 6,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 7,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 8,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 9,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 10,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 11,
+            "level": "100 to 500"
+        },
+        {
+            "seq_name": "Accessories for games",
+            "type": 12,
+            "level": "1000 to 2000"
+        }
+    ],
+    [
+        {
+            "seq_name": "Souvenirs",
+            "type": 1,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 2,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 3,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 4,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 5,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 6,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 7,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 8,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 9,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 10,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 11,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Souvenirs",
+            "type": 12,
+            "level": "2000 to 5000"
+        }
+    ],
+    [
+        {
+            "seq_name": "Board Games",
+            "type": 1,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 2,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 3,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 4,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 5,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 6,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 7,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 8,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 9,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 10,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 11,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Board Games",
+            "type": 12,
+            "level": "5000 to 10000"
+        }
+    ],
+    [
+        {
+            "seq_name": "Soft toys",
+            "type": 1,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 2,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 3,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 4,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 5,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 6,
+            "level": "2000 to 5000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 7,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 8,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 9,
+            "level": "500 to 1000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 10,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 11,
+            "level": "1000 to 2000"
+        },
+        {
+            "seq_name": "Soft toys",
+            "type": 12,
+            "level": "2000 to 5000"
+        }
+    ]
+]

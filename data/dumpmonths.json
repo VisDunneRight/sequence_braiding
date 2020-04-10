@@ -1,0 +1,1237 @@
+[
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 3,
+            "level": "close to median",
+            "seq_name": 2002
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 5,
+            "level": "more than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 6,
+            "level": "much more than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 8,
+            "level": "close to median",
+            "seq_name": 2002
+        },
+        {
+            "type": 9,
+            "level": "more than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2002
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2002
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "close to median",
+            "seq_name": 2018
+        },
+        {
+            "type": 2,
+            "level": "much more than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 4,
+            "level": "much more than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 5,
+            "level": "more than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 7,
+            "level": "much more than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 8,
+            "level": "close to median",
+            "seq_name": 2018
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 10,
+            "level": "close to median",
+            "seq_name": 2018
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2018
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2018
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 6,
+            "level": "much less than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 8,
+            "level": "more than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 9,
+            "level": "more than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2000
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2000
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "more than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 5,
+            "level": "more than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 8,
+            "level": "more than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 9,
+            "level": "much less than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2001
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2001
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 3,
+            "level": "much more than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 5,
+            "level": "more than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 6,
+            "level": "less than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 7,
+            "level": "much more than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2004
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2004
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "more than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 3,
+            "level": "more than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 5,
+            "level": "much more than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 9,
+            "level": "more than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2005
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2005
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 2,
+            "level": "close to median",
+            "seq_name": 2003
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 5,
+            "level": "much more than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 7,
+            "level": "close to median",
+            "seq_name": 2003
+        },
+        {
+            "type": 8,
+            "level": "much more than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2003
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2003
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 7,
+            "level": "much more than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 9,
+            "level": "more than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2006
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2006
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "more than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 6,
+            "level": "much more than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2015
+        },
+        {
+            "type": 12,
+            "level": "much more than median",
+            "seq_name": 2015
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 3,
+            "level": "more than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 4,
+            "level": "less than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 5,
+            "level": "much more than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 6,
+            "level": "close to median",
+            "seq_name": 2008
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 8,
+            "level": "close to median",
+            "seq_name": 2008
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 11,
+            "level": "much less than median",
+            "seq_name": 2008
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2008
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 6,
+            "level": "much more than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2009
+        },
+        {
+            "type": 12,
+            "level": "much more than median",
+            "seq_name": 2009
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 3,
+            "level": "more than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 6,
+            "level": "less than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 8,
+            "level": "more than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2016
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2016
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "close to median",
+            "seq_name": 2007
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 4,
+            "level": "close to median",
+            "seq_name": 2007
+        },
+        {
+            "type": 5,
+            "level": "much more than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2007
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2007
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 2,
+            "level": "close to median",
+            "seq_name": 2010
+        },
+        {
+            "type": 3,
+            "level": "much more than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 4,
+            "level": "much more than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 6,
+            "level": "less than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 7,
+            "level": "much more than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 8,
+            "level": "more than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 9,
+            "level": "close to median",
+            "seq_name": 2010
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2010
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2010
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 3,
+            "level": "close to median",
+            "seq_name": 2019
+        },
+        {
+            "type": 4,
+            "level": "much more than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 5,
+            "level": "much more than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 6,
+            "level": "much more than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 7,
+            "level": "much more than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 8,
+            "level": "close to median",
+            "seq_name": 2019
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 10,
+            "level": "much less than median",
+            "seq_name": 2019
+        },
+        {
+            "type": 11,
+            "level": "much less than median",
+            "seq_name": 2019
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "more than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 2,
+            "level": "more than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 3,
+            "level": "less than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 6,
+            "level": "much more than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2011
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2011
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 3,
+            "level": "more than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 5,
+            "level": "more than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 6,
+            "level": "close to median",
+            "seq_name": 2014
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 10,
+            "level": "close to median",
+            "seq_name": 2014
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2014
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2014
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 3,
+            "level": "much more than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 4,
+            "level": "much more than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 6,
+            "level": "less than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 8,
+            "level": "more than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2012
+        },
+        {
+            "type": 12,
+            "level": "less than median",
+            "seq_name": 2012
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "less than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 3,
+            "level": "more than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 5,
+            "level": "more than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 6,
+            "level": "less than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 9,
+            "level": "less than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 10,
+            "level": "less than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 11,
+            "level": "more than median",
+            "seq_name": 2013
+        },
+        {
+            "type": 12,
+            "level": "more than median",
+            "seq_name": 2013
+        }
+    ],
+    [
+        {
+            "type": 1,
+            "level": "much less than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 2,
+            "level": "less than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 3,
+            "level": "much more than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 4,
+            "level": "more than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 5,
+            "level": "less than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 6,
+            "level": "more than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 7,
+            "level": "more than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 8,
+            "level": "less than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 9,
+            "level": "much less than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 10,
+            "level": "more than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 11,
+            "level": "less than median",
+            "seq_name": 2017
+        },
+        {
+            "type": 12,
+            "level": "much more than median",
+            "seq_name": 2017
+        }
+    ]
+]

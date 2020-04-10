@@ -1,0 +1,758 @@
+[
+ [
+  {
+   "type": 2015,
+   "level": "0 to 5",
+   "seq_name": "Switzerland"
+  },
+  {
+   "type": 2016,
+   "level": "0 to 5",
+   "seq_name": "Switzerland"
+  },
+  {
+   "type": 2017,
+   "level": "0 to 5",
+   "seq_name": "Switzerland"
+  },
+  {
+   "type": 2018,
+   "level": "0 to 5",
+   "seq_name": "Switzerland"
+  },
+  {
+   "type": 2019,
+   "level": "5 to 10",
+   "seq_name": "Switzerland"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "0 to 5",
+   "seq_name": "Iceland"
+  },
+  {
+   "type": 2016,
+   "level": "0 to 5",
+   "seq_name": "Iceland"
+  },
+  {
+   "type": 2017,
+   "level": "0 to 5",
+   "seq_name": "Iceland"
+  },
+  {
+   "type": 2018,
+   "level": "0 to 5",
+   "seq_name": "Iceland"
+  },
+  {
+   "type": 2019,
+   "level": "0 to 5",
+   "seq_name": "Iceland"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "0 to 5",
+   "seq_name": "Denmark"
+  },
+  {
+   "type": 2016,
+   "level": "0 to 5",
+   "seq_name": "Denmark"
+  },
+  {
+   "type": 2017,
+   "level": "0 to 5",
+   "seq_name": "Denmark"
+  },
+  {
+   "type": 2018,
+   "level": "0 to 5",
+   "seq_name": "Denmark"
+  },
+  {
+   "type": 2019,
+   "level": "0 to 5",
+   "seq_name": "Denmark"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "0 to 5",
+   "seq_name": "Norway"
+  },
+  {
+   "type": 2016,
+   "level": "0 to 5",
+   "seq_name": "Norway"
+  },
+  {
+   "type": 2017,
+   "level": "0 to 5",
+   "seq_name": "Norway"
+  },
+  {
+   "type": 2018,
+   "level": "0 to 5",
+   "seq_name": "Norway"
+  },
+  {
+   "type": 2019,
+   "level": "0 to 5",
+   "seq_name": "Norway"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "0 to 5",
+   "seq_name": "Canada"
+  },
+  {
+   "type": 2016,
+   "level": "5 to 10",
+   "seq_name": "Canada"
+  },
+  {
+   "type": 2017,
+   "level": "5 to 10",
+   "seq_name": "Canada"
+  },
+  {
+   "type": 2018,
+   "level": "5 to 10",
+   "seq_name": "Canada"
+  },
+  {
+   "type": 2019,
+   "level": "5 to 10",
+   "seq_name": "Canada"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "5 to 10",
+   "seq_name": "Finland"
+  },
+  {
+   "type": 2016,
+   "level": "0 to 5",
+   "seq_name": "Finland"
+  },
+  {
+   "type": 2017,
+   "level": "0 to 5",
+   "seq_name": "Finland"
+  },
+  {
+   "type": 2018,
+   "level": "0 to 5",
+   "seq_name": "Finland"
+  },
+  {
+   "type": 2019,
+   "level": "0 to 5",
+   "seq_name": "Finland"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "5 to 10",
+   "seq_name": "Netherlands"
+  },
+  {
+   "type": 2016,
+   "level": "5 to 10",
+   "seq_name": "Netherlands"
+  },
+  {
+   "type": 2017,
+   "level": "5 to 10",
+   "seq_name": "Netherlands"
+  },
+  {
+   "type": 2018,
+   "level": "5 to 10",
+   "seq_name": "Netherlands"
+  },
+  {
+   "type": 2019,
+   "level": "0 to 5",
+   "seq_name": "Netherlands"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "5 to 10",
+   "seq_name": "Sweden"
+  },
+  {
+   "type": 2016,
+   "level": "5 to 10",
+   "seq_name": "Sweden"
+  },
+  {
+   "type": 2017,
+   "level": "5 to 10",
+   "seq_name": "Sweden"
+  },
+  {
+   "type": 2018,
+   "level": "5 to 10",
+   "seq_name": "Sweden"
+  },
+  {
+   "type": 2019,
+   "level": "5 to 10",
+   "seq_name": "Sweden"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "5 to 10",
+   "seq_name": "New Zealand"
+  },
+  {
+   "type": 2016,
+   "level": "5 to 10",
+   "seq_name": "New Zealand"
+  },
+  {
+   "type": 2017,
+   "level": "5 to 10",
+   "seq_name": "New Zealand"
+  },
+  {
+   "type": 2018,
+   "level": "5 to 10",
+   "seq_name": "New Zealand"
+  },
+  {
+   "type": 2019,
+   "level": "5 to 10",
+   "seq_name": "New Zealand"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "5 to 10",
+   "seq_name": "Australia"
+  },
+  {
+   "type": 2016,
+   "level": "5 to 10",
+   "seq_name": "Australia"
+  },
+  {
+   "type": 2017,
+   "level": "5 to 10",
+   "seq_name": "Australia"
+  },
+  {
+   "type": 2018,
+   "level": "5 to 10",
+   "seq_name": "Australia"
+  },
+  {
+   "type": 2019,
+   "level": "10 to 15",
+   "seq_name": "Australia"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "10 to 15",
+   "seq_name": "Israel"
+  },
+  {
+   "type": 2016,
+   "level": "10 to 15",
+   "seq_name": "Israel"
+  },
+  {
+   "type": 2017,
+   "level": "10 to 15",
+   "seq_name": "Israel"
+  },
+  {
+   "type": 2018,
+   "level": "15 to 20",
+   "seq_name": "Israel"
+  },
+  {
+   "type": 2019,
+   "level": "10 to 15",
+   "seq_name": "Israel"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "10 to 15",
+   "seq_name": "Costa Rica"
+  },
+  {
+   "type": 2016,
+   "level": "10 to 15",
+   "seq_name": "Costa Rica"
+  },
+  {
+   "type": 2017,
+   "level": "10 to 15",
+   "seq_name": "Costa Rica"
+  },
+  {
+   "type": 2018,
+   "level": "10 to 15",
+   "seq_name": "Costa Rica"
+  },
+  {
+   "type": 2019,
+   "level": "10 to 15",
+   "seq_name": "Costa Rica"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "10 to 15",
+   "seq_name": "Austria"
+  },
+  {
+   "type": 2016,
+   "level": "10 to 15",
+   "seq_name": "Austria"
+  },
+  {
+   "type": 2017,
+   "level": "10 to 15",
+   "seq_name": "Austria"
+  },
+  {
+   "type": 2018,
+   "level": "10 to 15",
+   "seq_name": "Austria"
+  },
+  {
+   "type": 2019,
+   "level": "5 to 10",
+   "seq_name": "Austria"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "10 to 15",
+   "seq_name": "Mexico"
+  },
+  {
+   "type": 2016,
+   "level": "20 to 25",
+   "seq_name": "Mexico"
+  },
+  {
+   "type": 2017,
+   "level": "20 to 25",
+   "seq_name": "Mexico"
+  },
+  {
+   "type": 2018,
+   "level": "20 to 25",
+   "seq_name": "Mexico"
+  },
+  {
+   "type": 2019,
+   "level": "20 to 25",
+   "seq_name": "Mexico"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "10 to 15",
+   "seq_name": "United States"
+  },
+  {
+   "type": 2016,
+   "level": "10 to 15",
+   "seq_name": "United States"
+  },
+  {
+   "type": 2017,
+   "level": "10 to 15",
+   "seq_name": "United States"
+  },
+  {
+   "type": 2018,
+   "level": "15 to 20",
+   "seq_name": "United States"
+  },
+  {
+   "type": 2019,
+   "level": "15 to 20",
+   "seq_name": "United States"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "15 to 20",
+   "seq_name": "Luxembourg"
+  },
+  {
+   "type": 2016,
+   "level": "15 to 20",
+   "seq_name": "Luxembourg"
+  },
+  {
+   "type": 2017,
+   "level": "15 to 20",
+   "seq_name": "Luxembourg"
+  },
+  {
+   "type": 2018,
+   "level": "15 to 20",
+   "seq_name": "Luxembourg"
+  },
+  {
+   "type": 2019,
+   "level": "10 to 15",
+   "seq_name": "Luxembourg"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "15 to 20",
+   "seq_name": "Ireland"
+  },
+  {
+   "type": 2016,
+   "level": "15 to 20",
+   "seq_name": "Ireland"
+  },
+  {
+   "type": 2017,
+   "level": "10 to 15",
+   "seq_name": "Ireland"
+  },
+  {
+   "type": 2018,
+   "level": "10 to 15",
+   "seq_name": "Ireland"
+  },
+  {
+   "type": 2019,
+   "level": "15 to 20",
+   "seq_name": "Ireland"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "15 to 20",
+   "seq_name": "Belgium"
+  },
+  {
+   "type": 2016,
+   "level": "15 to 20",
+   "seq_name": "Belgium"
+  },
+  {
+   "type": 2017,
+   "level": "15 to 20",
+   "seq_name": "Belgium"
+  },
+  {
+   "type": 2018,
+   "level": "15 to 20",
+   "seq_name": "Belgium"
+  },
+  {
+   "type": 2019,
+   "level": "15 to 20",
+   "seq_name": "Belgium"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "15 to 20",
+   "seq_name": "United Arab Emirates"
+  },
+  {
+   "type": 2016,
+   "level": "25 to 30",
+   "seq_name": "United Arab Emirates"
+  },
+  {
+   "type": 2017,
+   "level": "20 to 25",
+   "seq_name": "United Arab Emirates"
+  },
+  {
+   "type": 2018,
+   "level": "15 to 20",
+   "seq_name": "United Arab Emirates"
+  },
+  {
+   "type": 2019,
+   "level": "20 to 25",
+   "seq_name": "United Arab Emirates"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "20 to 25",
+   "seq_name": "United Kingdom"
+  },
+  {
+   "type": 2016,
+   "level": "20 to 25",
+   "seq_name": "United Kingdom"
+  },
+  {
+   "type": 2017,
+   "level": "15 to 20",
+   "seq_name": "United Kingdom"
+  },
+  {
+   "type": 2018,
+   "level": "10 to 15",
+   "seq_name": "United Kingdom"
+  },
+  {
+   "type": 2019,
+   "level": "10 to 15",
+   "seq_name": "United Kingdom"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "25 to 30",
+   "seq_name": "Germany"
+  },
+  {
+   "type": 2016,
+   "level": "15 to 20",
+   "seq_name": "Germany"
+  },
+  {
+   "type": 2017,
+   "level": "15 to 20",
+   "seq_name": "Germany"
+  },
+  {
+   "type": 2018,
+   "level": "10 to 15",
+   "seq_name": "Germany"
+  },
+  {
+   "type": 2019,
+   "level": "15 to 20",
+   "seq_name": "Germany"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "25 to 30",
+   "seq_name": "Chile"
+  },
+  {
+   "type": 2016,
+   "level": "20 to 25",
+   "seq_name": "Chile"
+  },
+  {
+   "type": 2017,
+   "level": "15 to 20",
+   "seq_name": "Chile"
+  },
+  {
+   "type": 2018,
+   "level": "20 to 25",
+   "seq_name": "Chile"
+  },
+  {
+   "type": 2019,
+   "level": "25 to 30",
+   "seq_name": "Chile"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "25 to 30",
+   "seq_name": "Qatar"
+  },
+  {
+   "type": 2016,
+   "level": "more than 30",
+   "seq_name": "Qatar"
+  },
+  {
+   "type": 2017,
+   "level": "more than 30",
+   "seq_name": "Qatar"
+  },
+  {
+   "type": 2018,
+   "level": "more than 30",
+   "seq_name": "Qatar"
+  },
+  {
+   "type": 2019,
+   "level": "25 to 30",
+   "seq_name": "Qatar"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "25 to 30",
+   "seq_name": "France"
+  },
+  {
+   "type": 2016,
+   "level": "more than 30",
+   "seq_name": "France"
+  },
+  {
+   "type": 2017,
+   "level": "more than 30",
+   "seq_name": "France"
+  },
+  {
+   "type": 2018,
+   "level": "20 to 25",
+   "seq_name": "France"
+  },
+  {
+   "type": 2019,
+   "level": "20 to 25",
+   "seq_name": "France"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "more than 30",
+   "seq_name": "Czech Republic"
+  },
+  {
+   "type": 2016,
+   "level": "25 to 30",
+   "seq_name": "Czech Republic"
+  },
+  {
+   "type": 2017,
+   "level": "20 to 25",
+   "seq_name": "Czech Republic"
+  },
+  {
+   "type": 2018,
+   "level": "20 to 25",
+   "seq_name": "Czech Republic"
+  },
+  {
+   "type": 2019,
+   "level": "15 to 20",
+   "seq_name": "Czech Republic"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "more than 30",
+   "seq_name": "Saudi Arabia"
+  },
+  {
+   "type": 2016,
+   "level": "more than 30",
+   "seq_name": "Saudi Arabia"
+  },
+  {
+   "type": 2017,
+   "level": "more than 30",
+   "seq_name": "Saudi Arabia"
+  },
+  {
+   "type": 2018,
+   "level": "more than 30",
+   "seq_name": "Saudi Arabia"
+  },
+  {
+   "type": 2019,
+   "level": "25 to 30",
+   "seq_name": "Saudi Arabia"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "more than 30",
+   "seq_name": "Malta"
+  },
+  {
+   "type": 2016,
+   "level": "25 to 30",
+   "seq_name": "Malta"
+  },
+  {
+   "type": 2017,
+   "level": "25 to 30",
+   "seq_name": "Malta"
+  },
+  {
+   "type": 2018,
+   "level": "20 to 25",
+   "seq_name": "Malta"
+  },
+  {
+   "type": 2019,
+   "level": "20 to 25",
+   "seq_name": "Malta"
+  }
+ ],
+ [
+  {
+   "type": 2015,
+   "level": "more than 30",
+   "seq_name": "Guatemala"
+  },
+  {
+   "type": 2016,
+   "level": "more than 30",
+   "seq_name": "Guatemala"
+  },
+  {
+   "type": 2017,
+   "level": "25 to 30",
+   "seq_name": "Guatemala"
+  },
+  {
+   "type": 2018,
+   "level": "25 to 30",
+   "seq_name": "Guatemala"
+  },
+  {
+   "type": 2019,
+   "level": "25 to 30",
+   "seq_name": "Guatemala"
+  }
+ ]
+]
