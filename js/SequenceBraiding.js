@@ -2,7 +2,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	constructor(data, svgname, opt={}) {
 
 		this.opt = this.fill_opt(opt)
-
+ 
 		// add seq number to data
 		this.data = data.slice(0, opt.numSequences)
 		this.data.forEach(a => a.forEach(b => b.seq_index == undefined ? b.seq_index = this.data.indexOf(a) : b.seq_index = b.seq_index))
