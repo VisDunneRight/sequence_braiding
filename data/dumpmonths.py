@@ -6,33 +6,49 @@ import statistics
 #import cpi
 
 def getlvl(lvl):
-    if lvl < 1: lvl = 'less than 1'
-    elif lvl < 5: lvl = '1 to 5'
-    elif lvl < 10: lvl = '5 to 10'
-    elif lvl < 50: lvl = '10 to 50'
-    elif lvl < 100: lvl = '50 to 100'
-    elif lvl < 250: lvl = '100 to 250'
-    elif lvl < 500: lvl = '250 to 500'
-    elif lvl < 1000: lvl = '500 to 1000'
-    else: lvl = 'more than 1000'
-    return lvl
+	if usinglinearscale:
+		if lvl < 50: lvl = 'less than 50'
+		elif lvl < 100: lvl = '50 to 100'
+		elif lvl < 150: lvl = '100 to 150'
+		elif lvl < 200: lvl = '150 to 200'
+		elif lvl < 250: lvl = '200 to 250'
+		else: lvl = 'more than 250'
+	else:
+		if lvl < 1: lvl = 'less than 1'
+		elif lvl < 5: lvl = '1 to 5'
+		elif lvl < 10: lvl = '5 to 10'
+		elif lvl < 50: lvl = '10 to 50'
+		elif lvl < 100: lvl = '50 to 100'
+		elif lvl < 250: lvl = '100 to 250'
+		elif lvl < 500: lvl = '250 to 500'
+		elif lvl < 1000: lvl = '500 to 1000'
+		else: lvl = 'more than 1000'
+	return lvl
 
 moviereader = csv.DictReader(open('IMDb movies.csv', 'r'))
 
 yeardict = {}
 yeardicttitles = {}
+getmedian = False
+usinglinearscale = True
+useseasons = True
 
 count = 0
 fullcount = 0
 for line in moviereader:
     fullcount += 1
     if line["country"] != "USA": continue
+    if "warner bros" not in line["production_company"].lower() and "disney" not in line["production_company"].lower() and "universal" not in line["production_company"].lower(): continue
+    #if line["title"] == "Frozen": print("disney" in line["production_company"].lower())
+
     if '-' in line["date_published"]:
         date = datetime.datetime.strptime(line["date_published"], '%Y-%m-%d')
         year = date.year
         month = date.month
+        if useseasons: month = getSeason(month)
     else:
         continue
+
     domestic_income = line["usa_gross_income"]
     if '$' in domestic_income:
         domestic_income = domestic_income.replace('$', '').strip()
@@ -61,11 +77,9 @@ for line in moviereader:
 
 pprint(yeardicttitles[2019])
 
-getmedian = True
-
 res = []
 for year in yeardict:
-    if year < 2000: continue
+    if year < 2000 or year > 2010: continue
     seq = []
 
     if getmedian:
@@ -91,8 +105,8 @@ for year in yeardict:
         for i in range(1, 13):
             if i not in yeardict[year]: continue
             lvl = getlvl(yeardict[year][i])
-            if lvl == '500 to 1000': pprint(yeardicttitles[year])
-            seq.append({'type': i, 'level': lvl, 'seq_name': year})
+            #if lvl == '500 to 1000': pprint(yeardicttitles[year])
+            seq.append({'type': i, 'level': lvl, 'seq_name': year, 'title': yeardicttitles[year][i][0]['title']})
         res.append(seq)
 
 json.dump(res, open('dumpmonths.json', 'w'), indent=4)

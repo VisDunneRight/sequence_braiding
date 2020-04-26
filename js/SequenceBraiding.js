@@ -2,7 +2,7 @@ window.SequenceBraiding = class SequenceBraiding {
 	constructor(data, svgname, opt={}) {
 
 		this.opt = this.fill_opt(opt)
- 
+
 		// add seq number to data
 		this.data = data.slice(0, opt.numSequences)
 		this.data.forEach(a => a.forEach(b => b.seq_index == undefined ? b.seq_index = this.data.indexOf(a) : b.seq_index = b.seq_index))
@@ -58,7 +58,8 @@ window.SequenceBraiding = class SequenceBraiding {
 		    animate: false,
 				colorbysequence: false,
 				forceLevelName: false,
-				verbose_stats: true,
+				verbose_stats: false,
+				verbose_ord: true,
 				formulate_ilp: false,
 				retrieve_ilp: false,
 
@@ -245,8 +246,9 @@ window.SequenceBraiding = class SequenceBraiding {
 					{x: 0, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top},
 					{x: document.getElementById(this.svgname).clientWidth, y: this.start_heights[level]*this.vertical_spacing + this.opt.padding.top}]))
 
+			// level names displayed on the column on the left
 			if (this.nodes.filter(n => n.level == level).length > 0 && (this.data.length < 30 || this.opt.forceLevelName)){
-				let translatey = (this.start_heights[level] + this.level_heights[level]*.5)*this.vertical_spacing + this.opt.padding.top + this.vertical_spacing*1.5
+				let translatey = (this.start_heights[level] + this.level_heights[level]*.5)*this.vertical_spacing + this.opt.padding.top + this.vertical_spacing*.5
 				let glvlname = this.svg.append('g')
 					.attr('transform', 'translate(5, '+ translatey +')')
 					.attr('class', 'lvlname')
@@ -333,14 +335,14 @@ window.SequenceBraiding = class SequenceBraiding {
 	apply_ord(ord, grid, index_dict, date_dict){
 		for (var i in grid){
 			if (ord[i] == undefined) continue
-			grid[i] = grid[i].sort((a, b) => ord[i].indexOf(date_dict[a.seq_index]) > ord[i].indexOf(date_dict[b.seq_index]))
+			grid[i] = grid[i].sort((a, b) => ord[i].indexOf(date_dict[a.seq_index]) > ord[i].indexOf(date_dict[b.seq_index]) ? 1 : -1)
 		}
 	}
 
 	apply_ord_for_ilp(ord, grid, index_dict, date_dict){
 		for (var i in grid){
 			if (ord[i-1] == undefined) continue
-			grid[i] = grid[i].sort((a, b) => ord[i-1].indexOf(date_dict[a.seq_index]) > ord[i-1].indexOf(date_dict[b.seq_index]))
+			grid[i] = grid[i].sort((a, b) => ord[i-1].indexOf(date_dict[a.seq_index]) > ord[i-1].indexOf(date_dict[b.seq_index]) ? 1 : -1)
 		}
 	}
 
@@ -513,7 +515,11 @@ window.SequenceBraiding = class SequenceBraiding {
 		if (a.isanchor && b.g != undefined && this.levels.indexOf(a.incoming_links[0].source.level) == this.levels.indexOf(a.outgoing_links[0].target.level))
 			return this.levels.indexOf(a.outgoing_links[0].target.level) > this.levels.indexOf(b.g) ? 1 : -1
 
-		if (a.g != undefined && b.g != undefined && a.g != b.g) return this.levels.indexOf(a.g) > this.levels.indexOf(b.g)
+		// manage anchors
+		// if (a.isanchor) return 1
+		// if (b.isanchor) return -1
+
+		if (a.g != undefined && b.g != undefined && a.g != b.g) return this.levels.indexOf(a.g) > this.levels.indexOf(b.g) ? 1 : -1
 		else return a.wmean > b.wmean ? 1 : -1
 	}
 
@@ -637,6 +643,11 @@ window.SequenceBraiding = class SequenceBraiding {
 			this.apply_ord(best_order, grid, index_dict, date_dict)
 		}
 
+		if (this.opt.verbose_ord) {
+			console.log("final ord:", best_order)
+			console.log("final grid:", grid)
+		}
+
 		return grid
 	}
 
@@ -655,7 +666,6 @@ window.SequenceBraiding = class SequenceBraiding {
 		let res_str = ""
 
 		let tord = ord
-		//console.log('ord: ', tord.toString())
 
 		let minimize = "Minimize\n"
 		for (let k=0; k<tord.length-1; k++){
@@ -673,7 +683,6 @@ window.SequenceBraiding = class SequenceBraiding {
 		res_str += minimize
 		let ccount = 0
 
-
 		let subject_to = "Subject To\n"
 		for (let k in tord){
 			for (let i1 of tord[k]){
@@ -687,7 +696,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 		}
 
-		// count intersections
+		//count intersections
 		for (let k in tord){
 			for (let i1 in tord[k]){
 				let u1 = tord[k][i1]
@@ -705,7 +714,7 @@ window.SequenceBraiding = class SequenceBraiding {
 			}
 		}
 
-		// count intersections
+		//count intersections
 		for (let k=0; k < tord.length - 1; k++){
 			for (let i1 in tord[k]){
 				let u1 = tord[k][i1]
@@ -726,7 +735,7 @@ window.SequenceBraiding = class SequenceBraiding {
 
 		let bounds = "Bounds\n"
 
-		console.log('tord', tord)
+		//console.log('tord', tord)
 
 		// level bounds
 		for (let k=0; k<tord.length; k++){

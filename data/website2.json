@@ -1,0 +1,235 @@
+[
+    [
+      {
+        "type": "home",
+        "level" : "10 sec",
+        "seq_name" : 5
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "10 sec",
+        "seq_name" : 6
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 7
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "10 sec",
+        "seq_name" : 8
+      },
+      {
+          "type" : "cv",
+          "level" : "10 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "5 sec",
+        "seq_name" : 9
+      },
+      {
+          "type" : "cv",
+          "level" : "10 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "10 sec",
+        "seq_name" : 10
+      },
+      {
+          "type" : "cv",
+          "level" : "10 sec"
+      },
+      {
+        "type" : "blog",
+        "level" : "30 sec"
+      },
+      {
+        "type" : "home",
+        "level" : "5 sec"
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "5 sec",
+        "seq_name" : 11
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "5 sec",
+        "seq_name" : 12
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "10 sec",
+        "seq_name" : 13
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "30 sec",
+        "seq_name" : 14
+      },
+      {
+        "type" : "art",
+        "level" : "2 min"
+      },
+      {
+        "type" : "cv",
+        "level" : "30 sec"
+      },
+      {
+        "type" : "blog",
+        "level" : "5 sec"
+      },
+      {
+        "type" : "home",
+        "level" : "10 sec"
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "30 sec",
+        "seq_name" : 15
+      },
+      {
+        "type" : "art",
+        "level" : "5 min"
+      },
+      {
+        "type" : "cv",
+        "level" : "10 sec"
+      },
+      {
+        "type" : "projects",
+        "level" : "5 sec"
+      }
+    ],
+    [
+      {
+        "type" : "portfolio",
+        "level" : "5 sec",
+        "seq_name" : 16
+      }
+    ],
+    [
+      {
+        "type" : "portfolio",
+        "level" : "10 sec",
+        "seq_name" : 17
+      },
+      {
+        "type" : "projects",
+        "level" : "2 min"
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "2 min",
+        "seq_name" : 18
+      },
+      {
+        "type" : "projects",
+        "level" : "30 sec"
+      },
+      {
+        "type" : "home",
+        "level" : "2 min"
+      },
+      {
+        "type" : "projects",
+        "level" : "5 sec"
+      }
+    ],
+    [
+      {
+        "type" : "project 1",
+        "level" : "30 sec",
+        "seq_name" : 19
+      },
+      {
+        "type" : "home",
+        "level" : "1 min"
+      },
+      {
+        "type" : "portfolio",
+        "level" : "2 min"
+      },
+      {
+        "type" : "projects",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type" : "project 1",
+        "level" : "2 min",
+        "seq_name" : 20
+      }
+    ],
+    [
+      {
+        "type" : "project 1",
+        "level" : "1 min",
+        "seq_name" : 21
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "30 sec",
+        "seq_name" : 19
+      },
+      {
+        "type" : "portfolio",
+        "level" : "1 min"
+      },
+      {
+        "type" : "cv",
+        "level" : "2 min"
+      },
+      {
+        "type" : "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type" : "home",
+        "level" : "30 sec",
+        "seq_name" : 19
+      },
+      {
+        "type" : "portfolio",
+        "level" : "1 min"
+      },
+      {
+        "type" : "projects",
+        "level" : "2 min"
+      },
+      {
+        "type" : "blog",
+        "level" : "1 min"
+      }
+    ]
+  ]

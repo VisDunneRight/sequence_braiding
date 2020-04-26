@@ -1,0 +1,378 @@
+[
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 2,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 3,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 4,
+        "seq_type" : "home>portfolio>cv>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 5,
+        "seq_type" : "home>portfolio>cv"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 6,
+        "seq_type" : "home>portfolio>art"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      },
+      {
+        "type": "art",
+        "level" : "30 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 7,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 8,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 9,
+        "seq_type" : "home>cv>home"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      },
+      {
+        "type": "home",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 10,
+        "seq_type" : "home>cv>home"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      },
+      {
+        "type": "home",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 11,
+        "seq_type" : "home>cv"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 12,
+        "seq_type" : "home>cv"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 13,
+        "seq_type" : "home>cv"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 14,
+        "seq_type" : "home>cv"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 15,
+        "seq_type" : "home>cv"
+      },
+      {
+        "type": "cv",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 16,
+        "seq_type" : "home>art>home"
+      },
+      {
+        "type": "art",
+        "level" : "1 min"
+      },
+      {
+        "type": "home",
+        "level" : "30 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "2 min",
+        "seq_name" : 17,
+        "seq_type" : "home>art>portfolio"
+      },
+      {
+        "type": "art",
+        "level" : "1 min"
+      },
+      {
+        "type": "portfolio",
+        "level" : "2 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 18,
+        "seq_type" : "home>art>portfolio>cv"
+      },
+      {
+        "type": "art",
+        "level" : "1 min"
+      },
+      {
+        "type": "portfolio",
+        "level" : "30 sec"
+      },
+      {
+        "type": "cv",
+        "level" : "30 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 19,
+        "seq_type" : "home>art>cv"
+      },
+      {
+        "type": "art",
+        "level" : "1 min"
+      },
+      {
+        "type": "cv",
+        "level" : "30 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 20,
+        "seq_type" : "home>art>portfolio"
+      },
+      {
+        "type": "art",
+        "level" : "30 sec"
+      },
+      {
+        "type": "portfolio",
+        "level" : "1 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "5 min",
+        "seq_name" : 21,
+        "seq_type" : "home>art"
+      },
+      {
+        "type": "art",
+        "level" : "2 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "2 min",
+        "seq_name" : 22,
+        "seq_type" : "home>art"
+      },
+      {
+        "type": "art",
+        "level" : "2 min"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "1 min",
+        "seq_name" : 23,
+        "seq_type" : "home>portfolio>home"
+      },
+      {
+        "type": "portfolio",
+        "level" : "10 sec"
+      },
+      {
+        "type": "home",
+        "level" : "30 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 24,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "10 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 25,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "10 sec"
+      }
+    ],
+    [
+      {
+        "type": "home",
+        "level" : "30 sec",
+        "seq_name" : 26,
+        "seq_type" : "home>portfolio"
+      },
+      {
+        "type": "portfolio",
+        "level" : "10 sec"
+      }
+    ],
+    [
+      {
+        "type": "project 1",
+        "level" : "1 min",
+        "seq_name" : 27,
+        "seq_type" : "home>project 1>home"
+      },
+      {
+        "type": "home",
+        "level" : "30 sec"
+      }
+    ],
+    [
+      {
+        "type": "project 2",
+        "level" : "30 sec",
+        "seq_name" : 26,
+        "seq_type" : "home>project 2>home"
+      },
+      {
+        "type": "home",
+        "level" : "30 sec"
+      }
+    ]
+]

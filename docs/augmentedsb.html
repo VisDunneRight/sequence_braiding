@@ -51,6 +51,8 @@
     forceLevelName: true,
     node_width_factor: 0.08,
     svg_width: window.innerWidth*0.95,
+    //horizontal_spacing: 180,
+    //guidelines: false,
     //path: ['source', '1', '3', '5', '7', '9', '11', '13', '15', '17', 'sink']
     levels: ['very_high', 'high', 'normal', 'low', 'very_low'],
   }
@@ -58,6 +60,7 @@
   d3.json('../data/jsonglucose.json', (error, data) => {
 
     //data.splice(0, 0)
+    //data = data.splice(5)
     data = data.filter(d => d.length > 1)
 
     isinselection = function(d, s){
@@ -218,7 +221,7 @@
           .y(function(d) { return d.y })
           .curve(d3.curveCatmullRom.alpha(1))
 
-        pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.opt.padding.left - gs.node_width * 1.5 + gs.horizontal_spacing/2
+        pathpad = (gs.path.length - last_node.depth - 2) * gs.horizontal_spacing + gs.opt.padding.left - gs.node_width * 1.5 + gs.horizontal_spacing/2 - 100
 
         svg.append('path')
           .datum({'seq_index' : data[i]['seq_index']})

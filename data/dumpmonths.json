@@ -1,1237 +1,618 @@
 [
     [
         {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2002
-        },
-        {
-            "type": 2,
-            "level": "more than median",
-            "seq_name": 2002
-        },
-        {
             "type": 3,
-            "level": "close to median",
-            "seq_name": 2002
+            "level": "50 to 100",
+            "seq_name": 2000,
+            "title": "Any Given Sunday"
         },
         {
             "type": 4,
-            "level": "less than median",
-            "seq_name": 2002
+            "level": "100 to 150",
+            "seq_name": 2000,
+            "title": "Three Kings"
         },
         {
             "type": 5,
-            "level": "more than median",
-            "seq_name": 2002
+            "level": "less than 50",
+            "seq_name": 2000,
+            "title": "Snow Falling on Cedars"
         },
         {
             "type": 6,
-            "level": "much more than median",
-            "seq_name": 2002
+            "level": "less than 50",
+            "seq_name": 2000,
+            "title": "For Love of the Game"
         },
         {
             "type": 7,
-            "level": "more than median",
-            "seq_name": 2002
-        },
-        {
-            "type": 8,
-            "level": "close to median",
-            "seq_name": 2002
-        },
-        {
-            "type": 9,
-            "level": "more than median",
-            "seq_name": 2002
+            "level": "150 to 200",
+            "seq_name": 2000,
+            "title": "Fantasia 2000"
         },
         {
             "type": 10,
-            "level": "less than median",
-            "seq_name": 2002
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2002
+            "level": "100 to 150",
+            "seq_name": 2000,
+            "title": "Dinosaur"
         },
         {
             "type": 12,
-            "level": "less than median",
-            "seq_name": 2002
+            "level": "more than 250",
+            "seq_name": 2000,
+            "title": "How the Grinch Stole Christmas"
         }
     ],
     [
         {
             "type": 1,
-            "level": "close to median",
-            "seq_name": 2018
+            "level": "less than 50",
+            "seq_name": 2001,
+            "title": "Pay It Forward"
         },
         {
             "type": 2,
-            "level": "much more than median",
-            "seq_name": 2018
-        },
-        {
-            "type": 3,
-            "level": "less than median",
-            "seq_name": 2018
+            "level": "50 to 100",
+            "seq_name": 2001,
+            "title": "The Emperor's New Groove"
         },
         {
             "type": 4,
-            "level": "much more than median",
-            "seq_name": 2018
+            "level": "less than 50",
+            "seq_name": 2001,
+            "title": "Valentine"
         },
         {
             "type": 5,
-            "level": "more than median",
-            "seq_name": 2018
-        },
-        {
-            "type": 6,
-            "level": "more than median",
-            "seq_name": 2018
+            "level": "200 to 250",
+            "seq_name": 2001,
+            "title": "Head Over Heels"
         },
         {
             "type": 7,
-            "level": "much more than median",
-            "seq_name": 2018
+            "level": "150 to 200",
+            "seq_name": 2001,
+            "title": "Jurassic Park III"
         },
         {
             "type": 8,
-            "level": "close to median",
-            "seq_name": 2018
+            "level": "less than 50",
+            "seq_name": 2001,
+            "title": "Summer Catch"
         },
         {
             "type": 9,
-            "level": "less than median",
-            "seq_name": 2018
+            "level": "less than 50",
+            "seq_name": 2001,
+            "title": "Rock Star"
         },
         {
             "type": 10,
-            "level": "close to median",
-            "seq_name": 2018
+            "level": "50 to 100",
+            "seq_name": 2001,
+            "title": "Training Day"
         },
         {
             "type": 11,
-            "level": "less than median",
-            "seq_name": 2018
+            "level": "less than 50",
+            "seq_name": 2001,
+            "title": "Osmosis Jones"
+        }
+    ],
+    [
+        {
+            "type": 2,
+            "level": "less than 50",
+            "seq_name": 2003,
+            "title": "Treasure Planet"
+        },
+        {
+            "type": 3,
+            "level": "less than 50",
+            "seq_name": 2003,
+            "title": "Cradle 2 the Grave"
+        },
+        {
+            "type": 4,
+            "level": "less than 50",
+            "seq_name": 2003,
+            "title": "Malibu's Most Wanted"
+        },
+        {
+            "type": 5,
+            "level": "more than 250",
+            "seq_name": 2003,
+            "title": "The Matrix Reloaded"
+        },
+        {
+            "type": 7,
+            "level": "100 to 150",
+            "seq_name": 2003,
+            "title": "Hulk"
+        },
+        {
+            "type": 8,
+            "level": "more than 250",
+            "seq_name": 2003,
+            "title": "The Lizzie McGuire Movie"
+        },
+        {
+            "type": 10,
+            "level": "50 to 100",
+            "seq_name": 2003,
+            "title": "Intolerable Cruelty"
+        },
+        {
+            "type": 11,
+            "level": "100 to 150",
+            "seq_name": 2003,
+            "title": "The Matrix Revolutions"
         },
         {
             "type": 12,
-            "level": "less than median",
-            "seq_name": 2018
+            "level": "50 to 100",
+            "seq_name": 2003,
+            "title": "Brother Bear"
+        }
+    ],
+    [
+        {
+            "type": 2,
+            "level": "150 to 200",
+            "seq_name": 2002,
+            "title": "Ocean's Eleven"
+        },
+        {
+            "type": 3,
+            "level": "150 to 200",
+            "seq_name": 2002,
+            "title": "A Beautiful Mind"
+        },
+        {
+            "type": 6,
+            "level": "less than 50",
+            "seq_name": 2002,
+            "title": "Murder by Numbers"
+        },
+        {
+            "type": 7,
+            "level": "less than 50",
+            "seq_name": 2002,
+            "title": "The Country Bears"
+        },
+        {
+            "type": 8,
+            "level": "less than 50",
+            "seq_name": 2002,
+            "title": "Eight Legged Freaks"
+        },
+        {
+            "type": 9,
+            "level": "less than 50",
+            "seq_name": 2002,
+            "title": "A Walk to Remember"
+        },
+        {
+            "type": 10,
+            "level": "100 to 150",
+            "seq_name": 2002,
+            "title": "Lilo & Stitch"
+        },
+        {
+            "type": 11,
+            "level": "100 to 150",
+            "seq_name": 2002,
+            "title": "The Santa Clause 2"
+        }
+    ],
+    [
+        {
+            "type": 2,
+            "level": "100 to 150",
+            "seq_name": 2009,
+            "title": "Bolt"
+        },
+        {
+            "type": 3,
+            "level": "100 to 150",
+            "seq_name": 2009,
+            "title": "Max Keeble's Big Move"
+        },
+        {
+            "type": 4,
+            "level": "50 to 100",
+            "seq_name": 2009,
+            "title": "Race to Witch Mountain"
+        },
+        {
+            "type": 5,
+            "level": "less than 50",
+            "seq_name": 2009,
+            "title": "Drag Me to Hell"
+        },
+        {
+            "type": 7,
+            "level": "less than 50",
+            "seq_name": 2009,
+            "title": "Land of the Lost"
+        },
+        {
+            "type": 8,
+            "level": "50 to 100",
+            "seq_name": 2009,
+            "title": "Funny People"
+        },
+        {
+            "type": 10,
+            "level": "100 to 150",
+            "seq_name": 2009,
+            "title": "Cirque du Freak: The Vampire's Assistant"
+        },
+        {
+            "type": 11,
+            "level": "100 to 150",
+            "seq_name": 2009,
+            "title": "A Christmas Carol"
+        },
+        {
+            "type": 12,
+            "level": "less than 50",
+            "seq_name": 2009,
+            "title": "The Box"
         }
     ],
     [
         {
             "type": 1,
-            "level": "less than median",
-            "seq_name": 2000
+            "level": "more than 250",
+            "seq_name": 2005,
+            "title": "Meet the Fockers"
         },
         {
             "type": 2,
-            "level": "more than median",
-            "seq_name": 2000
+            "level": "100 to 150",
+            "seq_name": 2005,
+            "title": "Ocean's Twelve"
         },
         {
             "type": 3,
-            "level": "less than median",
-            "seq_name": 2000
-        },
-        {
-            "type": 4,
-            "level": "less than median",
-            "seq_name": 2000
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2000
-        },
-        {
-            "type": 6,
-            "level": "much less than median",
-            "seq_name": 2000
+            "level": "less than 50",
+            "seq_name": 2005,
+            "title": "Pooh's Heffalump Movie"
         },
         {
             "type": 7,
-            "level": "more than median",
-            "seq_name": 2000
+            "level": "50 to 100",
+            "seq_name": 2005,
+            "title": "Kicking & Screaming"
         },
         {
             "type": 8,
-            "level": "more than median",
-            "seq_name": 2000
+            "level": "50 to 100",
+            "seq_name": 2005,
+            "title": "The Dukes of Hazzard"
         },
         {
             "type": 9,
-            "level": "more than median",
-            "seq_name": 2000
+            "level": "100 to 150",
+            "seq_name": 2005,
+            "title": "Cinderella Man"
         },
         {
             "type": 10,
-            "level": "more than median",
-            "seq_name": 2000
+            "level": "50 to 100",
+            "seq_name": 2005,
+            "title": "Serenity"
         },
         {
             "type": 11,
-            "level": "less than median",
-            "seq_name": 2000
+            "level": "less than 50",
+            "seq_name": 2005,
+            "title": "Kiss Kiss Bang Bang"
         },
         {
             "type": 12,
-            "level": "more than median",
-            "seq_name": 2000
+            "level": "less than 50",
+            "seq_name": 2005,
+            "title": "The Producers"
         }
     ],
     [
         {
             "type": 1,
-            "level": "more than median",
-            "seq_name": 2001
+            "level": "less than 50",
+            "seq_name": 2004,
+            "title": "Teacher's Pet"
         },
         {
             "type": 2,
-            "level": "more than median",
-            "seq_name": 2001
+            "level": "50 to 100",
+            "seq_name": 2004,
+            "title": "The Haunted Mansion"
         },
         {
             "type": 3,
-            "level": "less than median",
-            "seq_name": 2001
+            "level": "less than 50",
+            "seq_name": 2004,
+            "title": "Honey"
         },
         {
             "type": 4,
-            "level": "less than median",
-            "seq_name": 2001
-        },
-        {
-            "type": 5,
-            "level": "more than median",
-            "seq_name": 2001
+            "level": "100 to 150",
+            "seq_name": 2004,
+            "title": "The Cat in the Hat"
         },
         {
             "type": 6,
-            "level": "more than median",
-            "seq_name": 2001
+            "level": "less than 50",
+            "seq_name": 2004,
+            "title": "Connie and Carla"
         },
         {
             "type": 7,
-            "level": "more than median",
-            "seq_name": 2001
+            "level": "less than 50",
+            "seq_name": 2004,
+            "title": "New York Minute"
         },
         {
             "type": 8,
-            "level": "more than median",
-            "seq_name": 2001
-        },
-        {
-            "type": 9,
-            "level": "much less than median",
-            "seq_name": 2001
+            "level": "50 to 100",
+            "seq_name": 2004,
+            "title": "The Chronicles of Riddick"
         },
         {
             "type": 10,
-            "level": "less than median",
-            "seq_name": 2001
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2001
+            "level": "50 to 100",
+            "seq_name": 2004,
+            "title": "The Princess Diaries 2: Royal Engagement"
         },
         {
             "type": 12,
-            "level": "less than median",
-            "seq_name": 2001
+            "level": "150 to 200",
+            "seq_name": 2004,
+            "title": "National Treasure"
+        }
+    ],
+    [
+        {
+            "type": 2,
+            "level": "50 to 100",
+            "seq_name": 2007,
+            "title": "The Good Shepherd"
+        },
+        {
+            "type": 3,
+            "level": "50 to 100",
+            "seq_name": 2007,
+            "title": "Meet the Robinsons"
+        },
+        {
+            "type": 4,
+            "level": "less than 50",
+            "seq_name": 2007,
+            "title": "The Reaping"
+        },
+        {
+            "type": 5,
+            "level": "more than 250",
+            "seq_name": 2007,
+            "title": "Pirates of the Caribbean: At World's End"
+        },
+        {
+            "type": 6,
+            "level": "100 to 150",
+            "seq_name": 2007,
+            "title": "Ocean's Thirteen"
+        },
+        {
+            "type": 8,
+            "level": "100 to 150",
+            "seq_name": 2007,
+            "title": "Breach"
+        },
+        {
+            "type": 9,
+            "level": "100 to 150",
+            "seq_name": 2007,
+            "title": "The Brave One"
+        },
+        {
+            "type": 10,
+            "level": "200 to 250",
+            "seq_name": 2007,
+            "title": "Ratatouille"
+        },
+        {
+            "type": 11,
+            "level": "50 to 100",
+            "seq_name": 2007,
+            "title": "August Rush"
+        },
+        {
+            "type": 12,
+            "level": "more than 250",
+            "seq_name": 2007,
+            "title": "Enchanted"
         }
     ],
     [
         {
             "type": 1,
-            "level": "less than median",
-            "seq_name": 2004
+            "level": "less than 50",
+            "seq_name": 2006,
+            "title": "Glory Road"
         },
         {
             "type": 2,
-            "level": "less than median",
-            "seq_name": 2004
+            "level": "100 to 150",
+            "seq_name": 2006,
+            "title": "Chicken Little"
         },
         {
             "type": 3,
-            "level": "much more than median",
-            "seq_name": 2004
+            "level": "50 to 100",
+            "seq_name": 2006,
+            "title": "The Shaggy Dog"
         },
         {
             "type": 4,
-            "level": "less than median",
-            "seq_name": 2004
-        },
-        {
-            "type": 5,
-            "level": "more than median",
-            "seq_name": 2004
+            "level": "50 to 100",
+            "seq_name": 2006,
+            "title": "Eight Below"
         },
         {
             "type": 6,
-            "level": "less than median",
-            "seq_name": 2004
+            "level": "50 to 100",
+            "seq_name": 2006,
+            "title": "Poseidon"
         },
         {
             "type": 7,
-            "level": "much more than median",
-            "seq_name": 2004
+            "level": "more than 250",
+            "seq_name": 2006,
+            "title": "Superman Returns"
         },
         {
             "type": 8,
-            "level": "less than median",
-            "seq_name": 2004
+            "level": "50 to 100",
+            "seq_name": 2006,
+            "title": "The Ant Bully"
         },
         {
             "type": 9,
-            "level": "less than median",
-            "seq_name": 2004
+            "level": "less than 50",
+            "seq_name": 2006,
+            "title": "Beerfest"
         },
         {
             "type": 10,
-            "level": "more than median",
-            "seq_name": 2004
+            "level": "100 to 150",
+            "seq_name": 2006,
+            "title": "Accepted"
         },
         {
             "type": 11,
-            "level": "more than median",
-            "seq_name": 2004
+            "level": "50 to 100",
+            "seq_name": 2006,
+            "title": "The Santa Clause 3: The Escape Clause"
         },
         {
             "type": 12,
-            "level": "more than median",
-            "seq_name": 2004
+            "level": "less than 50",
+            "seq_name": 2006,
+            "title": "Unaccompanied Minors"
         }
     ],
     [
         {
             "type": 1,
-            "level": "more than median",
-            "seq_name": 2005
+            "level": "less than 50",
+            "seq_name": 2008,
+            "title": "The Pirates Who Don't Do Anything: A VeggieTales Movie"
         },
         {
             "type": 2,
-            "level": "less than median",
-            "seq_name": 2005
+            "level": "200 to 250",
+            "seq_name": 2008,
+            "title": "National Treasure: Book of Secrets"
         },
         {
             "type": 3,
-            "level": "more than median",
-            "seq_name": 2005
+            "level": "50 to 100",
+            "seq_name": 2008,
+            "title": "The Game Plan"
         },
         {
             "type": 4,
-            "level": "less than median",
-            "seq_name": 2005
-        },
-        {
-            "type": 5,
-            "level": "much more than median",
-            "seq_name": 2005
+            "level": "50 to 100",
+            "seq_name": 2008,
+            "title": "Fool's Gold"
         },
         {
             "type": 6,
-            "level": "more than median",
-            "seq_name": 2005
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2005
+            "level": "100 to 150",
+            "seq_name": 2008,
+            "title": "The Incredible Hulk"
         },
         {
             "type": 8,
-            "level": "less than median",
-            "seq_name": 2005
-        },
-        {
-            "type": 9,
-            "level": "more than median",
-            "seq_name": 2005
+            "level": "100 to 150",
+            "seq_name": 2008,
+            "title": "Get Smart"
         },
         {
             "type": 10,
-            "level": "less than median",
-            "seq_name": 2005
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2005
+            "level": "50 to 100",
+            "seq_name": 2008,
+            "title": "High School Musical 3: Senior Year"
         },
         {
             "type": 12,
-            "level": "less than median",
-            "seq_name": 2005
+            "level": "100 to 150",
+            "seq_name": 2008,
+            "title": "Bedtime Stories"
         }
     ],
     [
         {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2003
-        },
-        {
             "type": 2,
-            "level": "close to median",
-            "seq_name": 2003
+            "level": "100 to 150",
+            "seq_name": 2010,
+            "title": "The Princess and the Frog"
         },
         {
             "type": 3,
-            "level": "less than median",
-            "seq_name": 2003
+            "level": "more than 250",
+            "seq_name": 2010,
+            "title": "Old Dogs"
         },
         {
             "type": 4,
-            "level": "less than median",
-            "seq_name": 2003
+            "level": "less than 50",
+            "seq_name": 2010,
+            "title": "Cop Out"
         },
         {
             "type": 5,
-            "level": "much more than median",
-            "seq_name": 2003
+            "level": "50 to 100",
+            "seq_name": 2010,
+            "title": "Prince of Persia: The Sands of Time"
         },
         {
             "type": 6,
-            "level": "more than median",
-            "seq_name": 2003
+            "level": "50 to 100",
+            "seq_name": 2010,
+            "title": "Get Him to the Greek"
         },
         {
             "type": 7,
-            "level": "close to median",
-            "seq_name": 2003
+            "level": "more than 250",
+            "seq_name": 2010,
+            "title": "Toy Story 3"
         },
         {
             "type": 8,
-            "level": "much more than median",
-            "seq_name": 2003
+            "level": "50 to 100",
+            "seq_name": 2010,
+            "title": "The Sorcerer's Apprentice"
         },
         {
             "type": 9,
-            "level": "less than median",
-            "seq_name": 2003
-        },
-        {
-            "type": 10,
-            "level": "more than median",
-            "seq_name": 2003
+            "level": "50 to 100",
+            "seq_name": 2010,
+            "title": "The Town"
         },
         {
             "type": 11,
-            "level": "more than median",
-            "seq_name": 2003
+            "level": "100 to 150",
+            "seq_name": 2010,
+            "title": "Due Date"
         },
         {
             "type": 12,
-            "level": "less than median",
-            "seq_name": 2003
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 2,
-            "level": "more than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 3,
-            "level": "less than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 6,
-            "level": "more than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 7,
-            "level": "much more than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 9,
-            "level": "more than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 10,
-            "level": "more than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2006
-        },
-        {
-            "type": 12,
-            "level": "less than median",
-            "seq_name": 2006
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "more than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 3,
-            "level": "less than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 6,
-            "level": "much more than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 10,
-            "level": "less than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 11,
-            "level": "more than median",
-            "seq_name": 2015
-        },
-        {
-            "type": 12,
-            "level": "much more than median",
-            "seq_name": 2015
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 2,
-            "level": "more than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 3,
-            "level": "more than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 4,
-            "level": "less than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 5,
-            "level": "much more than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 6,
-            "level": "close to median",
-            "seq_name": 2008
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 8,
-            "level": "close to median",
-            "seq_name": 2008
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 10,
-            "level": "less than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 11,
-            "level": "much less than median",
-            "seq_name": 2008
-        },
-        {
-            "type": 12,
-            "level": "more than median",
-            "seq_name": 2008
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 3,
-            "level": "less than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 6,
-            "level": "much more than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 10,
-            "level": "more than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 11,
-            "level": "more than median",
-            "seq_name": 2009
-        },
-        {
-            "type": 12,
-            "level": "much more than median",
-            "seq_name": 2009
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 2,
-            "level": "more than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 3,
-            "level": "more than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 6,
-            "level": "less than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 8,
-            "level": "more than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 10,
-            "level": "less than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2016
-        },
-        {
-            "type": 12,
-            "level": "more than median",
-            "seq_name": 2016
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "close to median",
-            "seq_name": 2007
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 3,
-            "level": "less than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 4,
-            "level": "close to median",
-            "seq_name": 2007
-        },
-        {
-            "type": 5,
-            "level": "much more than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 6,
-            "level": "more than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 10,
-            "level": "more than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2007
-        },
-        {
-            "type": 12,
-            "level": "more than median",
-            "seq_name": 2007
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 2,
-            "level": "close to median",
-            "seq_name": 2010
-        },
-        {
-            "type": 3,
-            "level": "much more than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 4,
-            "level": "much more than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 6,
-            "level": "less than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 7,
-            "level": "much more than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 8,
-            "level": "more than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 9,
-            "level": "close to median",
-            "seq_name": 2010
-        },
-        {
-            "type": 10,
-            "level": "less than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2010
-        },
-        {
-            "type": 12,
-            "level": "more than median",
-            "seq_name": 2010
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 3,
-            "level": "close to median",
-            "seq_name": 2019
-        },
-        {
-            "type": 4,
-            "level": "much more than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 5,
-            "level": "much more than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 6,
-            "level": "much more than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 7,
-            "level": "much more than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 8,
-            "level": "close to median",
-            "seq_name": 2019
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 10,
-            "level": "much less than median",
-            "seq_name": 2019
-        },
-        {
-            "type": 11,
-            "level": "much less than median",
-            "seq_name": 2019
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "more than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 2,
-            "level": "more than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 3,
-            "level": "less than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 6,
-            "level": "much more than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 10,
-            "level": "less than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 11,
-            "level": "more than median",
-            "seq_name": 2011
-        },
-        {
-            "type": 12,
-            "level": "less than median",
-            "seq_name": 2011
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 3,
-            "level": "more than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 5,
-            "level": "more than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 6,
-            "level": "close to median",
-            "seq_name": 2014
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 10,
-            "level": "close to median",
-            "seq_name": 2014
-        },
-        {
-            "type": 11,
-            "level": "more than median",
-            "seq_name": 2014
-        },
-        {
-            "type": 12,
-            "level": "less than median",
-            "seq_name": 2014
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 3,
-            "level": "much more than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 4,
-            "level": "much more than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 6,
-            "level": "less than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 8,
-            "level": "more than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 10,
-            "level": "more than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 11,
-            "level": "more than median",
-            "seq_name": 2012
-        },
-        {
-            "type": 12,
-            "level": "less than median",
-            "seq_name": 2012
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "less than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 3,
-            "level": "more than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 5,
-            "level": "more than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 6,
-            "level": "less than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 9,
-            "level": "less than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 10,
-            "level": "less than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 11,
-            "level": "more than median",
-            "seq_name": 2013
-        },
-        {
-            "type": 12,
-            "level": "more than median",
-            "seq_name": 2013
-        }
-    ],
-    [
-        {
-            "type": 1,
-            "level": "much less than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 2,
-            "level": "less than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 3,
-            "level": "much more than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 4,
-            "level": "more than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 5,
-            "level": "less than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 6,
-            "level": "more than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 7,
-            "level": "more than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 8,
-            "level": "less than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 9,
-            "level": "much less than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 10,
-            "level": "more than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 11,
-            "level": "less than median",
-            "seq_name": 2017
-        },
-        {
-            "type": 12,
-            "level": "much more than median",
-            "seq_name": 2017
+            "level": "150 to 200",
+            "seq_name": 2010,
+            "title": "Little Fockers"
         }
     ]
 ]
