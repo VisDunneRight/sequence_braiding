@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Sequence Braiding</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Libs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+</head>
+<body>
+
+  <div style='font-size: small; color: gray; text-align: center; padding-top: 50px; padding-bottom: 20px'></div>
+  <svg id='chess-svg' style='margin-left: 5%'></svg>
+
+
+</body>
+<script src="https://unpkg.com/peerjs@1.0.4/dist/peerjs.min.js"></script>
+<script src='../lib/visconnect-bundle.js'></script>
+<script src='../lib/align_pair_quad.js'></script>
+<script src='../lib/pairwise_alignment_dna.js'></script>
+<script src='../js/util.js'></script>
+<script src='../js/SequenceBraiding.js'></script>
+<script type="text/javascript">
+  graph1_options = {
+    numSequences: 5,
+    minEventPerColThreshold: 1,
+    height: 1000,
+    width: window.innerWidth*0.7,
+    forceLevelName: true,
+    node_width_factor: 0.08,
+    svg_width: window.innerWidth*0.95,
+    vertical_spacing: 20,
+    link_stroke_width: 6,
+    //horizontal_spacing: 180,
+    //guidelines: false,
+    //path: ['source', '1', '3', '5', '7', '9', '11', '13', '15', '17', 'sink']
+    levels: ['very_high', 'high', 'normal', 'low', 'very_low'],
+  }
+
+  d3.json('../data/jsonglucose.json', (error, data) => {
+    data = data.filter(d => d.length > 2)
+    gs = new SequenceBraiding(data, 'chess-svg', graph1_options)
+
+    function closestPoint(point) {
+      // based on https://bl.ocks.org/mbostock/8027637
+
+      var paths = d3.selectAll('.seqpath')
+
+      var bestest_distance = Infinity;
+      var bestest;
+
+      for (path of paths._groups[0]){
+        var pathNode = path
+        var pathLength = pathNode.getTotalLength(),
+            precision = 8,
+            best,
+            bestLength,
+            bestDistance = Infinity;
+
+        // linear scan for coarse approximation
+        for (var scan, scanLength = 0, scanDistance; scanLength <= pathLength; scanLength += precision) {
+          if ((scanDistance = distance2(scan = pathNode.getPointAtLength(scanLength))) < bestDistance) {
+            best = scan, bestLength = scanLength, bestDistance = scanDistance;
+          }
+        }
+
+        // binary search for precise estimate
+        precision /= 2;
+        while (precision > 0.5) {
+          var before,
+              after,
+              beforeLength,
+              afterLength,
+              beforeDistance,
+              afterDistance;
+          if ((beforeLength = bestLength - precision) >= 0 && (beforeDistance = distance2(before = pathNode.getPointAtLength(beforeLength))) < bestDistance) {
+            best = before, bestLength = beforeLength, bestDistance = beforeDistance;
+          } else if ((afterLength = bestLength + precision) <= pathLength && (afterDistance = distance2(after = pathNode.getPointAtLength(afterLength))) < bestDistance) {
+            best = after, bestLength = afterLength, bestDistance = afterDistance;
+          } else {
+            precision /= 2;
+          }
+        }
+
+        best = [best.x, best.y];
+        best.distance = Math.sqrt(bestDistance);
+
+        if (best.distance < bestest_distance){
+          bestest_distance = best.distance;
+          bestest = best
+          tmp_bestest_id = path.id
+        }
+      }
+
+      return bestest;
+
+      function distance2(p) {
+        var dx = p.x - point[0],
+            dy = p.y - point[1];
+        return dx * dx + dy * dy;
+      }
+    }
+
+    var bestest_id = null;
+    var tmp_bestest_id = null;
+
+    mousemoved = () => {
+      var c = svg.node().getBoundingClientRect()
+      var m = [d3.event.clientX - c.x, d3.event.clientY - c.y]
+      var p = closestPoint(m)
+      linepointer.attr("x1", p[0]).attr("y1", p[1]).attr("x2", m[0]).attr("y2", m[1]);
+
+      if (tmp_bestest_id != bestest_id){
+        bestest_id = tmp_bestest_id
+        d3.selectAll('.seqpath').on('mouseover', () => {}).transition().duration(100).style('opacity', 0.3)
+        d3.select('#' + bestest_id).transition().duration(100).style('opacity', 1)
+      }
+    }
+
+    svg = d3.select('#chess-svg')
+      .on('mousemove', mousemoved)
+
+    var linepointer = svg.append("line")
+      .attr('stroke', 'gray')
+      .attr('stroke-width', '2px')
+
+})
+</script>
+</html>
