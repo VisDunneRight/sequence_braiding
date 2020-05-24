@@ -8,7 +8,7 @@ out = open('full_refined.csv', 'w')
 for line in f:
 	count = 0
 	st = ''
-	
+
 	if len(line.split(',')[0].split('/')) == 3:
 		curdate = datetime(int(line.split(',')[0].split('/')[2]), int(line.split(',')[0].split('/')[0]), int(line.split(',')[0].split('/')[1]))
 		if curdate < datetime(2019, 2, 1): continue
@@ -33,8 +33,8 @@ for line in f:
 	spl = line.split(',')
 	count += 1
 	if count == 1: continue
-	elif count == 2: cur_date = spl[0].strip() 
-	elif spl[0] != cur_date: 
+	elif count == 2: cur_date = spl[0].strip()
+	elif spl[0] != cur_date:
 		cur_date = spl[0]
 		if '"' in cur_date or "Remy" in cur_date: continue
 		res.append(cur_seq) # eliminating dates with single events here!! may not be right
@@ -45,9 +45,9 @@ for line in f:
 			'date' : cur_date,
 			'seq_index' : len(res)
 		}
-		
+
 		remyinfo = open('remy.csv', 'r')
-		
+
 		# carbs
 		carbs_seq = []
 		for l2 in remyinfo:
@@ -65,7 +65,7 @@ for line in f:
 			if y[0] == cur_date.split('/')[2] and int(y[1]) == int(cur_date.split('/')[0]) and int(y[2]) == int(cur_date.split('/')[1]):
 				tmpcgm.append(l2.split(",")[3].strip())
 		#print(cur_date, len(tmpcgm))
-		
+
 		very_high_percent = len(list(filter(lambda x: float(x) >= 250, tmpcgm)))/float(len(tmpcgm))
 		high_percent = len(list(filter(lambda x: float(x) >= 180 and float(x) < 250, tmpcgm)))/float(len(tmpcgm))
 		normal_percent = len(list(filter(lambda x: float(x) >= 70 and float(x) < 180, tmpcgm)))/float(len(tmpcgm))
@@ -90,7 +90,7 @@ for line in f:
 		'seq_index': len(res)
 	}
 	cur_seq.append(event)
-	
+
 json.dump(seq_info_list, open('seq_info.json', 'w'), indent=4)
 
 res.append(cur_seq)
@@ -101,7 +101,7 @@ for i in range(len(res)):
 
 for i in res:
 	for j in i:
-		val = int(j['level']) 
+		val = int(j['level'])
 		if val < 54: j['level'] = 'very_low';
 		elif val < 70: j['level'] = 'low';
 		elif val < 180: j['level'] = 'normal';
@@ -114,7 +114,6 @@ for i in res:
     # else if (val < 70) return 'low';
     # else if (val < 180) return 'normal';
     # else if (val < 250) return 'high';
-    # else return 'very_high';   
+    # else return 'very_high';
 
 json.dump(res, out, indent=4)
-
