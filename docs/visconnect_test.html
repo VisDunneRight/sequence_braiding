@@ -21,6 +21,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/shepherd.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -30,14 +31,27 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
 
+  <script src="../lib/intro.js"></script>
+  <link rel="stylesheet" href="css/introjs.css">
+
   <style>
-    #optdiv {
-      padding: 20px;
-      right: 20px;
-      background-color: #ccc;
-      border-radius: 10px;
+
+    #optdivcontainer {
       text-align: center;
       position: absolute;
+      right: 20px;
+      background-color: #fff;
+      margin: 5px;
+    }
+
+    #optdiv {
+      padding: 15px;
+      background-color: #ccc;
+      border-radius: 10px;
+    }
+
+    #legendcontainer {
+      padding-top: 15px;
     }
 
     .setbtn {
@@ -109,7 +123,13 @@
 
     .slider.round:before {
      border-radius: 50%;
-    }
+
+     .shepherd-content {
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+
   </style>
 
 </head>
@@ -117,18 +137,23 @@
 
   <div style='font-size: small; color: gray; text-align: center; padding-top: 50px; padding-bottom: 20px'></div>
 
-  <div id="optdiv">
-    <button class="setbtn">Start tutorial</button> <br>
-    <button class="setbtn" onclick="choose_set(1)"><span style="font-size: x-small">Set 1 (15 days)</span></button>
-    <button class="setbtn" onclick="choose_set(2)"><div style="font-size: x-small">Set 2 (30 days)<div></button> <br>
-    <button class="setbtn" onclick="choose_set(3)"><div style="font-size: x-small">Set 3 (10 days)<div></button>
-    <button class="setbtn" onclick="choose_set(4)"><div style="font-size: x-small">Set 4 (15 days)<div></button> <br>
-      <!-- Rounded switch -->
-      <div>Enable selection:</div>
-      <label class="switch">
-        <input type="checkbox" id="select_check" oninput="enable_selection()">
-        <span class="slider round"></span>
-      </label>
+  <div id="optdivcontainer">
+    <div id="optdiv">
+      <button class="setbtn" onclick="choose_set(4);start_tour();">Start tutorial</button> <br>
+      <button class="setbtn" onclick="choose_set(1)"><span style="font-size: x-small">Set 1 (15 days)</span></button>
+      <button class="setbtn" onclick="choose_set(2)"><div style="font-size: x-small">Set 2 (30 days)<div></button> <br>
+      <button class="setbtn" onclick="choose_set(3)"><div style="font-size: x-small">Set 3 (10 days)<div></button>
+      <button class="setbtn" onclick="choose_set(4)"><div style="font-size: x-small">Set 4 (15 days)<div></button> <br>
+        <!-- Rounded switch -->
+        <div>Enable selection:</div>
+        <label class="switch">
+          <input type="checkbox" id="select_check" oninput="enable_selection()">
+          <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="legendcontainer">
+      <img src="images/i-04.png" width="70%" id="legendpic"></img>
+    </div>
   </div>
 
   <svg id='chess-svg' style='margin-left: 5%'></svg>
@@ -147,11 +172,11 @@
   graph1_options = {
     numSequences: 15,
     minEventPerColThreshold: 1,
-    height: 1000,
+    height: window.innerHeight*0.7,
     width: window.innerWidth*0.7,
     forceLevelName: true,
     node_width_factor: 0.08,
-    svg_width: window.innerWidth*0.95,
+    svg_width: window.innerWidth*0.8,
     vertical_spacing: 10,
     link_stroke_width: 4,
     //horizontal_spacing: 180,
@@ -171,7 +196,7 @@
         if (force_very_high) data = data.filter(d => d.find(e => e.level == "very_high" || e.level == "high") != undefined)
         gs = new SequenceBraiding(data, 'chess-svg', graph1_options)
 
-        setTimeout(() => {  draw_voronoi() }, 100);
+        //setTimeout(() => {  draw_voronoi() }, 100);
 
         var linepointer = svg.append("line")
           .attr('id', 'linepointer')
@@ -184,7 +209,6 @@
   var d3line = d3.line()
 
   choose_set = (set_index) => {
-    console.log(set_index)
     if (set_index == 1){
       svg.selectAll("*").remove();
       graph1_options.numSequences = 15
@@ -202,6 +226,14 @@
       svg.selectAll("*").remove();
       graph1_options.numSequences = 15
       load_and_draw([0, 6000], false, "jsonglucose2.json")
+    } else if (set_index == 5) {
+      svg.selectAll("*").remove();
+      graph1_options.numSequences = 1
+      load_and_draw([5, 6000], false, "jsonglucose2.json")
+    } else if (set_index == 6) {
+      svg.selectAll("*").remove();
+      graph1_options.numSequences = 2
+      load_and_draw([12, 6000], false, "jsonglucose2.json")
     }
 
   }
@@ -301,5 +333,141 @@ mousemoved = () => {
 
   if (selection_enabled) svg.select("#linepointer").attr("x1", p[0]).attr("y1", p[1]).attr("x2", m[0]).attr("y2", m[1]);
 }
+</script>
+<script>
+
+  start_tour = () => {
+    var svgcoords = document.getElementById("chess-svg").getBoundingClientRect()
+
+    var step1div = document.createElement('div')
+    step1div.style.position = 'absolute'
+    step1div.style.left = svgcoords.x + "px"
+    step1div.style.top = svgcoords.y + "px"
+    step1div.style.width = svgcoords.width + "px"
+    step1div.style.height = svgcoords.height + "px"
+    step1div.id = "step1div"
+    document.body.append(step1div)
+
+    index = 0
+
+    var intro = introJs();
+
+   intro.setOptions({
+     showBullets: false,
+     keyboardNavigation: false,
+     steps: [
+       { // 0
+         intro: "Hello! This is a tutorial for Shapeshifting Timelines"
+       },
+       { // 1
+         element: document.querySelector('#chess-svg'),
+         intro: "People with diabetes need to monitor their blood glucose (blood sugar) on a regular basis.<br><br>In this example, blood glucose data is recorded 15 minutes before each meal, and then plotted on a graph.",
+       },
+       { // 2
+         element: document.querySelector('#chess-svg'),
+         intro: "This example shows a single day with four meals.",
+         position: 'right'
+       },
+       { // 3
+         element: document.querySelector('#chess-svg'),
+         intro: "Each node represents a meal. Both the height and the color of the nodes indicate the blood glucose value registered for that meal.",
+         position: 'right'
+       },
+       { // 4
+         element: '#legendpic',
+         intro: 'There are in total 5 possible blood glucose levels.',
+         position: 'left'
+       },
+       { // 5
+         element: "#step1div",
+         intro: "In this example, breakfast had a normal blood glucose level.",
+         position: 'bottom',
+       },
+       { // 6
+         element: '#step1div',
+         intro: 'While lunch had a very high blood glucose level.'
+       },
+       { // 7
+         element: document.querySelector('#chess-svg'),
+         intro: 'Here is how 2 days look.'
+       },
+       { // 8
+         element: '#step1div',
+         intro: 'Both days had a normal blood glucose breakfast.'
+       },
+       { // 8
+         element: '#step1div',
+         intro: 'One of the days skipped a snack.'
+       },
+     ]
+   });
+
+    intro.onafterchange(function(targetElement, intro) {
+      if (index == 2){
+        choose_set(5)
+      } else if (index == 4) {
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==0).node().getBoundingClientRect()
+        ncoords = d3.select("#node_936_1").node().getBoundingClientRect()
+
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+
+        step1div.style.left = (bcoords.x - 20) + "px"
+        step1div.style.top = (bcoords.y - 20) + "px"
+        step1div.style.width = (bcoords.width + 40) + "px"
+        step1div.style.height = (ncoords.y + 20) + "px"
+
+      } else if (index == 5){
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==1).node().getBoundingClientRect()
+        ncoords = d3.select("#node_936_2").node().getBoundingClientRect()
+
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+
+        step1div.style.left = (bcoords.x - 20) + "px"
+        step1div.style.top = (bcoords.y - 20) + "px"
+        step1div.style.width = (bcoords.width + 40) + "px"
+        step1div.style.height = (ncoords.y + 20) + "px"
+      } else if (index == 6){
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+      } else if (index == 7){
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
+        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#fffff"
+        choose_set(6)
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==0).node().getBoundingClientRect()
+        ncoords = d3.select("#node_928_1").node().getBoundingClientRect()
+        step1div.style.left = (bcoords.x - 20) + "px"
+        step1div.style.top = (bcoords.y - 20) + "px"
+        step1div.style.width = (bcoords.width + 40) + "px"
+        step1div.style.height = (ncoords.y + 20) + "px"
+      } else if (index == 8){
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==3).node().getBoundingClientRect()
+        ncoords = d3.select("#node_929_4").node().getBoundingClientRect()
+        step1div.style.left = (bcoords.x - 20) + "px"
+        step1div.style.top = (bcoords.y - 20) + "px"
+        step1div.style.width = (bcoords.width + 40) + "px"
+        step1div.style.height = (ncoords.y + 20) + "px"
+
+      } else if (index == 9){
+
+
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+
+
+      }
+
+      index += 1
+    })
+
+    intro.start();
+  }
+
+  console.log(d3.selectAll(".path_top_text"))
+  //node_936_1
+
 </script>
 </html>
