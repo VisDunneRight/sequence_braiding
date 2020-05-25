@@ -145,11 +145,13 @@
       <button class="setbtn" onclick="choose_set(3)"><div style="font-size: x-small">Set 3 (10 days)<div></button>
       <button class="setbtn" onclick="choose_set(4)"><div style="font-size: x-small">Set 4 (15 days)<div></button> <br>
         <!-- Rounded switch -->
-        <div>Enable selection:</div>
-        <label class="switch">
-          <input type="checkbox" id="select_check" oninput="enable_selection()">
-          <span class="slider round"></span>
-        </label>
+      <div id="enablediv">
+        <div>Enable pointer:</div>
+          <label class="switch">
+            <input type="checkbox" id="select_check" oninput="enable_selection()">
+            <span class="slider round"></span>
+          </label>
+      </div>
     </div>
     <div id="legendcontainer">
       <img src="images/i-04.png" width="70%" id="legendpic"></img>
@@ -196,7 +198,7 @@
         if (force_very_high) data = data.filter(d => d.find(e => e.level == "very_high" || e.level == "high") != undefined)
         gs = new SequenceBraiding(data, 'chess-svg', graph1_options)
 
-        //setTimeout(() => {  draw_voronoi() }, 100);
+        setTimeout(() => {  draw_voronoi() }, 100);
 
         var linepointer = svg.append("line")
           .attr('id', 'linepointer')
@@ -212,27 +214,44 @@
     if (set_index == 1){
       svg.selectAll("*").remove();
       graph1_options.numSequences = 15
+      graph1_options.path = undefined
+      graph1_options.link_stroke_width = 6
+      graph1_options.vertical_spacing = 15
       load_and_draw([50, 100])
     } else if (set_index == 2) {
       svg.selectAll("*").remove();
       graph1_options.numSequences = 30
       graph1_options.path = ['source', 'Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dinner', 'sink']
+      graph1_options.link_stroke_width = 6
+      graph1_options.vertical_spacing = 10
       load_and_draw([50, 1000])
     } else if (set_index == 3) {
       svg.selectAll("*").remove();
       graph1_options.numSequences = 10
+      graph1_options.path = undefined
+      graph1_options.link_stroke_width = 6
+      graph1_options.vertical_spacing = 20
       load_and_draw([0, 1000])
     } else if (set_index == 4) {
       svg.selectAll("*").remove();
       graph1_options.numSequences = 15
+      graph1_options.path = undefined
+      graph1_options.link_stroke_width = 6
+      graph1_options.vertical_spacing = 0.3*graph1_options.height/graph1_options.numSequences
       load_and_draw([0, 6000], false, "jsonglucose2.json")
     } else if (set_index == 5) {
       svg.selectAll("*").remove();
       graph1_options.numSequences = 1
+      graph1_options.path = undefined
+      graph1_options.vertical_spacing = 20
+      graph1_options.link_stroke_width = 8
       load_and_draw([5, 6000], false, "jsonglucose2.json")
     } else if (set_index == 6) {
       svg.selectAll("*").remove();
       graph1_options.numSequences = 2
+      graph1_options.path = undefined
+      graph1_options.vertical_spacing = 20
+      graph1_options.link_stroke_width = 8
       load_and_draw([12, 6000], false, "jsonglucose2.json")
     }
 
@@ -323,7 +342,7 @@ draw_voronoi = () => {
 
   svg.on('mousemove', mousemoved)
 
-  resample(20)
+  resample(50)
 }
 
 mousemoved = () => {
@@ -357,11 +376,11 @@ mousemoved = () => {
      keyboardNavigation: false,
      steps: [
        { // 0
-         intro: "Hello! This is a tutorial for Shapeshifting Timelines"
+         intro: "Hello! This is a tutorial for Shapeshifting Timelines."
        },
        { // 1
          element: document.querySelector('#chess-svg'),
-         intro: "People with diabetes need to monitor their blood glucose (blood sugar) on a regular basis.<br><br>In this example, blood glucose data is recorded 15 minutes before each meal, and then plotted on a graph.",
+         intro: "People with diabetes need to monitor their blood glucose (blood sugar) on a regular basis.<br><br>In this example, blood glucose data is recorded 15 minutes before each meal, and then plotted on a graph. <br><br> Each graph visualizes multiple days for a single patient.",
        },
        { // 2
          element: document.querySelector('#chess-svg'),
@@ -395,79 +414,120 @@ mousemoved = () => {
          element: '#step1div',
          intro: 'Both days had a normal blood glucose breakfast.'
        },
-       { // 8
+       { // 9
          element: '#step1div',
          intro: 'One of the days skipped a snack.'
        },
+       { // 10
+         element: document.querySelector('#chess-svg'),
+         intro: 'This is how 15 days look.'
+       },
+       { // 11
+         element: '#step1div',
+         intro: 'A patient can have multiple meals of the same type one after the other.'
+       },
+       { // 12
+         intro: 'The advantage of using Sequence Braiding is that it facilitates studying overall trends across multiple days.'
+       },
+       { // 13
+         element: '#step1div',
+         intro: 'Here, for example, several days go from a very high blood glucose snack to a normal dinner.'
+       },
+       { // 14
+         element: '#optdiv',
+         intro: 'Here you can choose different sample datasets.'
+       },
+       { // 15
+         element: '#enablediv',
+         intro: 'And here you can enable the pointer that allows highlighting precise points and sequences in the graph.'
+       },
      ]
+
    });
 
-    intro.onafterchange(function(targetElement, intro) {
-      if (index == 2){
-        choose_set(5)
-      } else if (index == 4) {
+   intro.onchange(function(targetElement, intro) {
+     index += 1
+     if (index == 3){
+         choose_set(5)
+      } else if (index == 6){
+        // prepare step1div for next step
         bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==0).node().getBoundingClientRect()
         ncoords = d3.select("#node_936_1").node().getBoundingClientRect()
-
-        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
-        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
-
         step1div.style.left = (bcoords.x - 20) + "px"
         step1div.style.top = (bcoords.y - 20) + "px"
         step1div.style.width = (bcoords.width + 40) + "px"
         step1div.style.height = (ncoords.y + 20) + "px"
 
-      } else if (index == 5){
+      } else if (index == 7) {
         bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==1).node().getBoundingClientRect()
         ncoords = d3.select("#node_936_2").node().getBoundingClientRect()
 
-        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
-        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
-
-        step1div.style.left = (bcoords.x - 20) + "px"
-        step1div.style.top = (bcoords.y - 20) + "px"
-        step1div.style.width = (bcoords.width + 40) + "px"
-        step1div.style.height = (ncoords.y + 20) + "px"
-      } else if (index == 6){
-        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
-        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
-      } else if (index == 7){
-        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
-        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#fffff"
-        choose_set(6)
-        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==0).node().getBoundingClientRect()
-        ncoords = d3.select("#node_928_1").node().getBoundingClientRect()
         step1div.style.left = (bcoords.x - 20) + "px"
         step1div.style.top = (bcoords.y - 20) + "px"
         step1div.style.width = (bcoords.width + 40) + "px"
         step1div.style.height = (ncoords.y + 20) + "px"
       } else if (index == 8){
-        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
-        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
-        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==3).node().getBoundingClientRect()
-        ncoords = d3.select("#node_929_4").node().getBoundingClientRect()
+        choose_set(6)
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
+      } else if (index == 9){
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==0).node().getBoundingClientRect()
+        ncoords = d3.select("#node_929_1").node().getBoundingClientRect()
+
         step1div.style.left = (bcoords.x - 20) + "px"
         step1div.style.top = (bcoords.y - 20) + "px"
         step1div.style.width = (bcoords.width + 40) + "px"
         step1div.style.height = (ncoords.y + 20) + "px"
+      } else if (index == 10){
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==3).node().getBoundingClientRect()
+        ncoords = d3.select("#node_929_4").node().getBoundingClientRect()
 
-      } else if (index == 9){
+        step1div.style.left = (bcoords.x - 20) + "px"
+        step1div.style.top = (bcoords.y - 20) + "px"
+        step1div.style.width = (bcoords.width + 40) + "px"
+        step1div.style.height = (ncoords.y + 60) + "px"
+      } else if (index == 11){
+        choose_set(4)
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
+      } else if (index == 12){
+        bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==2).node().getBoundingClientRect()
+        bcoords2 = d3.selectAll(".path_top_text").filter((d, i) => i==3).node().getBoundingClientRect()
+        ncoords = d3.select("#node_927_3").node().getBoundingClientRect()
 
+        step1div.style.left = (bcoords.x - 20) + "px"
+        step1div.style.top = (bcoords.y - 20) + "px"
+        step1div.style.width = (bcoords2.x - bcoords.x + bcoords2.width + 40) + "px"
+        step1div.style.height = (ncoords.y + 60) + "px"
+      } else if (index == 13) {
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
+      } else if (index == 14) {
+        ncoords = d3.select("#node_937_3").node().getBoundingClientRect()
+        ncoords2 = d3.select("#node_934_5").node().getBoundingClientRect()
 
-        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
-        document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
-
-
+        step1div.style.left = (ncoords.x - 20) + "px"
+        step1div.style.top = (ncoords.y - 20) + "px"
+        step1div.style.width = (ncoords2.x - ncoords.x + ncoords2.width + 20) + "px"
+        step1div.style.height = (ncoords2.y - ncoords.y + 60) + "px"
+      } else if (index == 15) {
+        document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
       }
+   })
 
-      index += 1
-    })
+   intro.onafterchange(function(targetElement, intro) {
+     document.getElementsByClassName("introjs-prevbutton")[0].style.display = "none"
+     if (index == 6){
+       document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+       document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+     } else if (index == 7) {
+       document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+       document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+     } else if (index == 9 || index == 10 || index == 12 || index == 14){
+       document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0
+       document.getElementsByClassName("introjs-helperLayer")[0].style.backgroundColor = "#0000"
+     }
+   })
 
     intro.start();
   }
-
-  console.log(d3.selectAll(".path_top_text"))
-  //node_936_1
 
 </script>
 </html>
