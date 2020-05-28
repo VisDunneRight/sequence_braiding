@@ -41,7 +41,7 @@
       position: absolute;
       right: 20px;
       background-color: #fff;
-      margin: 5px;
+      width: 20%;
     }
 
     #optdiv {
@@ -170,6 +170,8 @@
 <script src='../js/SequenceBraiding.js'></script>
 <script type="text/javascript">
 
+  chosen_set = 4
+  resizing = false
 
   graph1_options = {
     numSequences: 15,
@@ -178,7 +180,7 @@
     width: window.innerWidth*0.7,
     forceLevelName: true,
     node_width_factor: 0.08,
-    svg_width: window.innerWidth*0.8,
+    svg_width: window.innerWidth*0.7,
     vertical_spacing: 10,
     link_stroke_width: 4,
     //horizontal_spacing: 180,
@@ -211,6 +213,7 @@
   var d3line = d3.line()
 
   choose_set = (set_index) => {
+    chosen_set = set_index
     if (set_index == 1){
       svg.selectAll("*").remove();
       graph1_options.numSequences = 15
@@ -352,6 +355,28 @@ mousemoved = () => {
 
   if (selection_enabled) svg.select("#linepointer").attr("x1", p[0]).attr("y1", p[1]).attr("x2", m[0]).attr("y2", m[1]);
 }
+
+document.body.onresize = () => {
+    graph1_options.svg_width = window.innerWidth*0.7
+    graph1_options.width = window.innerWidth*0.7
+    graph1_options.height = window.innerHeight*0.7
+
+    if (window.innerWidth < 950){
+      document.getElementById('optdivcontainer').style.display = 'none'
+      graph1_options.svg_width = window.innerWidth*0.9
+      graph1_options.width = window.innerWidth*0.9
+      graph1_options.height = window.innerHeight*0.9
+    } else {
+      document.getElementById('optdivcontainer').style.display = 'block'
+    }
+
+    if (resizing == false){
+      resizing = true
+      setTimeout(() => {  resizing = false; choose_set(chosen_set) }, 300);
+    }
+
+}
+
 </script>
 <script>
 
@@ -453,11 +478,12 @@ mousemoved = () => {
         // prepare step1div for next step
         bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==0).node().getBoundingClientRect()
         ncoords = d3.select("#node_936_1").node().getBoundingClientRect()
+        console.log(step1div.style.left)
         step1div.style.left = (bcoords.x - 20) + "px"
         step1div.style.top = (bcoords.y - 20) + "px"
         step1div.style.width = (bcoords.width + 40) + "px"
         step1div.style.height = (ncoords.y + 20) + "px"
-
+        console.log(step1div.style.left)
       } else if (index == 7) {
         bcoords = d3.selectAll(".path_top_text").filter((d, i) => i==1).node().getBoundingClientRect()
         ncoords = d3.select("#node_936_2").node().getBoundingClientRect()
@@ -509,7 +535,11 @@ mousemoved = () => {
         step1div.style.height = (ncoords2.y - ncoords.y + 60) + "px"
       } else if (index == 15) {
         document.getElementsByClassName("introjs-overlay")[0].style.opacity = 0.7
+      } else if (index == 16) {
+        document.getElementsByClassName("introjs-nextbutton")[0].style.display = "none"
       }
+
+      console.log("index", index)
    })
 
    intro.onafterchange(function(targetElement, intro) {

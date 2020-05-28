@@ -29,7 +29,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.cleanup(this.opt.minEventPerColThreshold)
 
 		// drawing variables
-		if (this.opt.horizontal_spacing == undefined) this.horizontal_spacing = this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.98)/(this.path.length-2)
+		if (this.opt.horizontal_spacing == undefined) this.horizontal_spacing = (this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.90)/(this.path.length-2))
 		else this.horizontal_spacing = this.opt.horizontal_spacing
 		if (this.opt.vertical_spacing == undefined) this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
 		else this.vertical_spacing = opt.vertical_spacing
