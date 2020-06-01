@@ -173,14 +173,21 @@
   chosen_set = 4
   resizing = false
 
+  fixedWidth = 1366
+  fixedHeight = 768
+
+  optdivcontainer = document.getElementById("optdivcontainer")
+  optdivcontainer.style.width = fixedWidth * 0.2 + "px"
+  optdivcontainer.style.left = fixedWidth * 0.79 + "px"
+
   graph1_options = {
     numSequences: 15,
     minEventPerColThreshold: 1,
-    height: window.innerHeight*0.7,
-    width: window.innerWidth*0.7,
+    height: fixedHeight*0.7,
+    width: fixedWidth*0.7,
     forceLevelName: true,
     node_width_factor: 0.08,
-    svg_width: window.innerWidth*0.7,
+    svg_width: fixedWidth*0.7,
     vertical_spacing: 10,
     link_stroke_width: 4,
     //horizontal_spacing: 180,
@@ -354,15 +361,15 @@ mousemoved = () => {
 }
 
 document.body.onresize = () => {
-    graph1_options.svg_width = window.innerWidth*0.7
-    graph1_options.width = window.innerWidth*0.7
-    graph1_options.height = window.innerHeight*0.7
+    graph1_options.svg_width = fixedWidth*0.7
+    graph1_options.width = fixedWidth*0.7
+    graph1_options.height = fixedHeight*0.7
 
-    if (window.innerWidth < 950){
+    if (fixedWidth < 950){
       document.getElementById('optdivcontainer').style.display = 'none'
-      graph1_options.svg_width = window.innerWidth*0.9
-      graph1_options.width = window.innerWidth*0.9
-      graph1_options.height = window.innerHeight*0.9
+      graph1_options.svg_width = fixedWidth*0.9
+      graph1_options.width = fixedWidth*0.9
+      graph1_options.height = fixedHeight*0.9
     } else {
       document.getElementById('optdivcontainer').style.display = 'block'
     }
