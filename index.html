@@ -299,7 +299,7 @@
     minEventPerColThreshold: 3,
 	}
 
-	d3.json('../data/sandboxdata.json', (error, data) => {
+	d3.json('./data/sandboxdata.json', (error, data) => {
 		sandbox_data = data
 
 		graph1 = new SequenceBraiding(sandbox_data, 'braids-container1', graph1_options)
